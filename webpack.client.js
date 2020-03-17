@@ -23,7 +23,7 @@ const settings = {
     filename: '[name].[contenthash].js',
     cssFilename: '[name].css',
     cssChunkFilename: '[name].[contenthash].css',
-    client: `${dist}/client`,
+    client: dist,
     html: './client/index.html'
   }
 };
@@ -38,7 +38,7 @@ module.exports = {
     path: path.join(__dirname, settings.output.client)
   },
   devServer: {
-    contentBase: path.join(__dirname, dist, 'client'),
+    contentBase: path.join(__dirname, dist),
     compress: true,
     port: 8000
   },
