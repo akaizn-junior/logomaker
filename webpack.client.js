@@ -14,7 +14,7 @@ require('dotenv').config();
 // if dev mode
 const DEV = process.env.NODE_ENV !== 'production';
 // settings
-const dist = DEV ? 'dev' : 'docs';
+const dist = DEV ? 'dev' : 'build';
 const settings = {
   entry: {
     main: './client/app/app.js'
