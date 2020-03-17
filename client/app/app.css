@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #E5E5E5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

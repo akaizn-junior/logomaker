@@ -1,0 +1,47 @@
+header {
+  position: absolute;
+  width: 100vw;
+  height: 450px;
+  background: #3F51B5;
+}
+
+.header-title {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 114px;
+}
+
+h1 {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 70px;
+  letter-spacing: -0.5px;
+  color: #FFFFFF;
+}
+
+.header-subtitle {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#input-section {
+  position: absolute;
+  width: 100vw;
+}
+
+#user-input {
+  position: relative;
+  width: 790px;
+  height: 423px;
+  background: #ffffff;
+  border-radius: 3px;
+  margin: 30vh auto;
+}
