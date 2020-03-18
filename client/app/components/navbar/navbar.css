@@ -4,6 +4,7 @@ nav {
   display: grid;
   width: 100vw;
   grid-template-columns: 1fr 300px;
+  transition: none;
 }
 
 .menu {
@@ -28,4 +29,31 @@ nav {
 .brand {
   margin-left: 203px;
   margin-top: 16px;
+}
+
+@media (max-width: 1000px) {
+  .brand {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 800px) {
+  .brand {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    margin-left: 15px;
+  }
+
+  .menu {
+    margin-left: 20px;
+  }
+
+  .menu li {
+    font-size: 12px;
+    margin-left: 10px;
+  }
 }

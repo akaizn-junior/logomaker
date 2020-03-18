@@ -3,6 +3,7 @@ header {
   width: 100vw;
   height: 450px;
   background: #3F51B5;
+  transition: none;
 }
 
 .header-title {
@@ -44,4 +45,56 @@ h1 {
   background: #ffffff;
   border-radius: 3px;
   margin: 30vh auto;
+}
+
+@media (max-width: 1024px) {
+  #user-input {
+    width: 700px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 800px) {
+  #user-input {
+    width: 550px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .header-title {
+    top: 80px;
+  }
+
+  .header-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  #user-input {
+    width: 430px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  #user-input {
+    width: 350px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+  }
 }
