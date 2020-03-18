@@ -36,6 +36,7 @@ h1 {
 #input-section {
   position: absolute;
   width: 100vw;
+  margin-top: 292px;
 }
 
 #user-input {
@@ -44,7 +45,8 @@ h1 {
   height: 423px;
   background: #ffffff;
   border-radius: 3px;
-  margin: 30vh auto;
+  margin: 0 auto;
+  box-shadow: 0px 9px 46px rgba(63, 81, 181, 0.16);
 }
 
 @media (max-width: 1024px) {
