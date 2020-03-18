@@ -1,6 +1,6 @@
 # Logo Maker
 
-![Logo maker](./client/logo.svg)
+![Logo maker](./brand.svg)
 
 A simple logo maker
 
