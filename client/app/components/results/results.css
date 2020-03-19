@@ -16,9 +16,15 @@
   background: #ffffff;
   border: 1px solid #e8eaf6;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: 4px;
   width: 255px;
   height: 180px;
+  transition: none;
+}
+
+.results-card:focus {
+  border: 2px solid #3F51B5;
+  outline: none;
 }
 
 .results-card-name {

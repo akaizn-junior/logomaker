@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import './results.css';
 import { Pageheader } from '../';
 
-const Card = ({ name, icon }) => <div className="results-card">
+const Card = ({ name, icon }) => <div
+  tabIndex="0"
+  aria-label="Result Card"
+  className="results-card"
+>
   <p>{icon || ''}</p>
   <p className="results-card-name">{name || ''}</p>
 </div>;
