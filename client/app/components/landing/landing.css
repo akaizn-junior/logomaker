@@ -1,61 +1,57 @@
-header {
-  position: absolute;
-  width: 100vw;
-  height: 450px;
-  background: #3F51B5;
-  transition: none;
-}
-
-.header-title {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  top: 114px;
-}
-
-h1 {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 60px;
-  line-height: 70px;
-  letter-spacing: -0.5px;
-  color: #FFFFFF;
-}
-
-.header-subtitle {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-#input-section {
-  position: absolute;
-  width: 100vw;
-  margin-top: 292px;
-}
-
 #user-input {
-  position: relative;
   width: 790px;
-  height: 423px;
-  background: #ffffff;
-  border-radius: 3px;
-  margin: 0 auto;
-  box-shadow: 0px 9px 46px rgba(63, 81, 181, 0.16);
+  height: 370px;
+}
+
+.MuiInputBase-root {
+  border-radius: 0px !important;
+}
+
+.input-box {
+  padding-top: 20px;
+  padding-left: 125px;
+  padding-right: 125px;
+}
+
+.MuiFormControl-root {
+  margin-top: 40px !important;
+}
+
+#submit-button {
+  position: absolute;
+  background-color: #C0CA33;
+  bottom: 90px;
+  right: 125px;
+  color: #ffffff;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.75px;
+  padding: 10px 16px;
+}
+
+.keyword-chip {
+  width: 100px;
+  background: #E8EAF6 !important;
+  border-radius: 25px;
+  color: #3949AB !important;
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+
+.keyword-chip:focus {
+  color: rgb(49, 64, 163) !important;
+}
+
+.MuiSvgIcon-root svg {
+  fill: #9FA8DA !important;
+  stroke: #9FA8DA !important;
 }
 
 @media (max-width: 1024px) {
   #user-input {
     width: 700px;
-  }
-
-  h1 {
-    font-size: 50px;
   }
 }
 
@@ -63,40 +59,16 @@ h1 {
   #user-input {
     width: 550px;
   }
-
-  h1 {
-    font-size: 45px;
-  }
-
-  .header-title {
-    top: 80px;
-  }
-
-  .header-subtitle {
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 600px) {
   #user-input {
     width: 430px;
   }
-
-  h1 {
-    font-size: 35px;
-  }
 }
 
 @media (max-width: 400px) {
   #user-input {
     width: 350px;
-  }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  .header-subtitle {
-    font-size: 12px;
   }
 }

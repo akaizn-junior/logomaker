@@ -67,7 +67,7 @@ module.exports = {
       app: path.resolve(__dirname, 'client/app/'),
       assets: path.resolve(__dirname, 'client/assets/')
     },
-    extensions: ['.jsx', '.js', '.json']
+    extensions: ['.jsx', '.js']
   },
   optimization: {
     runtimeChunk: 'single',

@@ -41,15 +41,15 @@ nav {
   .brand {
     margin-left: 40px;
   }
+
+  .menu {
+    margin-left: 100px;
+  }
 }
 
 @media (max-width: 400px) {
   .brand {
     margin-left: 15px;
-  }
-
-  .menu {
-    margin-left: 20px;
   }
 
   .menu li {

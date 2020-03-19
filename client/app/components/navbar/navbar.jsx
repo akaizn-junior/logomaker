@@ -8,10 +8,18 @@ export function Navbar() {
   return (
     <nav>
       <div className="brand">
-        <Logo
-          title="Logo Maker"
-          aria-label="Logo Maker"
-        />
+        <Link
+          to="/"
+          style={{
+            width: '100px',
+            display: 'block'
+          }}
+        >
+          <Logo
+            title="Logo Maker"
+            aria-label="Logo Maker"
+          />
+        </Link>
       </div>
       <div className="menu">
         <ul>
@@ -25,7 +33,7 @@ export function Navbar() {
             title="Reach out"
             aria-label="Reach out"
           >
-          <Link to="/">Contact</Link>
+            <Link to="/">Contact</Link>
           </li>
         </ul>
       </div>
