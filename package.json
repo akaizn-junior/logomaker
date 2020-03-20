@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A simple logo maker",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . --ext=jsx --ext=js",
     "watch": "webpack-dev-server --watch --config webpack.client.js",
     "build": "webpack --config webpack.client.js"
   },

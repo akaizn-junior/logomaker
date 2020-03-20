@@ -1,8 +1,11 @@
-#user-results {
+#results-wrap {
   width: 980px;
   height: 500px;
   padding-top: 60px;
   padding-left: 100px;
+}
+
+#user-results {
   display: grid;
   grid-template-columns: repeat(3, 260px);
   grid-template-rows: repeat(3, auto);
@@ -19,9 +22,10 @@
   border-radius: 4px;
   width: 255px;
   height: 180px;
-  transition: none;
+  transition: ease-out .2s;
 }
 
+.results-card:hover,
 .results-card:focus {
   border: 2px solid #3F51B5;
   outline: none;
@@ -38,6 +42,16 @@
   line-height: 30px;
   text-align: center;
   color: #000000;
+}
+
+#results-more {
+  position: relative;
+  margin-right: 140px;
+}
+
+#gen-more-btn {
+  position: absolute;
+  right: 0px;
 }
 
 @media (max-width: 1024px) {
