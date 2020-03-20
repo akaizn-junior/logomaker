@@ -24,6 +24,7 @@ export function Results(props) {
   if (company && keywords) {
     company = company[0].split('=')[1].replace(/_/g, ' ');
     keywords = keywords[0].split('=')[1].replace(/_/g, ' ');
+    getLogos(keywords, console.log);
   }
 
   const [results, setResults] = useState([
@@ -34,8 +35,6 @@ export function Results(props) {
     { name: company, icon: '' },
     { name: company, icon: '' }
   ]);
-
-  getLogos(keywords, console.log);
 
   return (
     <div id="results-page">
