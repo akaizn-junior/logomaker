@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function getLogos(term, resultsCb = () => {}) {
+export function getLogos(term, done = () => {}, fail = () => {}) {
   if (term) {
     axios({
       baseURL: 'https://api.thenounproject.com/',
@@ -15,8 +15,8 @@ export function getLogos(term, resultsCb = () => {}) {
       }
     })
       .then(result => {
-        resultsCb && typeof resultsCb === 'function' && resultsCb(result);
+        done && typeof done === 'function' && done(result);
       })
-      .catch(() => {});
+      .catch(fail);
   }
 }

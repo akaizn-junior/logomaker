@@ -26,10 +26,10 @@ export function Results(props) {
   if (company && keywords) {
     company = company[0].split('=')[1].replace(/_/g, ' ');
     keywords = keywords[0].split('=')[1].replace(/_/g, ' ');
-    // getLogos(keywords, res => {
-    //   setLoading(false);
-    //   console.log(res);
-    // });
+    getLogos(keywords, res => {
+      setLoading(false);
+      console.log(res);
+    });
   }
 
   const [results, setResults] = useState([
@@ -75,10 +75,10 @@ export function Results(props) {
               onClick={() => {
                 if (!loading) {
                   setLoading(true);
-                  // getLogos(keywords, res => {
-                  //   setLoading(false);
-                  //   setResults(res);
-                  // });
+                  getLogos(keywords, res => {
+                    setLoading(false);
+                    setResults(res);
+                  });
                 }
               }}
             >

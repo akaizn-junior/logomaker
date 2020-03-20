@@ -72,8 +72,8 @@
 .loading {
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
-  -webkit-animation: loading .8s ease infinite;
-          animation: loading .8s ease infinite;
+  -webkit-animation: loading .6s ease infinite;
+          animation: loading .6s ease infinite;
 }
 
 @-webkit-keyframes loading {
