@@ -11,9 +11,7 @@ export function getLogos(term, done = () => {}, fail = () => {}) {
         'Content-Type': 'json'
       },
       withCredentials: true,
-      auth: {
-        oauth_consumer_key: '476e24fc91dd49e3bf492bc4c96e2e7c'
-      }
+      auth: {}
     })
       .then(result => {
         done && typeof done === 'function' && done(result);

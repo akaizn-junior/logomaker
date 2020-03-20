@@ -28,7 +28,7 @@ export function Results(props) {
     keywords = keywords[0].split('=')[1].replace(/_/g, ' ');
     getLogos(keywords, res => {
       setLoading(false);
-      console.log(res);
+      setResults(res);
     });
   }
 
