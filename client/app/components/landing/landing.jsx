@@ -48,7 +48,7 @@ export function Landing(props) {
               onBlur={e => {
                 let value = e.target.value;
                 if (value.length) {
-                  value = value.replace(/\s/g, '+');
+                  value = value.replace(/\s/g, '_');
                   setCompanyName(encodeURI(value));
                 }
               }}
