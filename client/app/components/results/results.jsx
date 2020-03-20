@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import './results.css';
 import { Pageheader } from '../';
 import { getLogos } from './results.helper';
+import { Loading } from '../../icons/loading';
 
 const Card = ({ name, icon }) => <div
   tabIndex="0"
@@ -18,13 +19,17 @@ const Card = ({ name, icon }) => <div
 </div>;
 
 export function Results(props) {
+  const [loading, setLoading] = useState(true);
   let company = new RegExp(/c=[a-zA-Z_0=9]+/g).exec(location.hash);
   let keywords = new RegExp(/k=[a-zA-Z_0=9]+/g).exec(location.hash);
 
   if (company && keywords) {
     company = company[0].split('=')[1].replace(/_/g, ' ');
     keywords = keywords[0].split('=')[1].replace(/_/g, ' ');
-    getLogos(keywords, console.log);
+    // getLogos(keywords, res => {
+    //   setLoading(false);
+    //   console.log(res);
+    // });
   }
 
   const [results, setResults] = useState([
@@ -47,9 +52,14 @@ export function Results(props) {
       />
       <section className="main-section">
         <div id="results-wrap" className="main-box">
-          <div id="user-results">
+          {loading
+          && <Loading className="loading-big" svgProps={{ className: 'loading', width: '150' }} />
+          }
+          {!loading
+          && <div id="user-results">
             {results.map((res, i) => <Card key={i} name={res.name} icon={res.icon} />)}
           </div>
+          }
           <div id="results-more">
             <Button
               id="go-back-btn"
@@ -62,8 +72,17 @@ export function Results(props) {
               id="gen-more-btn"
               variant="contained"
               color="primary"
+              onClick={() => {
+                if (!loading) {
+                  setLoading(true);
+                  // getLogos(keywords, res => {
+                  //   setLoading(false);
+                  //   setResults(res);
+                  // });
+                }
+              }}
             >
-              Generate More
+              {loading ? <Loading className="loading-small" svgProps={{ className: 'loading', width: '25' }} /> : 'Generate More' }
             </Button>
           </div>
         </div>
