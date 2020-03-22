@@ -10,7 +10,7 @@ import { getLogos } from './results.helper';
 import { Loading } from '../../icons';
 
 export function Results(props) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   let company = new RegExp(/c=[a-zA-Z_0=9]+/g).exec(location.hash);
   let keywords = new RegExp(/k=[a-zA-Z_0=9]+/g).exec(location.hash);
 
