@@ -1,6 +1,6 @@
 # Logo Maker
 
-![Logo maker](./brand.svg)
+![Logo maker](./brand.png)
 
 A simple logo maker using The Noun Project icons API
 
