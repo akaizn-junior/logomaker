@@ -15,8 +15,9 @@
   row-gap: 30px;
 }
 
-.results-card {
-  background: #ffffff;
+.results-card,
+.download-panel {
+  background-color: #ffffff;
   border: 1px solid #e8eaf6;
   box-sizing: border-box;
   border-radius: 4px;
@@ -26,6 +27,7 @@
   transition: ease-out .2s;
 }
 
+.download-panel,
 .results-card:hover,
 .results-card:focus {
   border: 2px solid #3F51B5;
@@ -45,6 +47,20 @@
   color: #000000;
 }
 
+.download-panel {
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+}
+
+.download-panel-text {
+  margin-top: 20%;
+}
+
+.download-panel-icon {
+  margin-top: 15%;
+}
+
 #results-more {
   position: relative;
   margin-right: 140px;
@@ -59,7 +75,7 @@
   text-align: center;
   margin-top: -60px;
   margin-left: -100px;
-  padding: 15% 0;
+  padding: 17% 0;
 }
 
 .loading-small {

@@ -8,18 +8,35 @@ import './results.css';
 import { Pageheader } from '../';
 import { getLogos } from './results.helper';
 import { Loading } from '../../icons/loading';
+import { Download } from '../../icons/download';
 
-const Card = ({ name, icon }) => <div
-  tabIndex="0"
-  aria-label="Result Card"
-  className="results-card"
->
-  <p>{icon || ''}</p>
-  <p className="results-card-name">{name || ''}</p>
+const Card = ({ name, icon }) => <div>
+  <div className="download-panel" hidden>
+    <p className="download-panel-icon"><Download /></p>
+    <p className="download-panel-text">Click to download</p>
+  </div>
+  <div
+    tabIndex="0"
+    aria-label="Result Card"
+    className="results-card"
+    onMouseOut={e => {
+      const target = e.target.previousElementSibling;
+      target && setTimeout(() => {
+        target.setAttribute('hidden', 'hidden');
+      }, 100);
+    }}
+    onMouseOver={e => {
+      const target = e.target.previousElementSibling;
+      target && target.removeAttribute('hidden');
+    }}
+  >
+    <p>{icon || ''}</p>
+    <p className="results-card-name">{name || ''}</p>
+  </div>
 </div>;
 
 export function Results(props) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   let company = new RegExp(/c=[a-zA-Z_0=9]+/g).exec(location.hash);
   let keywords = new RegExp(/k=[a-zA-Z_0=9]+/g).exec(location.hash);
 
@@ -53,7 +70,7 @@ export function Results(props) {
       <section className="main-section">
         <div id="results-wrap" className="main-box">
           {loading
-          && <Loading className="loading-big" svgProps={{ className: 'loading', width: '150' }} />
+          && <Loading className="loading-big" svgProps={{ className: 'loading', width: '100' }} />
           }
           {!loading
           && <div id="user-results">
