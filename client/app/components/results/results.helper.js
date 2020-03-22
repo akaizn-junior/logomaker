@@ -24,13 +24,17 @@ export function readKeywords() {
   return keywords && keywords[0] && keywords[0].split('=')[1].replace(/_/g, ' ') || '';
 }
 
-export function getLogos(successCb) {
+export function getLogos(successCb, errCb) {
+  const _successCb = successCb && typeof successCb === 'function' && successCb || function() {};
+  const _errCb = errCb && typeof errCb === 'function' && errCb || function() {};
+
+  // get correct data to use for fetch
   const c = readCompany();
   const k = readKeywords();
   const term = k || c;
+
+  // fetch data
   fetchLogos(term, res => {
-    successCb
-    && typeof successCb === 'function'
-    && successCb(Object.values(res));
-  });
+    _successCb(Object.values(res));
+  }, _errCb);
 }

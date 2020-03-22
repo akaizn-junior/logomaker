@@ -9,3 +9,5 @@
 - ADD JSDoc
 - ADD Travis CI support
 - ADD Coveralls support
+= FIX styles on results page main panel
+- BUILD error panel when no results are returned

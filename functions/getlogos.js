@@ -9,8 +9,8 @@ exports.handler = function(event, context, callback) {
   const term = event.queryStringParameters.term;
   const limit = event.queryStringParameters.limit || 6;
 
-  const done = logos => {
-    callback(null, {
+  const done = (err, logos) => {
+    callback(err, {
       statusCode: 200,
       body: JSON.stringify(logos),
       headers: {
@@ -21,7 +21,7 @@ exports.handler = function(event, context, callback) {
     });
   };
 
-  isOptions && done({});
+  isOptions && done(null, {});
 
   const nounProject = new NounProject({
     key: process.env.NOUN_KEY,
@@ -29,8 +29,10 @@ exports.handler = function(event, context, callback) {
   });
 
   isGet && nounProject.getIconsByTerm(term, { limit }, function(err, data) {
-    if (!err) {
-      return done(data);
+    if (err) {
+      return done(err, {});
     }
+
+    return done(null, data);
   });
 };

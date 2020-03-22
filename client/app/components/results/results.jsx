@@ -17,6 +17,8 @@ export function Results(props) {
     !results.length && getLogos(data => {
       setLoading(false);
       setResults(data);
+    }, () => {
+      setLoading(false);
     });
   }, [results.length]);
 
@@ -75,6 +77,8 @@ export function Results(props) {
                   getLogos(data => {
                     setLoading(false);
                     setResults(data);
+                  }, () => {
+                    setLoading(false);
                   });
                 }
               }}
