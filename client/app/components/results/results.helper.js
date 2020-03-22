@@ -3,7 +3,7 @@ import axios from 'axios';
 function fetchLogos(term, done = () => {}, fail = () => {}) {
   if (term) {
     axios({
-      baseURL: 'http://localhost:9000/.netlify/functions/',
+      baseURL: '/.netlify/functions/',
       url: `getlogos?term=${term}`,
       method: 'GET'
     })
