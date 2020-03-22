@@ -11,7 +11,7 @@ A simple logo maker using The Noun Project icons API
 ## Stack
 
 - React
-- Netlify Lambdas
+- Netlify Functions
 
 ## Tools
 
