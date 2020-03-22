@@ -11,8 +11,8 @@ import { Loading } from '../../icons';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
-  let company = new RegExp(/c=[a-zA-Z_0=9]+/g).exec(location.hash);
-  let keywords = new RegExp(/k=[a-zA-Z_0=9]+/g).exec(location.hash);
+  let company = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(location.hash);
+  let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(location.hash);
 
   if (company && keywords) {
     company = company[0].split('=')[1].replace(/_/g, ' ');
@@ -44,7 +44,13 @@ export function Results(props) {
       <section className="main-section">
         <div id="results-wrap" className="main-box">
           {loading
-          && <Loading className="loading-big" svgProps={{ className: 'loading', width: '100' }} />
+          && <Loading
+            className="loading-big"
+            svgProps={{
+              className: 'loading',
+              width: '100'
+            }}
+          />
           }
           {!loading
           && <div id="user-results">
@@ -73,7 +79,16 @@ export function Results(props) {
                 }
               }}
             >
-              {loading ? <Loading className="loading-small" svgProps={{ className: 'loading', width: '25' }} /> : 'Generate More' }
+              {loading
+                ? <Loading
+                  className="loading-small"
+                  svgProps={{
+                    className: 'loading',
+                    width: '25'
+                  }}
+                />
+                : 'Generate More'
+              }
             </Button>
           </div>
         </div>
