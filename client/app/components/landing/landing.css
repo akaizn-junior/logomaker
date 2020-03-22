@@ -1,3 +1,4 @@
+#lost-main,
 #user-input {
   width: 790px;
   height: 370px;
@@ -50,24 +51,28 @@
 }
 
 @media (max-width: 1024px) {
+  #lost-main,
   #user-input {
     width: 700px;
   }
 }
 
 @media (max-width: 800px) {
+  #lost-main,
   #user-input {
     width: 550px;
   }
 }
 
 @media (max-width: 600px) {
+  #lost-main,
   #user-input {
     width: 430px;
   }
 }
 
 @media (max-width: 400px) {
+  #lost-main,
   #user-input {
     width: 350px;
   }

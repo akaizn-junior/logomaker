@@ -16,18 +16,8 @@ export function Card({ name, icon }) {
         tabIndex="0"
         aria-label="Result Card"
         className="results-card"
-        onMouseOut={e => {
-          const target = e.target.previousElementSibling;
-          target && setTimeout(() => {
-            target.setAttribute('hidden', 'hidden');
-          }, 100);
-        }}
-        onMouseOver={e => {
-          const target = e.target.previousElementSibling;
-          target && target.removeAttribute('hidden');
-        }}
       >
-        <p>{icon || ''}</p>
+        <p className="results-card-icon">{icon || ''}</p>
         <p className="results-card-name">{name || ''}</p>
       </div>
     </div>

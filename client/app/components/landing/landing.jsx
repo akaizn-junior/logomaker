@@ -28,6 +28,7 @@ export function verifyFilledInputs(idsList) {
 export function Landing(props) {
   const [companyName, setCompanyName] = useState('');
   const [keywords, setKeywords] = useState('');
+  const separator = '_';
 
   return (
     <div id="landing-page">
@@ -48,7 +49,7 @@ export function Landing(props) {
               onBlur={e => {
                 let value = e.target.value;
                 if (value.length) {
-                  value = value.replace(/\s/g, '_');
+                  value = value.replace(/\s/g, separator);
                   setCompanyName(encodeURI(value));
                 }
               }}
@@ -61,7 +62,7 @@ export function Landing(props) {
               onBlur={e => {
                 const value = e.target.value;
                 if (value.length) {
-                  const toInsert = value.replace(/\s/g, '+');
+                  const toInsert = value.replace(/\s/g, separator);
                   setKeywords(encodeURI(toInsert));
                 }
               }}

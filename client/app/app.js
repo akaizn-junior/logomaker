@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { render } from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
@@ -8,7 +9,7 @@ import {
   Landing,
   Navbar,
   Results,
-  Pageheader
+  Lost
 } from './components';
 
 function App() {
@@ -17,15 +18,16 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" render={props => <Landing {...props}/>} />
-        <Route path="/results" render={props => <Results {...props}/>} />
-        <Route render={() =>
-          <Pageheader
-            headerTitle="We've lost you!"
-            headerSubtitles={[
-              'Our machines are hard at working. Come back home.'
-            ]}
-          />
-        } />
+        <Route path="/results" render={props => {
+          if (props.location.search) {
+            return <Results {...props}/>;
+          }
+
+          setTimeout(() => {
+            props.history.replace('/');
+          }, 100);
+        }} />
+        <Route render={props => <Lost {...props}/> } />
       </Switch>
     </Router>
   );

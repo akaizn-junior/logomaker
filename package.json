@@ -5,14 +5,18 @@
   "scripts": {
     "lint": "eslint . --ext=jsx --ext=js",
     "watch": "webpack-dev-server --watch --config webpack.client.js",
-    "build": "webpack --config webpack.client.js"
+    "build": "webpack --config webpack.client.js",
+    "lambda-build": "netlify-lambda build functions",
+    "lambda-serve": "netlify-lambda serve functions"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "axios": "^0.19.2",
+    "netlify-lambda": "^1.6.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "the-noun-project": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

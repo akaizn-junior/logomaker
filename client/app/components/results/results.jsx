@@ -1,36 +1,24 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // vendor
 import Button from '@material-ui/core/Button';
 
 // app
 import './results.css';
 import { Pageheader, Card } from '../';
-import { getLogos } from './results.helper';
+import { getLogos, readCompany } from './results.helper';
 import { Loading } from '../../icons';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
-  let company = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(location.hash);
-  let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(location.hash);
+  const [results, setResults] = useState([]);
 
-  if (company && keywords) {
-    company = company[0].split('=')[1].replace(/_/g, ' ');
-    keywords = keywords[0].split('=')[1].replace(/_/g, ' ');
-    getLogos(keywords, res => {
+  useEffect(() => {
+    !results.length && getLogos(data => {
       setLoading(false);
-      setResults(res);
+      setResults(data);
     });
-  }
-
-  const [results, setResults] = useState([
-    { name: company, icon: '' },
-    { name: company, icon: '' },
-    { name: company, icon: '' },
-    { name: company, icon: '' },
-    { name: company, icon: '' },
-    { name: company, icon: '' }
-  ]);
+  }, [results.length]);
 
   return (
     <div id="results-page">
@@ -54,7 +42,19 @@ export function Results(props) {
           }
           {!loading
           && <div id="user-results">
-            {results.map((res, i) => <Card key={i} name={res.name} icon={res.icon} />)}
+            {results.map((res, i) =>
+              <Card
+                key={i}
+                name={readCompany()}
+                icon={
+                  <img
+                    alt={res.term}
+                    src={res.preview_url}
+                    width="50"
+                  />
+                }
+              />
+            )}
           </div>
           }
           <div id="results-more">
@@ -72,9 +72,9 @@ export function Results(props) {
               onClick={() => {
                 if (!loading) {
                   setLoading(true);
-                  getLogos(keywords, res => {
+                  getLogos(data => {
                     setLoading(false);
-                    setResults(res);
+                    setResults(data);
                   });
                 }
               }}
