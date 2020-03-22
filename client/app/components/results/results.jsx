@@ -5,35 +5,9 @@ import Button from '@material-ui/core/Button';
 
 // app
 import './results.css';
-import { Pageheader } from '../';
+import { Pageheader, Card } from '../';
 import { getLogos } from './results.helper';
-import { Loading } from '../../icons/loading';
-import { Download } from '../../icons/download';
-
-const Card = ({ name, icon }) => <div>
-  <div className="download-panel" hidden>
-    <p className="download-panel-icon"><Download /></p>
-    <p className="download-panel-text">Click to download</p>
-  </div>
-  <div
-    tabIndex="0"
-    aria-label="Result Card"
-    className="results-card"
-    onMouseOut={e => {
-      const target = e.target.previousElementSibling;
-      target && setTimeout(() => {
-        target.setAttribute('hidden', 'hidden');
-      }, 100);
-    }}
-    onMouseOver={e => {
-      const target = e.target.previousElementSibling;
-      target && target.removeAttribute('hidden');
-    }}
-  >
-    <p>{icon || ''}</p>
-    <p className="results-card-name">{name || ''}</p>
-  </div>
-</div>;
+import { Loading } from '../../icons';
 
 export function Results(props) {
   const [loading, setLoading] = useState(false);
