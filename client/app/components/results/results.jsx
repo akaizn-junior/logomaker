@@ -19,7 +19,6 @@ export function Results(props) {
       setLogosPage(1);
       setLoading(false);
       setResults(data);
-      console.log(data);
     }, () => {
       setLoading(false);
     });

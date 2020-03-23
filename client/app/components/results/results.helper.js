@@ -7,7 +7,7 @@ function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
 
   if (term) {
     axios({
-      baseURL: `${ENV_ORIGIN}/.netlify/functions/`,
+      baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
       url: `getlogos?term=${term}&page=${page}`,
       method: 'GET'
     })
