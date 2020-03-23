@@ -39,7 +39,7 @@
 #results-more {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  padding-right: 60px;
+  padding-right: 7%;
 }
 
 @-webkit-keyframes loading {
@@ -64,6 +64,10 @@
   #results-wrap {
     width: 980px;
   }
+
+  #results-more {
+    padding-right: 15%;
+  }
 }
 
 @media (max-width: 800px) {
@@ -74,6 +78,10 @@
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
+  }
+
+  #results-more {
+    padding-right: 10%;
   }
 
   #user-results {
@@ -96,6 +104,10 @@
     height: fit-content;
   }
 
+  #results-more {
+    padding-right: 10%;
+  }
+
   #user-results {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(6, auto);
@@ -105,5 +117,9 @@
 @media (max-width: 400px) {
   #results-wrap {
     width: 350px;
+  }
+
+  #results-more {
+    padding-right: 20%;
   }
 }
