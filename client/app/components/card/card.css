@@ -1,20 +1,3 @@
-#results-wrap {
-  width: 980px;
-  height: 500px;
-  padding-top: 60px;
-  padding-left: 100px;
-}
-
-#user-results {
-  display: grid;
-  grid-template-columns: repeat(3, 260px);
-  grid-template-rows: repeat(3, auto);
-  -webkit-column-gap: 30px;
-     -moz-column-gap: 30px;
-          column-gap: 30px;
-  row-gap: 30px;
-}
-
 .results-card,
 .download-panel {
   background-color: #ffffff;
@@ -60,9 +43,4 @@
 .results-card-icon,
 .download-panel-icon {
   margin-top: 15%;
-}
-
-#results-more {
-  position: relative;
-  margin-right: 140px;
 }

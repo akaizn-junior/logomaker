@@ -71,6 +71,7 @@ export function Results(props) {
             >
               Go Back
             </Button>
+            <div>&nbsp;</div>
             <Button
               id="gen-more-btn"
               variant="contained"
