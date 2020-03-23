@@ -1,3 +1,5 @@
+/* globals ENV_ORIGIN */
+
 import axios from 'axios';
 
 function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
@@ -5,7 +7,7 @@ function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
 
   if (term) {
     axios({
-      baseURL: 'http://localhost:9000/.netlify/functions/',
+      baseURL: `${ENV_ORIGIN}/.netlify/functions/`,
       url: `getlogos?term=${term}&page=${page}`,
       method: 'GET'
     })

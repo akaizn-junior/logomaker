@@ -43,6 +43,11 @@ module.exports = {
     port: 8000
   },
   plugins: [
+    new webpack.DefinePlugin({
+      ENV_ORIGIN: DEV
+        ? JSON.stringify(process.env.LAMBDA_SERVER)
+        : ''
+    }),
     new HTMLWebpackPlugin({
       template: path.join(__dirname, settings.output.html),
       minify: {
