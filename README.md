@@ -28,7 +28,6 @@ A simple logo maker using The Noun Project icons API
 ## Test
 
 - Unit tests `npm run test`
-- E2E tests `npm run cy`
 
 ## Lint
 
