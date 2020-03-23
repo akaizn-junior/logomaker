@@ -3,7 +3,13 @@
   "setupFilesAfterEnv": ["./.enzyme.config.js"],
   "transform": {
     ".*\\.css$": "./jest-skipcss.js",
-    ".*\\.js$": "babel-jest",
-    ".*\\.jsx$": "babel-jest"
-  }
+    ".*\\.(js|jsx)$": "babel-jest"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "client/**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!client/app/icons/**"
+  ],
+  "coverageReporters": ["html", "lcov", "text-summary"]
 }
