@@ -44,9 +44,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      ENV_ORIGIN: DEV
-        ? JSON.stringify(process.env.LAMBDA_SERVER)
-        : ''
+      ENV_ORIGIN: JSON.stringify(process.env.LAMBDA_SERVER || '')
     }),
     new HTMLWebpackPlugin({
       template: path.join(__dirname, settings.output.html),

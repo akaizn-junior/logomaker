@@ -4,3 +4,4 @@ dev
 cypress
 .nyc_output
 coverage
+build
