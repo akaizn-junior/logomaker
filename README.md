@@ -18,6 +18,7 @@ A simple logo maker using The Noun Project icons API
 - Webpack
 - Jest
 - Chai
+- Sinon
 - Cypress
 - JSDoc
 - Netlify
@@ -28,6 +29,10 @@ A simple logo maker using The Noun Project icons API
 
 - Unit tests `npm run test`
 - E2E tests `npm run cy`
+
+## Lint
+
+- Lint all js files in the code base `npm run lint`
 
 ## Development
 

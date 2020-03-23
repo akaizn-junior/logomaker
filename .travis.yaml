@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+    - "lts/*"
+
+cache:
+    directories:
+      - "node_modules"
+
+stages:
+    - lint
+    - test
+
+before_install:
+    - npm ci
+
+jobs:
+    include:
+      - stage: lint
+        name: "Lint codebase"
+        script:
+          - npm run lint
+      - stage: test
+        name: "Unit tests"
+        script:
+          - npm run test

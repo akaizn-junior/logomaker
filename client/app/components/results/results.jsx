@@ -12,11 +12,14 @@ import { Loading } from '../../icons';
 export function Results(props) {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
+  const [logosPage, setLogosPage] = useState(0);
 
   useEffect(() => {
     !results.length && getLogos(data => {
+      setLogosPage(1);
       setLoading(false);
       setResults(data);
+      console.log(data);
     }, () => {
       setLoading(false);
     });
@@ -48,10 +51,11 @@ export function Results(props) {
               <Card
                 key={i}
                 name={readCompany(location.hash)}
+                iconId={`card-svg-${i}`}
                 icon={
                   <img
                     alt={res.term}
-                    src={res.preview_url}
+                    src={res.icon_url || res.preview_url}
                     width="50"
                   />
                 }
@@ -75,11 +79,12 @@ export function Results(props) {
                 if (!loading) {
                   setLoading(true);
                   getLogos(data => {
+                    setLogosPage(logosPage + 1);
                     setLoading(false);
                     setResults(data);
                   }, () => {
                     setLoading(false);
-                  });
+                  }, logosPage);
                 }
               }}
             >

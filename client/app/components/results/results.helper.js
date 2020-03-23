@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-function fetchLogos(term, done = () => {}, fail = () => {}) {
+function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
+  const { term, page } = fetchData;
+
   if (term) {
     axios({
-      baseURL: '/.netlify/functions/',
-      url: `getlogos?term=${term}`,
+      baseURL: 'http://localhost:9000/.netlify/functions/',
+      url: `getlogos?term=${term}&page=${page}`,
       method: 'GET'
     })
       .then(result => {
@@ -24,7 +26,7 @@ export function readKeywords(urlQuery) {
   return keywords && keywords[0] && keywords[0].split('=')[1].replace(/_/g, ' ') || '';
 }
 
-export function getLogos(successCb, errCb) {
+export function getLogos(successCb, errCb, page = 0) {
   const _successCb = successCb && typeof successCb === 'function' && successCb || function() {};
   const _errCb = errCb && typeof errCb === 'function' && errCb || function() {};
 
@@ -34,7 +36,7 @@ export function getLogos(successCb, errCb) {
   const term = k || c;
 
   // fetch data
-  fetchLogos(term, res => {
+  fetchLogos({ term, page }, res => {
     _successCb(Object.values(res));
   }, _errCb);
 }
