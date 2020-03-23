@@ -2,3 +2,5 @@ node_modules
 dev
 docs
 lambda
+cypress
+coverage

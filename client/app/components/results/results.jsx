@@ -47,7 +47,7 @@ export function Results(props) {
             {results.map((res, i) =>
               <Card
                 key={i}
-                name={readCompany()}
+                name={readCompany(location.hash)}
                 icon={
                   <img
                     alt={res.term}

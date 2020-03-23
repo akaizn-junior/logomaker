@@ -1,3 +1,6 @@
 node_modules
 dev
 .env
+cypress
+.nyc_output
+coverage

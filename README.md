@@ -16,6 +16,8 @@ A simple logo maker using The Noun Project icons API
 ## Tools
 
 - Webpack
+- Jest
+- Chai
 - Cypress
 - JSDoc
 - Netlify

@@ -14,13 +14,13 @@ function fetchLogos(term, done = () => {}, fail = () => {}) {
   }
 }
 
-export function readCompany() {
-  let company = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(location.hash);
+export function readCompany(urlQuery) {
+  let company = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(urlQuery);
   return company && company[0] && company[0].split('=')[1].replace(/_/g, ' ') || '';
 }
 
-export function readKeywords() {
-  let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(location.hash);
+export function readKeywords(urlQuery) {
+  let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(urlQuery);
   return keywords && keywords[0] && keywords[0].split('=')[1].replace(/_/g, ' ') || '';
 }
 
@@ -29,8 +29,8 @@ export function getLogos(successCb, errCb) {
   const _errCb = errCb && typeof errCb === 'function' && errCb || function() {};
 
   // get correct data to use for fetch
-  const c = readCompany();
-  const k = readKeywords();
+  const c = readCompany(location.hash);
+  const k = readKeywords(location.hash);
   const term = k || c;
 
   // fetch data

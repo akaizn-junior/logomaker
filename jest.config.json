@@ -1,0 +1,9 @@
+{
+
+  "setupFilesAfterEnv": ["./.enzyme.config.js"],
+  "transform": {
+    ".*\\.css$": "./jest-skipcss.js",
+    ".*\\.js$": "babel-jest",
+    ".*\\.jsx$": "babel-jest"
+  }
+}
