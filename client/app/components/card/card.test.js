@@ -14,9 +14,4 @@ describe('Card component test', () => {
     const card = enzyme.shallow(<Card />);
     expect(card.find('.results-card')).to.have.lengthOf(1);
   });
-
-  it('should have a ".download-panel" element', () => {
-    const card = enzyme.shallow(<Card />);
-    expect(card.find('.download-panel')).to.have.lengthOf(1);
-  });
 });

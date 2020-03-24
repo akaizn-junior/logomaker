@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
-import { Download } from '../../icons';
-
 import './card.css';
 
-export function Card({ name, icon, textId, iconId, ...rest }) {
+export function Card({ name, cardId, icon, textId, iconId, ...rest }) {
   const ICON = document.createRange && document.createRange().createContextualFragment(icon);
   const NAME = document.createRange && document.createRange().createContextualFragment(name);
 
@@ -30,19 +28,15 @@ export function Card({ name, icon, textId, iconId, ...rest }) {
   });
 
   return (
-    <div {...rest}>
-      <div className="download-panel" hidden>
-        <p className="download-panel-icon"><Download /></p>
-        <p className="download-panel-text">Click to download</p>
-      </div>
-      <div
-        tabIndex="0"
-        aria-label="Result Card"
-        className="results-card"
-      >
-        <p id={iconId} className="results-card-icon"></p>
-        <p id={textId} className="results-card-name"></p>
-      </div>
+    <div
+      id={cardId}
+      tabIndex="0"
+      aria-label="Result Card"
+      className="results-card"
+      {...rest}
+    >
+      <p id={iconId} className="results-card-icon"></p>
+      <p id={textId} className="results-card-name"></p>
     </div>
   );
 }

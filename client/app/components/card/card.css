@@ -1,5 +1,4 @@
-.results-card,
-.download-panel {
+.results-card {
   background-color: #ffffff;
   border: 1px solid #e8eaf6;
   box-sizing: border-box;
@@ -12,7 +11,6 @@
   cursor: pointer;
 }
 
-.download-panel,
 .results-card:hover,
 .results-card:focus {
   border: 2px solid #3F51B5;
@@ -39,17 +37,7 @@
   text-align: center;
 }
 
-.download-panel {
-  position: absolute;
-  z-index: 10;
-}
-
-.download-panel-text {
-  margin-top: 20%;
-}
-
 .results-card-name,
-.results-card-icon,
-.download-panel-icon {
+.results-card-icon {
   margin-top: 15%;
 }

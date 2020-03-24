@@ -1,6 +1,7 @@
 /* globals ENV_ORIGIN */
 
 import axios from 'axios';
+import domtoimage from 'dom-to-image';
 
 function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
   const { term, page } = fetchData;
@@ -83,6 +84,23 @@ export function getSVG(url, text, success, fail = () => {}) {
   })
     .then(res => {
       _success(res.data);
+    })
+    .catch(_fail);
+}
+
+export function domToImg(id, picname, fail) {
+  const _fail = fail && typeof fail === 'function' && fail || function() {};
+  const node = document.getElementById(id);
+
+  domtoimage
+    .toPng(node)
+    .then(dataUrl => {
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.setAttribute('download', picname); // or any other extension
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     })
     .catch(_fail);
 }

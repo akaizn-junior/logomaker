@@ -6,7 +6,12 @@ import Button from '@material-ui/core/Button';
 // app
 import './results.css';
 import { Pageheader, Card } from '../';
-import { getLogos, download, readKeywords, readCompany } from './results.helper';
+import {
+  getLogos,
+  readKeywords,
+  readCompany,
+  domToImg
+} from './results.helper';
 import { Loading } from '../../icons';
 
 export function Results(props) {
@@ -56,12 +61,13 @@ export function Results(props) {
             {results.map((res, i) =>
               <Card
                 key={i}
+                cardId={`card-${i}`}
                 name={readCompany(location.hash)}
                 iconId={`card-svg-${i}`}
                 textId={`card-text-${i}`}
                 icon={res.icon}
                 onClick={() => {
-                  download(res.preview_url, `generated-logo-${i + 1}.png`);
+                  domToImg(`card-${i}`, `generated-logo-${i + 1}.png`);
                 }}
               />
             )}
