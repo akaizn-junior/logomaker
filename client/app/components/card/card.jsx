@@ -6,8 +6,8 @@ import { Download } from '../../icons';
 import './card.css';
 
 export function Card({ name, icon, textId, iconId, ...rest }) {
-  const ICON = document.createRange().createContextualFragment(icon);
-  const NAME = document.createRange().createContextualFragment(name);
+  const ICON = document.createRange && document.createRange().createContextualFragment(icon);
+  const NAME = document.createRange && document.createRange().createContextualFragment(name);
 
   useEffect(() => {
     let i = document.getElementById(iconId);
