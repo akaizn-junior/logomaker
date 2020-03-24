@@ -54,25 +54,6 @@ export function getLogos(successCb, errCb, page = 0) {
   }, _errCb);
 }
 
-export function download(url, picname, fail = () => {}) {
-  axios({
-    responseType: 'arraybuffer',
-    method: 'GET',
-    baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
-    url: `download?img=${url}`
-  })
-    .then(res => {
-      const url = URL.createObjectURL(new Blob([res.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', picname); // or any other extension
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    })
-    .catch(fail);
-}
-
 export function getSVG(url, text, success, fail = () => {}) {
   const _success = success && typeof success === 'function' && success || function() {};
   const _fail = fail && typeof fail === 'function' && fail || function() {};
