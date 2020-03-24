@@ -40,17 +40,7 @@ export function getLogos(successCb, errCb, page = 0) {
 
   // fetch data
   fetchLogos({ term, page }, res => {
-    let resData = Object.values(res);
-    let svgData = [];
-
-    for (let i = 0; i < resData.length; i++) {
-      let rd = resData[i];
-      let url = rd.preview_url;
-      getSVG(url, readCompany(location.hash), d => {
-        svgData.push({ ...d, ...rd });
-        _successCb(svgData);
-      }, _errCb);
-    }
+    _successCb(res);
   }, _errCb);
 }
 
@@ -71,16 +61,36 @@ export function getSVG(url, text, success, fail = () => {}) {
 
 export function domToImg(id, picname, fail) {
   const _fail = fail && typeof fail === 'function' && fail || function() {};
-  const node = document.getElementById(id);
+  const node = document.getElementById(id).cloneNode(true);
+  node.id = 'cloned';
+  const tmp = document.createElement('div');
+  tmp.setAttribute('hidden', 'hidden');
+  tmp.appendChild(node);
+
+  const imgEl = tmp.firstChild.firstChild.firstChild;
+  imgEl.setAttribute('width', '700px');
+  imgEl.setAttribute('height', '700px');
 
   domtoimage
-    .toPng(node)
+    .toPng(node, {
+      height: 1800,
+      width: 2000,
+      style: {
+        border: 'none',
+        outline: 'none',
+        backgroundColor: '#ffffff',
+        textAlign: 'center',
+        fontSize: '120px',
+        paddingTop: '15%'
+      }
+    })
     .then(dataUrl => {
       const link = document.createElement('a');
       link.href = dataUrl;
       link.setAttribute('download', picname); // or any other extension
       document.body.appendChild(link);
       link.click();
+
       document.body.removeChild(link);
     })
     .catch(_fail);

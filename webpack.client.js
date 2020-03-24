@@ -63,6 +63,9 @@ module.exports = {
     new CopyPlugin([{
       from: 'client/logo.svg',
       to: 'logo.svg'
+    }, {
+      from: 'fonts',
+      to: 'fonts'
     }])
   ],
   resolve: {

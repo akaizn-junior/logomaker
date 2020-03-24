@@ -8,7 +8,6 @@ import './results.css';
 import { Pageheader, Card } from '../';
 import {
   getLogos,
-  readKeywords,
   readCompany,
   domToImg
 } from './results.helper';
@@ -23,9 +22,7 @@ export function Results(props) {
     !results.length && getLogos(data => {
       setLogosPage(1);
       setLoading(false);
-      if (data.length === 6) {
-        setResults(data);
-      }
+      setResults(data);
     }, () => {
       setLoading(false);
     });
@@ -50,12 +47,6 @@ export function Results(props) {
               width: '100'
             }}
           />}
-          {!results.length && !loading
-            && <div>
-              <h2>No results found for &quot;{readKeywords(location.hash)}&quot;.</h2>
-              <p>Try again!</p>
-            </div>
-          }
           {!loading
           && <div id="user-results">
             {results.map((res, i) =>
@@ -66,6 +57,8 @@ export function Results(props) {
                 iconId={`card-svg-${i}`}
                 textId={`card-text-${i}`}
                 icon={res.icon}
+                plainIcon={res.preview_url}
+                plainName={readCompany(location.hash)}
                 onClick={() => {
                   domToImg(`card-${i}`, `generated-logo-${i + 1}.png`);
                 }}
