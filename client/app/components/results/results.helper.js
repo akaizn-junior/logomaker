@@ -57,6 +57,7 @@ export function download(url, picname, fail = () => {}) {
       link.setAttribute('download', picname); // or any other extension
       document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     })
     .catch(fail);
 }

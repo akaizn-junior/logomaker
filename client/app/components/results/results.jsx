@@ -55,7 +55,7 @@ export function Results(props) {
                   <img
                     alt={res.term}
                     src={res.icon_url || res.preview_url}
-                    width="50"
+                    width="60"
                   />
                 }
                 onClick={() => {
