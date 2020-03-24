@@ -53,6 +53,11 @@ export function Landing(props) {
                   setCompanyName(encodeURI(value));
                 }
               }}
+              inputProps={{
+                autoCorrect: 'off',
+                autoCapitalize: 'off',
+                autoComplete: 'off'
+              }}
               fullWidth
             />
             <TextField
@@ -65,6 +70,11 @@ export function Landing(props) {
                   const toInsert = value.replace(/\s/g, separator);
                   setKeywords(encodeURI(toInsert));
                 }
+              }}
+              inputProps={{
+                autoCorrect: 'off',
+                autoCapitalize: 'off',
+                autoComplete: 'off'
               }}
               fullWidth
             />
