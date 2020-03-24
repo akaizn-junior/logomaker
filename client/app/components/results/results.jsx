@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // app
 import './results.css';
 import { Pageheader, Card } from '../';
-import { getLogos, readCompany } from './results.helper';
+import { getLogos, readCompany, download } from './results.helper';
 import { Loading } from '../../icons';
 
 export function Results(props) {
@@ -58,6 +58,9 @@ export function Results(props) {
                     width="50"
                   />
                 }
+                onClick={() => {
+                  download(res.preview_url, `generated-logo-${i + 1}.png`);
+                }}
               />
             )}
           </div>

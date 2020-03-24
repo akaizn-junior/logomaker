@@ -1,4 +1,4 @@
-const fs = require('fs');
+const axios = require('axios');
 
 // setup the environment
 require('dotenv').config();
@@ -6,32 +6,28 @@ require('dotenv').config();
 exports.handler = function(event, context, callback) {
   const isOptions = event.httpMethod === 'OPTIONS';
   const isGet = event.httpMethod === 'GET';
-  const name = event.queryStringParameters.name || '';
   const imgUrl = event.queryStringParameters.img || '';
-  const imageName = name ? `${name}.png` : 'my-logo.png';
 
   const done = (err, status, data) => {
     callback(err, {
       statusCode: status,
-      body: JSON.stringify(data),
+      body: data,
       headers: {
         'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGIN,
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Content-Type': 'application/octet-stream',
-        'Content-Disposition': `attachment; filename="${imageName}"`
+        'Access-Control-Allow-Methods': 'GET, OPTIONS'
       }
     });
   };
 
-  isOptions && done(null, 204, {});
+  isOptions && done(null, 204);
 
   if (isGet) {
-    fs.readFile(imgUrl, (err, data) => {
-      if (err) {
-        return done(err, 404, {});
-      }
-
-      return done(null, 200, data);
-    });
+    axios({
+      responseType: 'arraybuffer',
+      method: 'GET',
+      url: imgUrl
+    })
+      .then(res => done(null, 200, res.data))
+      .catch(err => done(err, 500));
   }
 };
