@@ -52,6 +52,7 @@ A simple logo maker using The Noun Project icons API
 - [Fonts Squirel](https://www.fontsquirrel.com/fonts/quicksand)
 - [Image Tracer](https://github.com/jankovicsandras/imagetracerjs)
 - [Text to SVG](https://www.npmjs.com/package/text-to-svg)
+- [DOM to Image](https://github.com/tsayen/dom-to-image)
 
 ## Author
 
