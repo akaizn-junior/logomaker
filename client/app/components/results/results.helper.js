@@ -39,7 +39,17 @@ export function getLogos(successCb, errCb, page = 0) {
 
   // fetch data
   fetchLogos({ term, page }, res => {
-    _successCb(Object.values(res));
+    let resData = Object.values(res);
+    let svgData = [];
+
+    for (let i = 0; i < resData.length; i++) {
+      let rd = resData[i];
+      let url = rd.preview_url;
+      getSVG(url, readCompany(location.hash), d => {
+        svgData.push({ ...d, ...rd });
+        _successCb(svgData);
+      }, _errCb);
+    }
   }, _errCb);
 }
 
@@ -60,4 +70,19 @@ export function download(url, picname, fail = () => {}) {
       document.body.removeChild(link);
     })
     .catch(fail);
+}
+
+export function getSVG(url, text, success, fail = () => {}) {
+  const _success = success && typeof success === 'function' && success || function() {};
+  const _fail = fail && typeof fail === 'function' && fail || function() {};
+
+  axios({
+    method: 'GET',
+    baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
+    url: `transform?img=${url}&text=${text}`
+  })
+    .then(res => {
+      _success(res.data);
+    })
+    .catch(_fail);
 }

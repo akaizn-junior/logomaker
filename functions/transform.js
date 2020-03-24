@@ -16,10 +16,11 @@ exports.handler = function(event, context, callback) {
   const done = (err, status, data) => {
     callback(err, {
       statusCode: status,
-      body: data || '',
+      body: JSON.stringify(data || ''),
       headers: {
         'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGIN,
-        'Access-Control-Allow-Methods': 'GET, OPTIONS'
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Content-Type': 'application/json'
       }
     });
   };
@@ -49,7 +50,7 @@ exports.handler = function(event, context, callback) {
           // tracing to SVG string
           const imgSvg = ImageTracer.imagedataToSVG(myImageData, 'posterized2');
 
-          TextToSVG.load('./fonts/Quicksand-Regular.otf', function(err, textToSVG) {
+          TextToSVG.load('./fonts/Quicksand-Bold.otf', function(err, textToSVG) {
             if (err) {
               return done(err, 500);
             }
@@ -60,22 +61,15 @@ exports.handler = function(event, context, callback) {
             };
 
             const options = {
-              x: 75,
-              y: 240,
-              fontSize: 30,
+              x: 0,
+              y: 120,
+              fontSize: 100,
               anchor: 'bottom',
               attributes
             };
 
-            const tSvg = textToSVG.getPath(text, options);
-            const svgWrap = '<svg viewBox="0 0 250 250" width="250" height="250">';
-
-            let fullImgSvg = `<g width="80" height="80">${imgSvg}</g>`;
-
-            let fullSvg = svgWrap + fullImgSvg + tSvg;
-            fullSvg += '</svg>';
-
-            return done(null, 200, fullSvg);
+            const tSvg = textToSVG.getSVG(text, options);
+            return done(null, 200, { icon: imgSvg, text: tSvg });
           });
         });
       })

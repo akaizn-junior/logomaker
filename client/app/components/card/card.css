@@ -28,6 +28,15 @@
   font-size: 24px;
   line-height: 30px;
   color: #000000;
+  position: relative;
+  top: -20px;
+}
+
+.results-card-name svg {
+  position: relative;
+  top: -20px;
+  left: -10px;
+  text-align: center;
 }
 
 .download-panel {

@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 // app
 import './results.css';
 import { Pageheader, Card } from '../';
-import { getLogos, readCompany, download } from './results.helper';
+import { getLogos, download, readKeywords, readCompany } from './results.helper';
 import { Loading } from '../../icons';
 
 export function Results(props) {
@@ -18,7 +18,9 @@ export function Results(props) {
     !results.length && getLogos(data => {
       setLogosPage(1);
       setLoading(false);
-      setResults(data);
+      if (data.length === 6) {
+        setResults(data);
+      }
     }, () => {
       setLoading(false);
     });
@@ -42,7 +44,12 @@ export function Results(props) {
               className: 'loading',
               width: '100'
             }}
-          />
+          />}
+          {!results.length && !loading
+            && <div>
+              <h2>No results found for &quot;{readKeywords(location.hash)}&quot;.</h2>
+              <p>Try again!</p>
+            </div>
           }
           {!loading
           && <div id="user-results">
@@ -51,13 +58,8 @@ export function Results(props) {
                 key={i}
                 name={readCompany(location.hash)}
                 iconId={`card-svg-${i}`}
-                icon={
-                  <img
-                    alt={res.term}
-                    src={res.icon_url || res.preview_url}
-                    width="60"
-                  />
-                }
+                textId={`card-text-${i}`}
+                icon={res.icon}
                 onClick={() => {
                   download(res.preview_url, `generated-logo-${i + 1}.png`);
                 }}
