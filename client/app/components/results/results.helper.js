@@ -73,8 +73,9 @@ export function domToImg(id, picname, fail) {
 
   domtoimage
     .toPng(node, {
-      height: 1800,
+      height: 1900,
       width: 2000,
+      cachebust: true,
       style: {
         border: 'none',
         outline: 'none',
