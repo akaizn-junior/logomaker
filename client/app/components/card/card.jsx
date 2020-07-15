@@ -3,7 +3,19 @@ import React, { useEffect } from 'react';
 
 import './card.css';
 
-export function Card({ name, cardId, icon, textId, iconId, svg, plainIcon, plainName, ...rest }) {
+export function Card(props) {
+  const {
+    name,
+    cardId,
+    icon,
+    textId,
+    iconId,
+    svg,
+    plainIcon,
+    plainName,
+    ...rest
+  } = props;
+
   const ICON = document.createRange && document.createRange().createContextualFragment(icon);
   const NAME = document.createRange && document.createRange().createContextualFragment(name);
 

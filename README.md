@@ -1,6 +1,6 @@
 # Logo Maker
 
-![Logo maker](./brand.png)
+![Gabriel.](./brand.png)
 
 A simple logo maker using The Noun Project icons API
 
