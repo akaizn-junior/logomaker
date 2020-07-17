@@ -34,8 +34,8 @@ describe('Results component test', () => {
 
   it('should get the correct brand name via the URL', () => {
     const fnSpy = spy(readBrandName);
-    expect(fnSpy('?c=Banana_Hammock')).to.be.a('string');
-    expect(fnSpy('?c=Banana_Hammock')).to.equal('Banana Hammock');
+    expect(fnSpy('?b=Banana_Hammock')).to.be.a('string');
+    expect(fnSpy('?b=Banana_Hammock')).to.equal('Banana Hammock');
   });
 
   it('should read an empty keyword URL query', () => {

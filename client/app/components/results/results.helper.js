@@ -48,7 +48,6 @@ export function getLogos(successCb, errCb, page = 1) {
   const k = readKeywords(location.hash);
   const term = k || b;
 
-  console.log(page);
   // fetch data
   fetchLogos({ term, page }, res => {
     _successCb(res);
