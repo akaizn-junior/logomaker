@@ -1,79 +1,135 @@
-#lost-main,
-#user-input {
-  width: 790px;
-  height: 370px;
+.landing {
+  padding: 0px 5px;
+  height: calc(100vh - 180px);
 }
 
-.MuiInputBase-root {
-  border-radius: 0px !important;
+.landing .app-input ~ .app-input {
+  margin-top: 2px;
 }
 
-.input-box {
-  padding-top: 20px;
-  padding-left: 125px;
-  padding-right: 125px;
+.landing__panel {
+  margin: 20px auto;
+  position: relative;
+  width: 500px;
+  border: 1px solid var(--primary-accent);
+  background-color: var(--primary-light);
 }
 
-.MuiFormControl-root {
-  margin-top: 40px !important;
+.landing__panel,
+.landing__panel .app-input {
+  border-radius: 2px;
 }
 
-#submit-button {
+.make-button {
   position: absolute;
-  background-color: #C0CA33;
-  bottom: 90px;
-  right: 125px;
-  color: #ffffff;
-  font-family: Roboto, sans-serif;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.75px;
-  padding: 10px 16px;
+  width: 100%;
+  height: 45px;
+  border-radius: 2px;
+  margin-top: 15px;
 }
 
-.keyword-chip {
-  width: 100px;
-  background: #E8EAF6 !important;
-  border-radius: 25px;
-  color: #3949AB !important;
-  font-family: Roboto;
-  font-size: 16px;
-  letter-spacing: 0.15px;
+.make-button__robot {
+  position: absolute;
+  opacity: .2;
+  top: 10px;
+  left: 60px;
 }
 
-.keyword-chip:focus {
-  color: rgb(49, 64, 163) !important;
+.make-button:hover .make-button__robot {
+  -webkit-animation: 4.5s linear 1 both fly;
+  animation: 4.5s linear 1 both fly;
 }
 
-.MuiSvgIcon-root svg {
-  fill: #9FA8DA !important;
-  stroke: #9FA8DA !important;
-}
+@-webkit-keyframes fly {
+  0% {
+    top: 9px;
+    left: 60px;
+    opacity: .3;
+  }
 
-@media (max-width: 1024px) {
-  #lost-main,
-  #user-input {
-    width: 700px;
+  20% {
+    top: 6px;
+    left: 120px;
+    opacity: .4;
+  }
+
+  40% {
+    top: 7px;
+    left: 180px;
+    opacity: .5;
+  }
+
+  60% {
+    top: 4px;
+    left: 240px;
+    opacity: .6;
+  }
+
+  80% {
+    top: 6px;
+    left: 300px;
+    opacity: .7;
+  }
+
+  100% {
+    top: 9px;
+    left: 360px;
+    opacity: 1;
   }
 }
 
-@media (max-width: 800px) {
-  #lost-main,
-  #user-input {
-    width: 550px;
+@keyframes fly {
+  0% {
+    top: 9px;
+    left: 10%;
+    opacity: .3;
+  }
+
+  20% {
+    top: 6px;
+    left: 25%;
+    opacity: .4;
+  }
+
+  40% {
+    top: 7px;
+    left: 40%;
+    opacity: .5;
+  }
+
+  60% {
+    top: 4px;
+    left: 55%;
+    opacity: .6;
+  }
+
+  80% {
+    top: 6px;
+    left: 70%;
+    opacity: .7;
+  }
+
+  100% {
+    top: 9px;
+    left: 85%;
+    opacity: 1;
   }
 }
 
 @media (max-width: 600px) {
-  #lost-main,
-  #user-input {
-    width: 430px;
+  .landing__panel {
+    width: 400px;
   }
 }
 
 @media (max-width: 400px) {
-  #lost-main,
-  #user-input {
-    width: 350px;
+  .landing__panel {
+    width: 200px;
+  }
+}
+
+@media (max-width: 200px) {
+  .landing__panel {
+    width: 100px;
   }
 }

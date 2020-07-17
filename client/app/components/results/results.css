@@ -1,125 +1,100 @@
-#results-wrap {
-  width: 900px;
-  height: 500px;
-  padding-top: 60px;
-  padding-left: 80px;
+.results {
+  width: 100vw;
+  height: calc(100vh - 180px);
 }
 
-#user-results {
+.results__panel {
+  margin: 30px auto;
+  position: relative;
+  width: 850px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.results__placeholder {
+  width: 850px;
+  height: 400px;
+}
+
+.results__brand-logos {
   display: grid;
-  grid-template-columns: repeat(3, 260px);
+  grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(3, auto);
-  -webkit-column-gap: 30px;
-     -moz-column-gap: 30px;
-          column-gap: 30px;
-  row-gap: 30px;
+  -moz-column-gap: 5px;
+  column-gap: 5px;
+  row-gap: 5px;
 }
 
-.loading-big {
-  text-align: center;
-  margin-top: -60px;
-  margin-left: -100px;
-  padding: 17% 0;
+.results__more {
+  margin: 15px 0;
 }
 
-.loading-small {
-  width: 145px;
-  height: 27px;
-  padding-top: 4px;
-  text-align: center;
+.results__btn {
+  position: absolute;
+  width: 200px;
+  height: 45px;
+  border-radius: 2px;
+  text-align: left;
 }
 
-.loading {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  -webkit-animation: loading .6s ease infinite;
-          animation: loading .6s ease infinite;
+.results__btn__robot {
+  position: absolute;
+  opacity: .5;
+  top: 7px;
+  right: 30px;
 }
 
-#results-more {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  padding-right: 7%;
+.results__btn__arrow {
+  position: absolute;
+  opacity: .5;
+  top: 7px;
+  right: 40px;
 }
 
-@-webkit-keyframes loading {
-  0% { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-  20% { -webkit-transform: rotate(60deg); transform: rotate(60deg); }
-  40% { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
-  60% { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
-  80% { -webkit-transform: rotate(270deg); transform: rotate(270deg); }
-  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+.results__btn:hover .results__btn__arrow,
+.results__btn:hover .results__btn__robot {
+  opacity: .8;
 }
 
-@keyframes loading {
-  0% { -webkit-transform: rotate(45deg); transform: rotate(45deg); }
-  20% { -webkit-transform: rotate(60deg); transform: rotate(60deg); }
-  40% { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
-  60% { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
-  80% { -webkit-transform: rotate(270deg); transform: rotate(270deg); }
-  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+#results__generate-more {
+  right: 0;
 }
 
-@media (max-width: 1024px) {
-  #results-wrap {
-    width: 980px;
+@media (max-width: 900px) {
+  .results__brand-logos {
+    grid-template-columns: repeat(2, 210px);
+    grid-template-rows: repeat(3, 200px);
   }
 
-  #results-more {
-    padding-right: 15%;
+  .results__placeholder {
+    width: 450px;
+    height: 447px;
+  }
+
+  .results__panel {
+    width: 450px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 }
 
-@media (max-width: 800px) {
-  #results-wrap {
-    width: 650px;
-    padding-top: 40px;
-    padding-left: 40px;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+@media (max-width: 500px) {
+  .results__brand-logos {
+    grid-template-columns: repeat(2, 170px);
+    grid-template-rows: repeat(3, 150px);
   }
 
-  #results-more {
-    padding-right: 10%;
+  .results__placeholder {
+    width: 300px;
+    height: 447px;
   }
 
-  #user-results {
-    grid-template-columns: repeat(2, 300px);
-    grid-template-rows: repeat(3, auto);
-    -webkit-column-gap: 20px;
-       -moz-column-gap: 20px;
-            column-gap: 20px;
-    row-gap: 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  #results-wrap {
-    width: 430px;
-    padding-top: 20px;
-    padding-left: 100px;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-  }
-
-  #results-more {
-    padding-right: 10%;
-  }
-
-  #user-results {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(6, auto);
-  }
-}
-
-@media (max-width: 400px) {
-  #results-wrap {
-    width: 350px;
-  }
-
-  #results-more {
-    padding-right: 20%;
+  .results__panel {
+    width: 300px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 }

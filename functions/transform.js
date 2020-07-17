@@ -50,7 +50,7 @@ exports.handler = function(event, context, callback) {
           // tracing to SVG string
           const imgSvg = ImageTracer.imagedataToSVG(myImageData, 'posterized2');
 
-          TextToSVG.load('./fonts/Quicksand-Bold.otf', function(err, textToSVG) {
+          TextToSVG.load('./fonts/Quicksand.otf', function(err, textToSVG) {
             if (err) {
               return done(err, 500);
             }

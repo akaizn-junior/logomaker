@@ -1,0 +1,21 @@
+.app-button {
+  padding: 4px;
+  font-size: .9em;
+  background-color: var(--app-button-bg);
+  color: var(--app-button-color);
+  border: 1px solid var(--app-button-border);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.app-button:focus,
+.app-button:hover {
+  background-color: var(--app-button-highlight-bg);
+  color: var(--app-button-highlight-color);
+}

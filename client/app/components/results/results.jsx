@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-// vendor
-import Button from '@material-ui/core/Button';
 
-// app
+// styles
 import './results.css';
-import { Pageheader, Card } from '../';
+// components
+import { Card, Button, Loading } from '../';
+import { Robot, Arrow } from '../icons';
+// helpers
 import {
   getLogos,
   readCompany,
   domToImg
 } from './results.helper';
-import { Loading } from '../../icons';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
@@ -29,83 +29,67 @@ export function Results(props) {
   }, [results.length]);
 
   return (
-    <div id="results-page">
-      <Pageheader
-        headerTitle="Your results"
-        headerSubtitles={[
-          'Click on the chosen logo to download a PNG file.',
-          'If you didn’t like any of the results, just click “Generate more”.'
-        ]}
-      />
-      <section className="main-section">
-        <div id="results-wrap" className="main-box">
-          {loading
-          && <Loading
-            className="loading-big"
-            svgProps={{
-              className: 'loading',
-              width: '100'
-            }}
-          />}
-          {!loading
-          && <div id="user-results">
+    <section className="results">
+      <div className="results__panel">
+        {loading
+          && <Loading top="35%" maxWidth="130px" />
+        }
+        {!loading
+          && <div className="results__brand-logos">
             {results.map((res, i) =>
               <Card
                 key={i}
-                cardId={`card-${i}`}
+                cardId={`generated-logo${i + 1}`}
                 name={readCompany(location.hash)}
-                iconId={`card-svg-${i}`}
-                textId={`card-text-${i}`}
+                iconId={`generated-logo${i + 1}-icon`}
+                textId={`generated-logo${i + 1}-name`}
                 icon={res.icon}
                 plainIcon={res.preview_url}
                 plainName={readCompany(location.hash)}
                 onClick={() => {
-                  domToImg(`card-${i}`, `generated-logo-${i + 1}.png`);
+                  domToImg(
+                    `generated-logo${i + 1}`,
+                    `generated-logo-${i + 1}.png`
+                  );
                 }}
               />
             )}
           </div>
-          }
-          <div id="results-more">
-            <Button
-              id="go-back-btn"
-              color="primary"
-              onClick={() => props.history.goBack()}
-            >
-              Go Back
-            </Button>
-            <div>&nbsp;</div>
-            <Button
-              id="gen-more-btn"
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                if (!loading) {
-                  setLoading(true);
-                  getLogos(data => {
-                    setLogosPage(logosPage + 1);
-                    setLoading(false);
-                    setResults(data);
-                  }, () => {
-                    setLoading(false);
-                  }, logosPage);
-                }
-              }}
-            >
-              {loading
-                ? <Loading
-                  className="loading-small"
-                  svgProps={{
-                    className: 'loading',
-                    width: '25'
-                  }}
-                />
-                : 'Generate More'
+        }
+        {loading && <div className="results__placeholder"></div>}
+        <div className="results__more">
+          <Button
+            id="results__back"
+            className="results__btn"
+            onClick={() => props.history.goBack()}
+          >
+            <span>Go Back</span>
+            <Arrow className="results__btn__arrow" />
+          </Button>
+          <Button
+            id="results__generate-more"
+            className="results__btn"
+            onClick={() => {
+              if (!loading) {
+                setLoading(true);
+                getLogos(data => {
+                  setLogosPage(logosPage + 1);
+                  setLoading(false);
+                  setResults(data);
+                }, () => {
+                  setLoading(false);
+                }, logosPage);
               }
-            </Button>
-          </div>
+            }}
+          >
+            {loading
+              ? <Loading maxWidth="25px" />
+              : 'More'
+            }
+            <Robot className="results__btn__robot" />
+          </Button>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

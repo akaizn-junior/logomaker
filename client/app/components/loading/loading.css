@@ -1,0 +1,100 @@
+.loading__shade {
+  background-color: var(--loading-shade);
+  opacity: .7;
+  position: fixed;
+  top: -20%;
+  left: 0px;
+  width: 120%;
+  height: 120%;
+  z-index: 1001;
+  cursor: default;
+}
+
+.loading__mini {
+  position: absolute;
+  background-color: var(--loading-bg);
+  height: 7px;
+  width: 20px;
+  z-index: 1002;
+  border-radius: 2px;
+  border-left: 15px dashed var(--loading-border-left-color);
+  border-right: 15px dashed var(--loading-border-right-color);
+  -webkit-animation: loading 1.5s linear infinite;
+  animation: loading 1.5s linear infinite;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    left: 0%;
+    width: 20%;
+  }
+
+  20% {
+    left: 20%;
+    width: 40%;
+    background-color: var(--loading-highlight-bg1);
+    border-left-color: var(--loading-highlight-bg1);
+    border-right-color: var(--loading-highlight-bg2);
+  }
+
+  40% {
+    left: 40%;
+    width: 60%;
+  }
+
+  60% {
+    left: 70%;
+    width: 100%;
+    background-color: var(--loading-highlight-bg2);
+    border-right-color: var(--loading-highlight-bg1);
+    border-left-color: var(--loading-highlight-bg2);
+  }
+
+  80% {
+    left: 30%;
+    width: 60%;
+  }
+
+  100% {
+    left: 0%;
+    width: 40%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    left: 0%;
+    width: 20%;
+  }
+
+  20% {
+    left: 20%;
+    width: 40%;
+    background-color: var(--loading-highlight-bg1);
+    border-left-color: var(--loading-highlight-bg1);
+    border-right-color: var(--loading-highlight-bg2);
+  }
+
+  40% {
+    left: 40%;
+    width: 60%;
+  }
+
+  60% {
+    left: 70%;
+    width: 100%;
+    background-color: var(--loading-highlight-bg2);
+    border-right-color: var(--loading-highlight-bg1);
+    border-left-color: var(--loading-highlight-bg2);
+  }
+
+  80% {
+    left: 30%;
+    width: 60%;
+  }
+
+  100% {
+    left: 0%;
+    width: 40%;
+  }
+}

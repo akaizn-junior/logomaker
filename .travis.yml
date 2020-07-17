@@ -8,7 +8,9 @@ cache:
 
 stages:
     - lint
+    - lint-styles
     - test
+    - deploy
 
 before_install:
     - npm ci
@@ -16,10 +18,24 @@ before_install:
 jobs:
     include:
       - stage: lint
-        name: "Lint codebase"
+        name: "Lint JS"
         script:
           - npm run lint
+      - stage: lint-styles
+        name: "Lint CSS"
+        script:
+          - npm run lint-styles
       - stage: test
         name: "Unit tests"
         script:
           - npm run test
+      - stage: deploy
+        name: "Deploy with Netlify"
+        script:
+          - export NODE_ENV=production
+          - npm run build
+          - cp netlify.toml build
+          - npm i netlify-cli -g
+          - netlify deploy --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --prod --message="CI/CD build"
+        only:
+          - master

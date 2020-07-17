@@ -160,7 +160,7 @@
     "id-length": 0,
     "id-match": 0,
     "indent": ["error", 2],
-    "jsx-quotes": 0,
+    "jsx-quotes": 2,
     "key-spacing": 2,
     "keyword-spacing": [2, {
         "before": true,

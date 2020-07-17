@@ -1,13 +1,15 @@
 import React from 'react';
-import { Logo } from '../../icons';
 import { Link } from 'react-router-dom';
-
+// components
+import { Logo } from '../icons';
+import { Faces } from '../';
+// styles
 import './navbar.css';
 
 export function Navbar() {
   return (
-    <nav>
-      <div className="brand">
+    <nav className="navbar">
+      <div className="navbar__brand">
         <Link
           to="/"
           style={{
@@ -16,26 +18,12 @@ export function Navbar() {
           }}
         >
           <Logo
-            title="Logo Maker"
-            aria-label="Logo Maker"
+            aria-label="App logo"
           />
         </Link>
       </div>
-      <div className="menu">
-        <ul>
-          <li
-            title="About us"
-            aria-label="About us"
-          >
-            <Link to="/">About</Link>
-          </li>
-          <li
-            title="Reach out"
-            aria-label="Reach out"
-          >
-            <Link to="/">Contact</Link>
-          </li>
-        </ul>
+      <div className="navbar__faces">
+        <Faces />
       </div>
     </nav>
   );

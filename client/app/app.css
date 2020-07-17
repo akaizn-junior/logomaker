@@ -1,29 +1,127 @@
+:root {
+
+  /* Colors */
+
+  --primary-light: #f2f2f2;
+  --primary-dark: #161616;
+  --primary-accent: #7a48f9;
+  --face-icon-color: orange;
+  --brand-svg-color: #7a48f9;
+
+  --app-button-border: #7a48f9;
+  --app-button-bg: #7a48f9;
+  --app-button-color: #f2f2f2;
+  --app-button-highlight-bg: #6533e6;
+  --app-button-highlight-color: aliceblue;
+
+  --app-input-bg: #ffffff;
+  --app-input-highlight-bg: #f1f0ff;
+  --app-input-label-color: #303030;
+  --app-input-label-highlight: #000000;
+
+  --app-card-border: #e4e4e4;
+
+  --scroll-highlight: #7a48f9;
+  --scroll-shadow: #adadad;
+
+  --loading-bg: #a6dfab;
+  --loading-border-left-color: #acd3e2e7;
+  --loading-border-right-color: #c4fd9ee7;
+  --loading-highlight-bg1: #b996fc;
+  --loading-highlight-bg2: #4be453;
+  --loading-shade: #040404c4;
+}
+
 * {
   margin: 0;
   padding: 0;
   transition: linear .3s;
 }
 
+::-moz-selection {
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+::selection {
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+  box-shadow: none;
+  text-shadow: none;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
-  background-color: #E5E5E5;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
+  color: var(--primary-accent);
+  opacity: .8;
 }
 
-.main-section {
-  position: absolute;
+a:focus,
+a:hover {
+  opacity: 1;
+}
+
+header h1 {
+  text-align: center;
+  margin-top: 50px;
+  font-weight: 500;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
   width: 100vw;
-  margin-top: 292px;
+  height: 30px;
+  text-align: center;
+  font-size: .8em;
+  padding-top: 10px;
+  background-color: var(--primary-light);
 }
 
-.main-box {
-  position: relative;
-  background: #ffffff;
-  border-radius: 3px;
-  margin: 0 auto;
-  box-shadow: 0px 9px 46px rgba(63, 81, 181, 0.16);
+/*
+  Scrollbars
+  @see {https://css-tricks.com/almanac/properties/s/scrollbar/
+*/
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: var(--scroll-shadow);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-highlight);
+  outline: 1px solid var(--scroll-shadow);
+  border-radius: 10px;
+}
+
+/*
+  Element scrollbar
+  @see {https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
+*/
+.moz-app-scroll {
+  scrollbar-width: auto;
+  scrollbar-color: var(--scroll-highlight) var(--scroll-shadow);
+}
+
+/* DON'T PRINT SH!T */
+
+@media print {
+  * {
+    display: none;
+  }
 }

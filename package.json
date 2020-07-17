@@ -1,8 +1,10 @@
 {
-  "name": "logomaker",
+  "name": "gabriel.",
   "version": "0.0.1",
-  "description": "A simple logo maker",
+  "description": "We deliver logos.",
   "scripts": {
+    "autoprefix": "postcss client/app/**/*.css --use autoprefixer -r --no-map",
+    "lint-styles": "npm run autoprefix; stylelint client/app/**/*.css",
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "jest",
     "watch": "webpack-dev-server --watch --config webpack.client.js",
@@ -11,7 +13,6 @@
     "lambda-serve": "netlify-lambda serve functions"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
     "axios": "^0.19.2",
     "dom-to-image": "^2.6.0",
     "netlify-lambda": "^1.6.3",
@@ -26,6 +27,8 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
+    "@digitalkaoz/preload-polyfill": "^1.22.5",
+    "autoprefixer": "^9.8.5",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
@@ -41,13 +44,16 @@
     "jest": "^25.1.0",
     "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-cli": "^7.1.1",
     "sinon": "^9.0.1",
     "style-loader": "^1.1.3",
+    "stylelint": "^13.6.1",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "private": true,
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/akaizn-junior/logomaker.git"

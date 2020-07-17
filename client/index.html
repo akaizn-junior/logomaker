@@ -4,14 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Simao Nziaka" />
-  <meta name="description" content="A simple logo maker." />
-  <meta name="keywords" content="logo, maker, simple" />
-  <title>Logo Maker</title>
-  <link rel="icon" href="./logo.svg" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap&subset=latin-ext" rel="stylesheet">
+  <meta name="name" content="Gabriel." />
+  <meta name="description" content="We deliver logos." />
+  <meta name="keywords" content="logo, maker, logomaker, simple, gabriel, delivery, deliver" />
+  <title>Gabriel. We deliver logos.</title>
+  <link id="icon-link" rel="icon" href="./assets/icons/wink.svg" />
+  <link rel="preload" as="style" onload="this.rel='stylesheet';" crossorigin
+    href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap&subset=latin-ext">
 </head>
-<body>
+<body class="moz-app-scroll">
   <div id="app"></div>
+  <script src="./libs/preload-polyfill.min.js"></script>
+  <script src="./libs/preload-polyfill-invoke.min.js"></script>
+  <script src="./libs/preload-polyfill-inline.min.js"></script>
+  <script>
+    "use strict";
+    var i = 0;
+    setInterval(() => {
+      var iconLink = document.getElementById('icon-link');
+      var icons = ['smile.svg', 'happy.svg', 'kiss.svg', 'wink.svg'];
+      if (iconLink) {
+        iconLink.href = './assets/icons/' + icons[++i % icons.length];
+      }
+    }, 2500)
+  </script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "name": "Gabriel.",
+  "short_name": "gab.",
+  "description": "We deliver lgoos.",
+  "scope": "/",
+  "start_url": "index.html",
+  "theme_color": "#0b0b2b",
+  "background_color": "#7946f9",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "icons": [{}]
+}

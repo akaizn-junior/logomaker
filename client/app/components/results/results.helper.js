@@ -83,7 +83,7 @@ export function domToImg(id, picname, fail) {
         textAlign: 'center',
         fontSize: '120px',
         paddingTop: '15%',
-        fontFamily: 'QuicksandBold'
+        fontFamily: 'Quicksand'
       }
     })
     .then(dataUrl => {

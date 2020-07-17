@@ -1,0 +1,43 @@
+.app-input {
+  color: var(--primary-dark);
+  position: relative;
+  background-color: var(--app-input-bg);
+  width: 100%;
+}
+
+.app-input:focus-within .app-input__label {
+  color: var(--app-input-label-highlight);
+  font-size: .9em;
+}
+
+.app-input__label {
+  position: absolute;
+  left: 4px;
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 2px 0px;
+  transition: none;
+  color: var(--app-input-label-color);
+}
+
+.app-input__textfield {
+  width: 98%;
+  height: 50px;
+  padding-top: 14px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  caret-color: var(--primary-accent);
+  font-size: 1.5em;
+  background-color: var(--app-input-bg);
+  color: var(--primary-dark);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  margin-top: 0px;
+}
+
+.app-input__textfield:focus {
+  background-color: var(--app-input-highlight-bg);
+}

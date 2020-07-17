@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
+// global styles
 import './app.css';
 
 import {
@@ -16,6 +17,9 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <header>
+        <h1>We deliver logos.</h1>
+      </header>
       <Switch>
         <Route exact path="/" render={props => <Landing {...props}/>} />
         <Route path="/results" render={props => {
@@ -29,6 +33,9 @@ function App() {
         }} />
         <Route render={props => <Lost {...props}/> } />
       </Switch>
+      <footer>
+        <span>&copy; 2020 Simao Nziaka</span>
+      </footer>
     </Router>
   );
 }

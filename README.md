@@ -1,8 +1,8 @@
-# Logo Maker
+# Gabriel.
 
-![Gabriel.](./brand.png)
+![Gabriel.](./smile-logo.svg)
 
-A simple logo maker using The Noun Project icons API
+We deliver logos.
 
 ## Status
 
@@ -22,7 +22,6 @@ A simple logo maker using The Noun Project icons API
 - Chai
 - Sinon
 - Cypress
-- JSDoc
 - Netlify
 - ESlint
 - DotEnv
@@ -33,7 +32,8 @@ A simple logo maker using The Noun Project icons API
 
 ## Lint
 
-- Lint all js files in the code base `npm run lint`
+- Lint all JS files `npm run lint`
+- Lint all CSS files `npm run lint-styles`
 
 ## Development
 
@@ -43,7 +43,7 @@ A simple logo maker using The Noun Project icons API
 
 ## Production
 
-- Simply push code to master `git push origin` Netlify auto deploy will do the rest
+- Simply push code to master `git push origin` 'Travis CI' does the rest
 
 ## Shout outs
 
@@ -53,7 +53,12 @@ A simple logo maker using The Noun Project icons API
 - [Image Tracer](https://github.com/jankovicsandras/imagetracerjs)
 - [Text to SVG](https://www.npmjs.com/package/text-to-svg)
 - [DOM to Image](https://github.com/tsayen/dom-to-image)
+- [Vectr](https://vectr.com)
+
+## Licenses
+
+- [Quicksand](https://www.fontsquirrel.com/license/quicksand)
 
 ## Author
 
-Simao Nziaka
+(c) 2020 Simao Nziaka

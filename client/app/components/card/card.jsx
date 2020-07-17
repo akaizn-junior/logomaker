@@ -45,16 +45,18 @@ export function Card(props) {
     <div
       id={cardId}
       tabIndex="0"
-      aria-label="Result Card"
-      className="results-card"
+      aria-label="App Card"
+      className="app-card"
       {...rest}
     >
-      <p id={iconId} className="results-card-icon">
+      <p id={iconId} className="app-card__icon">
         {plainIcon && !svg
         && <img alt={plainName} src={plainIcon} width="60" />
         }
       </p>
-      <p id={textId} className="results-card-name">{plainName || ''}</p>
+      <p id={textId} className="app-card__brand">
+        {plainName || ''}
+      </p>
     </div>
   );
 }

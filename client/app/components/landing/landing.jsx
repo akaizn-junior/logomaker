@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-// vendor
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-
-// app
+// components
+import {
+  Button,
+  Input
+} from '../';
+import {
+  Robot
+} from '../icons';
+// style
 import './landing.css';
-
-import { Pageheader } from '../';
 
 /**
  * Verifies a list of ids that should belong to inputs, then focus the first empty input.
@@ -26,74 +28,60 @@ export function verifyFilledInputs(idsList) {
 }
 
 export function Landing(props) {
-  const [companyName, setCompanyName] = useState('');
+  const [brandName, setBrandName] = useState('');
   const [keywords, setKeywords] = useState('');
   const separator = '_';
 
   return (
-    <div id="landing-page">
-      <Pageheader
-        headerTitle="Welcome to our Logo Maker"
-        headerSubtitles={[
-          'Type your company name, and a keyword about your business.',
-          'We will generate logos based on the information given.'
-        ]}
-      />
-      <section className="main-section">
-        <div id="user-input" className="main-box">
-          <div className="input-box">
-            <TextField
-              id="company-name"
-              label="Company Name"
-              variant="outlined"
-              onBlur={e => {
-                let value = e.target.value;
-                if (value.length) {
-                  value = value.replace(/\s/g, separator);
-                  setCompanyName(encodeURI(value));
-                }
-              }}
-              inputProps={{
-                autoCorrect: 'off',
-                autoCapitalize: 'off',
-                autoComplete: 'off'
-              }}
-              fullWidth
-            />
-            <TextField
-              id="company-keywords"
-              label="Keyword"
-              variant="outlined"
-              onBlur={e => {
-                const value = e.target.value;
-                if (value.length) {
-                  const toInsert = value.replace(/\s/g, separator);
-                  setKeywords(encodeURI(toInsert));
-                }
-              }}
-              inputProps={{
-                autoCorrect: 'off',
-                autoCapitalize: 'off',
-                autoComplete: 'off'
-              }}
-              fullWidth
-            />
-          </div>
-          <Button
-            id="submit-button"
-            onClick={() => {
-              if (verifyFilledInputs([
-                'company-name',
-                'company-keywords'
-              ])) {
-                props.history.push(`results?c=${companyName}&k=${keywords}`);
-              }
-            }}
-          >
-            Submit
-          </Button>
-        </div>
-      </section>
-    </div>
+    <section className="landing">
+      <div className="landing__panel">
+        <Input
+          id="brand-name"
+          type="text"
+          label="Brand Name"
+          onBlur={e => {
+            let value = e.target.value;
+            if (value.length) {
+              value = value.replace(/\s/g, separator);
+              setBrandName(encodeURI(value));
+            }
+          }}
+          aria-label="'Brand Name' input text-field"
+          autoCorrect="off"
+          autoCapitalize="off"
+          autoComplete="off"
+        />
+        <Input
+          id="brand-keywords"
+          type="text"
+          label="Keywords"
+          onBlur={e => {
+            const value = e.target.value;
+            if (value.length) {
+              const toInsert = value.replace(/\s/g, separator);
+              setKeywords(encodeURI(toInsert));
+            }
+          }}
+          autoCorrect="off"
+          autoCapitalize="off"
+          autoComplete="off"
+        />
+        <Button
+          className="make-button"
+          aria-label="'Make logos' button"
+          onClick={() => {
+            if (verifyFilledInputs([
+              'brand-name',
+              'brand-keywords'
+            ])) {
+              props.history.push(`results?c=${brandName}&k=${keywords}`);
+            }
+          }}
+        >
+          <span>Make</span>
+          <Robot className="make-button__robot" />
+        </Button>
+      </div>
+    </section>
   );
 }

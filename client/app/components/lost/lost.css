@@ -1,8 +1,12 @@
-#lost-main {
-  background-color: #e5e5e5;
-}
-
-#lost-svg {
+.lost svg {
   text-align: center;
   padding-top: 13%;
+}
+
+.lost__panel {
+  margin: 5% auto;
+  position: relative;
+  width: 500px;
+  text-align: center;
+  font-size: 20px;
 }
