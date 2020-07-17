@@ -82,6 +82,7 @@ export function domToImg(id, picname, fail) {
         backgroundColor: '#ffffff',
         textAlign: 'center',
         fontSize: '120px',
+        fontWeight: 'bold',
         paddingTop: '15%',
         fontFamily: 'Quicksand'
       }
