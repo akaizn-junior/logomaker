@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { Results } from './results.jsx';
 // helpers
 import {
-  readCompany,
+  readBrandName,
   readKeywords
 } from './results.helper';
 
@@ -16,24 +16,24 @@ describe('Results component test', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
 
-  it('should have a "#results-page" element', () => {
+  it('should have a ".results__placeholder" element', () => {
     const wrapper = enzyme.shallow(<Results />);
-    expect(wrapper.find('#results-page')).to.have.lengthOf(1);
+    expect(wrapper.find('.results__placeholder')).to.have.lengthOf(1);
   });
 
-  it('should have a ".main-section" element', () => {
+  it('should have a ".results__panel" element', () => {
     const wrapper = enzyme.shallow(<Results />);
-    expect(wrapper.find('.main-section')).to.have.lengthOf(1);
+    expect(wrapper.find('.results__panel')).to.have.lengthOf(1);
   });
 
   it('should read an empty company name from URL query', () => {
-    const fnSpy = spy(readCompany);
+    const fnSpy = spy(readBrandName);
     expect(fnSpy('?')).to.be.a('string');
     expect(fnSpy('?')).to.be.empty;
   });
 
   it('should get the correct company name via the URL', () => {
-    const fnSpy = spy(readCompany);
+    const fnSpy = spy(readBrandName);
     expect(fnSpy('?c=Banana_Hammock')).to.be.a('string');
     expect(fnSpy('?c=Banana_Hammock')).to.equal('Banana Hammock');
   });

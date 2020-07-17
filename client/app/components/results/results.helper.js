@@ -19,9 +19,9 @@ function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
   }
 }
 
-export function readCompany(urlQuery) {
-  let company = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(urlQuery);
-  return company && company[0] && company[0].split('=')[1].replace(/_/g, ' ') || '';
+export function readBrandName(urlQuery) {
+  let brandName = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(urlQuery);
+  return brandName && brandName[0] && brandName[0].split('=')[1].replace(/_/g, ' ') || '';
 }
 
 export function readKeywords(urlQuery) {
@@ -34,7 +34,7 @@ export function getLogos(successCb, errCb, page = 0) {
   const _errCb = errCb && typeof errCb === 'function' && errCb || function() {};
 
   // get correct data to use for fetch
-  const c = readCompany(location.hash);
+  const c = readBrandName(location.hash);
   const k = readKeywords(location.hash);
   const term = k || c;
 

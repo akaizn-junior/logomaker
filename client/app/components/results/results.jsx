@@ -9,7 +9,7 @@ import { Robot, Arrow } from '../icons';
 // helpers
 import {
   getLogos,
-  readCompany,
+  readBrandName,
   domToImg
 } from './results.helper';
 
@@ -40,12 +40,12 @@ export function Results(props) {
               <Card
                 key={i}
                 cardId={`generated-logo${i + 1}`}
-                name={readCompany(location.hash)}
+                name={readBrandName(location.hash)}
                 iconId={`generated-logo${i + 1}-icon`}
                 textId={`generated-logo${i + 1}-name`}
                 icon={res.icon}
                 plainIcon={res.preview_url}
-                plainName={readCompany(location.hash)}
+                plainName={readBrandName(location.hash)}
                 onClick={() => {
                   domToImg(
                     `generated-logo${i + 1}`,

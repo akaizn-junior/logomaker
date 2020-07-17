@@ -10,8 +10,8 @@ describe('Card component test', () => {
     expect(card).to.have.lengthOf(1);
   });
 
-  it('should have a ".results-card" element', () => {
+  it('should have a ".app-card" element', () => {
     const card = enzyme.shallow(<Card />);
-    expect(card.find('.results-card')).to.have.lengthOf(1);
+    expect(card.find('.app-card')).to.have.lengthOf(1);
   });
 });

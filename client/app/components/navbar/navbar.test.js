@@ -10,13 +10,13 @@ describe('Navbar component test', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
 
-  it('should have a ".brand" element', () => {
+  it('should have a ".navbar__brand" element', () => {
     const wrapper = enzyme.shallow(<Navbar />);
-    expect(wrapper.find('.brand')).to.have.lengthOf(1);
+    expect(wrapper.find('.navbar__brand')).to.have.lengthOf(1);
   });
 
-  it('should have a ".menu" element', () => {
+  it('should have a ".navbar__faces" element', () => {
     const wrapper = enzyme.shallow(<Navbar />);
-    expect(wrapper.find('.menu')).to.have.lengthOf(1);
+    expect(wrapper.find('.navbar__faces')).to.have.lengthOf(1);
   });
 });

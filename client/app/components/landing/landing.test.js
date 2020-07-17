@@ -10,13 +10,13 @@ describe('Landing component test', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
 
-  it('should have a "#landing-page" element', () => {
+  it('should have a ".landing" element', () => {
     const wrapper = enzyme.shallow(<Landing />);
-    expect(wrapper.find('#landing-page')).to.have.lengthOf(1);
+    expect(wrapper.find('.landing')).to.have.lengthOf(1);
   });
 
-  it('should have a ".main-section" element', () => {
+  it('should have a ".landing__panel" element', () => {
     const wrapper = enzyme.shallow(<Landing />);
-    expect(wrapper.find('.main-section')).to.have.lengthOf(1);
+    expect(wrapper.find('.landing__panel')).to.have.lengthOf(1);
   });
 });
