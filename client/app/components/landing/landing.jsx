@@ -39,6 +39,7 @@ export function Landing(props) {
           id="brand-name"
           type="text"
           label="Brand Name"
+          remember="brand-name"
           onBlur={e => {
             let value = e.target.value;
             if (value.length) {
@@ -55,6 +56,7 @@ export function Landing(props) {
           id="brand-keywords"
           type="text"
           label="Keywords"
+          remember="brand-keywords"
           onBlur={e => {
             const value = e.target.value;
             if (value.length) {
