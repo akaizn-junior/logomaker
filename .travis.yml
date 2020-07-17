@@ -36,6 +36,6 @@ jobs:
           - npm run build
           - cp netlify.toml build
           - npm i netlify-cli -g
-          - netlify deploy --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --context production --message="CI/CD build" -p
+          - netlify deploy --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --prod --message="CI/CD build"
         only:
           - master
