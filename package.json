@@ -1,6 +1,6 @@
 {
   "name": "gabriel.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "We deliver logos.",
   "scripts": {
     "autoprefix": "postcss client/app/**/*.css --use autoprefixer -r --no-map",
