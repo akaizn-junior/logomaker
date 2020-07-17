@@ -13,9 +13,11 @@ import {
   domToImg,
   readPack
 } from './results.helper';
+import { Link } from 'react-router-dom';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState(false);
   const [results, setResults] = useState([]);
   const getPack = () => Number(readPack(location.hash));
   const [logosPack, setLogosPack] = useState(getPack());
@@ -31,7 +33,10 @@ export function Results(props) {
     n && props.history.push(newPack(n));
   };
 
-  const getLogosErr = () => setLoading(false);
+  const getLogosErr = () => {
+    setErr(true);
+    setLoading(false);
+  };
 
   useEffect(() => {
     !results.length && getLogos(
@@ -70,12 +75,19 @@ export function Results(props) {
           </div>
         }
         {loading && <div className="results__placeholder"></div>}
+        {!loading && err
+          && <div className="results__err">
+            <p>Snap! Something went wrong on our side.</p>
+            <p>Don&apos;t worry our <i>robots</i> humans are hard at work and have been notified.</p>
+            <p><Link to="/">Try again</Link></p>
+          </div>
+        }
         <div className="results__more">
           <Button
             id="results__back"
             className="results__btn"
             onClick={() => {
-              if (logosPack === 1) {
+              if (logosPack === 1 || err) {
                 return props.history.push('/');
               } else if (!loading) {
                 const goBackwards = logosPack - 1;

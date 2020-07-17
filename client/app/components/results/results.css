@@ -17,6 +17,20 @@
   height: 400px;
 }
 
+.results__err {
+  width: 850px;
+  height: 250px;
+  text-align: center;
+}
+
+.results__err p {
+  line-height: 30px;
+}
+
+.results__err i {
+  text-decoration: line-through;
+}
+
 .results__brand-logos {
   display: grid;
   grid-template-columns: repeat(3, auto);
