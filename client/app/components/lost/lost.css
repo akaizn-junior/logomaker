@@ -16,11 +16,11 @@
   left: 0vw;
   bottom: 60px;
   opacity: .4;
-  -webkit-animation: 10s linear 1 both fly;
-  animation: 10s linear 1 both fly;
+  -webkit-animation: 10s linear 1 both lost-fly;
+  animation: 10s linear 1 both lost-fly;
 }
 
-@-webkit-keyframes fly {
+@-webkit-keyframes lost-fly {
   0% {
     left: 5vw;
     bottom: 100px;
@@ -58,7 +58,7 @@
   }
 }
 
-@keyframes fly {
+@keyframes lost-fly {
   0% {
     left: 5vw;
     bottom: 100px;
