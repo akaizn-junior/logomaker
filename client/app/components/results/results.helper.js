@@ -3,8 +3,13 @@
 import axios from 'axios';
 import domtoimage from 'dom-to-image';
 
+function safeFun(fun) {
+  return fun && typeof fun === 'function' ? fun : () => {};
+}
+
 function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
   const { term, page } = fetchData;
+  const _done = safeFun(done);
 
   if (term) {
     axios({
@@ -13,31 +18,37 @@ function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
       method: 'GET'
     })
       .then(result => {
-        done && typeof done === 'function' && done(result.data.icons);
+        _done(result.data.icons);
       })
       .catch(fail);
   }
 }
 
 export function readBrandName(urlQuery) {
-  let brandName = new RegExp(/c=[a-zA-Z_0-9]+/g).exec(urlQuery);
-  return brandName && brandName[0] && brandName[0].split('=')[1].replace(/_/g, ' ') || '';
+  let brandName = new RegExp(/b=[a-zA-Z_0-9]+/g).exec(urlQuery);
+  return brandName && brandName[0] ? brandName[0].split('=')[1].replace(/_/g, ' ') : '';
 }
 
 export function readKeywords(urlQuery) {
   let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(urlQuery);
-  return keywords && keywords[0] && keywords[0].split('=')[1].replace(/_/g, ' ') || '';
+  return keywords && keywords[0] ? keywords[0].split('=')[1].replace(/_/g, ' ') : '';
 }
 
-export function getLogos(successCb, errCb, page = 0) {
-  const _successCb = successCb && typeof successCb === 'function' && successCb || function() {};
-  const _errCb = errCb && typeof errCb === 'function' && errCb || function() {};
+export function readPack(urlQuery) {
+  let pack = new RegExp(/pack=[0-9]+/g).exec(urlQuery);
+  return pack && pack[0] ? pack[0].split('=')[1].replace(/_/g, ' ') : 1;
+}
+
+export function getLogos(successCb, errCb, page = 1) {
+  const _successCb = safeFun(successCb);
+  const _errCb = safeFun(errCb);
 
   // get correct data to use for fetch
-  const c = readBrandName(location.hash);
+  const b = readBrandName(location.hash);
   const k = readKeywords(location.hash);
-  const term = k || c;
+  const term = k || b;
 
+  console.log(page);
   // fetch data
   fetchLogos({ term, page }, res => {
     _successCb(res);
@@ -45,8 +56,8 @@ export function getLogos(successCb, errCb, page = 0) {
 }
 
 export function getSVG(url, text, success, fail = () => {}) {
-  const _success = success && typeof success === 'function' && success || function() {};
-  const _fail = fail && typeof fail === 'function' && fail || function() {};
+  const _success = safeFun(success);
+  const _fail = safeFun(fail);
 
   axios({
     method: 'GET',
@@ -60,7 +71,7 @@ export function getSVG(url, text, success, fail = () => {}) {
 }
 
 export function domToImg(id, picname, fail) {
-  const _fail = fail && typeof fail === 'function' && fail || function() {};
+  const _fail = safeFun(fail);
   const node = document.getElementById(id).cloneNode(true);
   node.id = 'cloned';
   const tmp = document.createElement('div');

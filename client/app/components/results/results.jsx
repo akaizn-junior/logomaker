@@ -10,23 +10,36 @@ import { Robot, Arrow } from '../icons';
 import {
   getLogos,
   readBrandName,
-  domToImg
+  domToImg,
+  readPack
 } from './results.helper';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
-  const [logosPage, setLogosPage] = useState(0);
+  const getPack = () => Number(readPack(location.hash));
+  const [logosPack, setLogosPack] = useState(getPack());
+
+  const newPack = n => props.location.search.replace(
+    /pack=[0-9]+/,
+    `pack=${n}`
+  );
+
+  const getLogosSuccess = n => data => {
+    setLoading(false);
+    setResults(data);
+    n && props.history.push(newPack(n));
+  };
+
+  const getLogosErr = () => setLoading(false);
 
   useEffect(() => {
-    !results.length && getLogos(data => {
-      setLogosPage(1);
-      setLoading(false);
-      setResults(data);
-    }, () => {
-      setLoading(false);
-    });
-  }, [results.length]);
+    !results.length && getLogos(
+      getLogosSuccess(),
+      getLogosErr,
+      logosPack
+    );
+  }, [results.length, logosPack]);
 
   return (
     <section className="results">
@@ -61,7 +74,20 @@ export function Results(props) {
           <Button
             id="results__back"
             className="results__btn"
-            onClick={() => props.history.goBack()}
+            onClick={() => {
+              if (logosPack === 1) {
+                return props.history.push('/');
+              } else if (!loading) {
+                const goBackwards = logosPack - 1;
+                setLogosPack(goBackwards);
+                setLoading(true);
+                getLogos(
+                  getLogosSuccess(goBackwards),
+                  getLogosErr,
+                  goBackwards
+                );
+              }
+            }}
           >
             <span>Go Back</span>
             <Arrow className="results__btn__arrow" />
@@ -71,14 +97,14 @@ export function Results(props) {
             className="results__btn"
             onClick={() => {
               if (!loading) {
+                const goForward = logosPack + 1;
                 setLoading(true);
-                getLogos(data => {
-                  setLogosPage(logosPage + 1);
-                  setLoading(false);
-                  setResults(data);
-                }, () => {
-                  setLoading(false);
-                }, logosPage);
+                setLogosPack(goForward);
+                getLogos(
+                  getLogosSuccess(goForward),
+                  getLogosErr,
+                  goForward
+                );
               }
             }}
           >

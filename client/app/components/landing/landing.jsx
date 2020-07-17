@@ -76,7 +76,7 @@ export function Landing(props) {
               'brand-name',
               'brand-keywords'
             ])) {
-              props.history.push(`results?c=${brandName}&k=${keywords}`);
+              props.history.push(`results?b=${brandName}&k=${keywords}&pack=1`);
             }
           }}
         >

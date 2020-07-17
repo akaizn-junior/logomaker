@@ -10,3 +10,88 @@
   text-align: center;
   font-size: 20px;
 }
+
+.lost__robot {
+  position: absolute;
+  left: 0vw;
+  bottom: 60px;
+  opacity: .4;
+  -webkit-animation: 10s linear 1 both fly;
+  animation: 10s linear 1 both fly;
+}
+
+@-webkit-keyframes fly {
+  0% {
+    left: 5vw;
+    bottom: 100px;
+    opacity: .3;
+  }
+
+  20% {
+    left: 20vw;
+    bottom: 200px;
+    opacity: .4;
+  }
+
+  40% {
+    left: 40vw;
+    bottom: 300px;
+    opacity: .5;
+  }
+
+  60% {
+    left: 60vw;
+    bottom: 450px;
+    opacity: .6;
+  }
+
+  80% {
+    left: 80vw;
+    bottom: 550px;
+    opacity: .7;
+  }
+
+  100% {
+    left: 90vw;
+    bottom: 650px;
+    opacity: .8;
+  }
+}
+
+@keyframes fly {
+  0% {
+    left: 5vw;
+    bottom: 100px;
+    opacity: .3;
+  }
+
+  20% {
+    left: 20vw;
+    bottom: 200px;
+    opacity: .4;
+  }
+
+  40% {
+    left: 40vw;
+    bottom: 300px;
+    opacity: .5;
+  }
+
+  60% {
+    left: 60vw;
+    bottom: 450px;
+    opacity: .6;
+  }
+
+  80% {
+    left: 80vw;
+    bottom: 550px;
+    opacity: .7;
+  }
+
+  100% {
+    left: 90vw;
+    bottom: 650px;
+    opacity: .8;
+  }
+}
