@@ -95,7 +95,7 @@ export function domToImg(id, picname, fail) {
       style: {
         border: 'none',
         outline: 'none',
-        backgroundColor: 'var(--generated-image-bg)',
+        backgroundColor: '#ffffff',
         textAlign: 'center',
         fontSize: '120px',
         fontWeight: 'bold',
