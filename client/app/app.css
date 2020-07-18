@@ -30,6 +30,8 @@
   --loading-highlight-bg1: #b996fc;
   --loading-highlight-bg2: #4be453;
   --loading-shade: #040404c4;
+
+  --generated-image-bg: #ffffff;
 }
 
 * {
@@ -60,15 +62,26 @@ body {
   overflow-y: auto;
 }
 
+.link-style,
 a {
-  color: inherit;
   color: var(--primary-accent);
   opacity: .8;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
+.link-style:hover,
 a:focus,
 a:hover {
   opacity: 1;
+}
+
+button.link-style {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 header h1 {

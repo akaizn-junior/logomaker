@@ -25,18 +25,24 @@ function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
 }
 
 export function readBrandName(urlQuery) {
-  let brandName = new RegExp(/b=[a-zA-Z_0-9]+/g).exec(urlQuery);
-  return brandName && brandName[0] ? brandName[0].split('=')[1].replace(/_/g, ' ') : '';
+  const brandName = new RegExp(/b=[a-zA-Z_0-9]+/g).exec(urlQuery);
+  return brandName && brandName[0]
+    ? brandName[0].split('=')[1].replace(/_/g, ' ')
+    : '';
 }
 
 export function readKeywords(urlQuery) {
-  let keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(urlQuery);
-  return keywords && keywords[0] ? keywords[0].split('=')[1].replace(/_/g, ' ') : '';
+  const keywords = new RegExp(/k=[a-zA-Z_0-9]+/g).exec(urlQuery);
+  return keywords && keywords[0]
+    ? keywords[0].split('=')[1].replace(/_/g, ' ')
+    : '';
 }
 
 export function readPack(urlQuery) {
-  let pack = new RegExp(/pack=[0-9]+/g).exec(urlQuery);
-  return pack && pack[0] ? pack[0].split('=')[1].replace(/_/g, ' ') : 1;
+  const pack = new RegExp(/pack=[0-9]+/g).exec(urlQuery);
+  return pack && pack[0]
+    ? pack[0].split('=')[1]
+    : 1;
 }
 
 export function getLogos(successCb, errCb, page = 1) {
@@ -89,7 +95,7 @@ export function domToImg(id, picname, fail) {
       style: {
         border: 'none',
         outline: 'none',
-        backgroundColor: '#ffffff',
+        backgroundColor: 'var(--generated-image-bg)',
         textAlign: 'center',
         fontSize: '120px',
         fontWeight: 'bold',

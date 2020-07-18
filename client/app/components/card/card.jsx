@@ -21,8 +21,8 @@ export function Card(props) {
 
   useEffect(() => {
     if (svg) {
-      let i = document.getElementById(iconId);
-      let n = document.getElementById(textId);
+      const i = document.getElementById(iconId);
+      const n = document.getElementById(textId);
 
       if (ICON && ICON.firstChild && ICON.firstChild.setAttribute) {
         ICON.firstChild.setAttribute('viewBox', '0 0 200 200');

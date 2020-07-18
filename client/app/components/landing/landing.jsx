@@ -51,6 +51,7 @@ export function Landing(props) {
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
+          spellCheck="false"
         />
         <Input
           id="brand-keywords"
@@ -67,6 +68,7 @@ export function Landing(props) {
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
+          spellCheck="true"
         />
         <Button
           className="make-button"

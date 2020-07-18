@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(true);
   const [err, setErr] = useState(false);
   const [results, setResults] = useState([]);
   const getPack = () => Number(readPack(location.hash));
@@ -28,9 +29,10 @@ export function Results(props) {
   );
 
   const getLogosSuccess = n => data => {
+    setErr(false);
     setLoading(false);
-    setResults(data);
-    n && props.history.push(newPack(n));
+    mounted && setResults(data);
+    n && mounted && props.history.push(newPack(n));
   };
 
   const getLogosErr = () => {
@@ -44,13 +46,17 @@ export function Results(props) {
       getLogosErr,
       logosPack
     );
+
+    return () => {
+      setMounted(false);
+    };
   }, [results.length, logosPack]);
 
   return (
     <section className="results">
       <div className="results__panel">
         {loading
-          && <Loading top="35%" maxWidth="130px" />
+          && <Loading top="40%" maxWidth="100px" />
         }
         {!loading
           && <div className="results__brand-logos">
@@ -79,7 +85,23 @@ export function Results(props) {
           && <div className="results__err">
             <p>Snap! Something went wrong on our side.</p>
             <p>Don&apos;t worry our <i>robots</i> humans are hard at work and have been notified.</p>
-            <p><Link to="/">Try again</Link></p>
+            <p>
+              <button
+                className="link-style"
+                onClick={() => {
+                  setLoading(true);
+                  getLogos(
+                    getLogosSuccess(),
+                    getLogosErr,
+                    logosPack
+                  );
+                }}
+              >
+                Try again
+              </button>
+              <span>&nbsp;&nbsp;</span>
+              <Link to="/">Go back</Link>
+            </p>
           </div>
         }
         <div className="results__more">
@@ -121,7 +143,7 @@ export function Results(props) {
             }}
           >
             {loading
-              ? <Loading maxWidth="25px" />
+              ? <Loading maxWidth="20px" />
               : 'More'
             }
             <Robot className="results__btn__robot" />

@@ -31,7 +31,7 @@ exports.handler = function(event, context, callback) {
       secret: process.env.NOUN_SECRET
     });
 
-    nounProject.getIconsByTerm(term, { limit, offset, page }, function(err, data) {
+    nounProject.getIconsByTerm(term, { limit, offset, page }, (err, data) => {
       if (err) {
         return done(err, 404, {});
       }

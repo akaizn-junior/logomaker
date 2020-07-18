@@ -35,7 +35,7 @@ exports.handler = function(event, context, callback) {
     })
       .then(res => {
         const reader = new PNGReader(res.data);
-        reader.parse(function(err, png) {
+        reader.parse((err, png) => {
           if (err) {
             return done(err, 500);
           }
@@ -50,7 +50,7 @@ exports.handler = function(event, context, callback) {
           // tracing to SVG string
           const imgSvg = ImageTracer.imagedataToSVG(myImageData, 'posterized2');
 
-          TextToSVG.load('./fonts/Quicksand.otf', function(err, textToSVG) {
+          TextToSVG.load('./fonts/Quicksand.otf', (err, textToSVG) => {
             if (err) {
               return done(err, 500);
             }
