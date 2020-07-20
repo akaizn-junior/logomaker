@@ -17,22 +17,22 @@ import { Link } from 'react-router-dom';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
-  const [mounted, setMounted] = useState(true);
   const [err, setErr] = useState(false);
   const [results, setResults] = useState([]);
   const getPack = () => Number(readPack(location.hash));
   const [logosPack, setLogosPack] = useState(getPack());
 
-  const newPack = n => props.location.search.replace(
-    /pack=[0-9]+/,
-    `pack=${n}`
-  );
+  const newPack = n => props.location.search
+    .replace(
+      /pack=[0-9]+/,
+      `pack=${n}`
+    );
 
   const getLogosSuccess = n => data => {
     setErr(false);
     setLoading(false);
-    mounted && setResults(data);
-    n && mounted && props.history.push(newPack(n));
+    setResults(data);
+    n && props.history.push(newPack(n));
   };
 
   const getLogosErr = () => {
@@ -47,9 +47,7 @@ export function Results(props) {
       logosPack
     );
 
-    return () => {
-      setMounted(false);
-    };
+    return () => {};
   }, [results.length, logosPack]);
 
   return (

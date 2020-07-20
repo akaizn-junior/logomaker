@@ -1,11 +1,11 @@
 {
   "name": "Gabriel.",
   "short_name": "gab.",
-  "description": "We deliver lgoos.",
+  "description": "We deliver logos.",
   "scope": "/",
   "start_url": "index.html",
-  "theme_color": "#0b0b2b",
-  "background_color": "#7946f9",
+  "theme_color": "#f2f2f2",
+  "background_color": "#7a48f9",
   "display": "standalone",
   "orientation": "portrait-primary",
   "icons": [{}]

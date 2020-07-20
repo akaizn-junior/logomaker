@@ -33,6 +33,11 @@
 
   --robot-svg-color: var(--primary-dark);
   --arrow-svg-color: var(--primary-dark);
+
+  --no-js-color: var(--primary-light);
+  --no-js-bg: var(--primary-dark);
+  --no-juice-color1: var(--primary-light);
+  --no-juice-color2: var(--primary-accent);
 }
 
 * {
@@ -146,6 +151,11 @@ footer {
   :root {
     --robot-svg-color: #dbdbdb;
     --arrow-svg-color: #dbdbdb;
+
+    --no-js-color: var(--primary-dark);
+    --no-js-bg: var(--primary-light);
+    --no-juice-color1: var(--primary-dark);
+    --no-juice-color2: var(--primary-accent);
   }
 
   body {
