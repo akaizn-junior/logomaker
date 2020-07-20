@@ -31,7 +31,8 @@
   --loading-highlight-bg2: #4be453;
   --loading-shade: #040404c4;
 
-  --generated-image-bg: #ffffff;
+  --robot-svg-color: var(--primary-dark);
+  --arrow-svg-color: var(--primary-dark);
 }
 
 * {
@@ -136,5 +137,23 @@ footer {
 @media print {
   * {
     display: none;
+  }
+}
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --robot-svg-color: #dbdbdb;
+    --arrow-svg-color: #dbdbdb;
+  }
+
+  body {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+  }
+
+  footer {
+    background-color: var(--primary-dark);
   }
 }

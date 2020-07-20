@@ -30,3 +30,11 @@
     margin-left: 2.5vw;
   }
 }
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: var(--primary-dark);
+  }
+}

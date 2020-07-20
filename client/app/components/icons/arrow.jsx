@@ -17,9 +17,9 @@ export function Arrow(props) {
       <path
         d="M22.08 8.15L6.45 17.62L22.08 8.15Z"
         opacity="1"
-        fill="var(--primary-dark)"
+        fill="var(--arrow-svg-color)"
         fillOpacity="1"
-        stroke="var(--primary-dark)"
+        stroke="var(--arrow-svg-color)"
         strokeWidth="3"
         strokeOpacity="1"
       ></path>
@@ -27,7 +27,7 @@ export function Arrow(props) {
         d="M24.55 26.67L6.45 17.21L24.55 26.67Z"
         opacity="1"
         fillOpacity="1"
-        stroke="var(--primary-dark)"
+        stroke="var(--arrow-svg-color)"
         strokeWidth="3"
         strokeOpacity="1"
       ></path>

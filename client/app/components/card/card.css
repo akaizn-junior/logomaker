@@ -44,3 +44,12 @@
     height: 150px;
   }
 }
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+  .app-card:hover,
+  .app-card:focus {
+    border-width: 3px;
+  }
+}
