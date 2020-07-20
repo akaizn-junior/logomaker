@@ -36,5 +36,6 @@
 @media (prefers-color-scheme: dark) {
   .navbar {
     background: var(--primary-dark);
+    transition: none;
   }
 }

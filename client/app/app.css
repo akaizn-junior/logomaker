@@ -151,9 +151,11 @@ footer {
   body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
+    transition: none;
   }
 
   footer {
     background-color: var(--primary-dark);
+    transition: none;
   }
 }
