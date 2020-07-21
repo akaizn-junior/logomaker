@@ -33,10 +33,6 @@ export function Keywords(props) {
     }
   }, [remembered]);
 
-  useEffect(() => {
-    console.log(keywords);
-  }, [keywords]);
-
   return (
     <div
       className="app-keywords"
