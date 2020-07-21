@@ -3,9 +3,7 @@
 import axios from 'axios';
 import domtoimage from 'dom-to-image';
 
-function safeFun(fun) {
-  return fun && typeof fun === 'function' ? fun : () => {};
-}
+import { safeFun } from '../../utils/browser';
 
 function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
   const { term, page } = fetchData;

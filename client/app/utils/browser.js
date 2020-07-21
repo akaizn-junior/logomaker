@@ -17,3 +17,7 @@ export function checkDarkMode() {
 export function toggleDatasetJsOn() {
   document.body.dataset.js = 'on';
 }
+
+export function safeFun(fun) {
+  return fun && typeof fun === 'function' ? fun : () => {};
+}
