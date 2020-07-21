@@ -14,7 +14,7 @@ export function Input(props) {
     ...rest
   } = props;
 
-  const _remember = remember && typeof remember === 'string' ? remember : false;
+  const _remember = remember && typeof remember === 'string' ? remember : '';
   const dValue = defaultValue || '';
   const remembered = sessionStorage.getItem(_remember);
 

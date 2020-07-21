@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 // components
 import {
   Button,
-  Input
+  Input,
+  Keywords
 } from '../';
 import {
   Robot
@@ -14,16 +15,23 @@ import './landing.css';
 /**
  * Verifies a list of ids that should belong to inputs, then focus the first empty input.
  * Returns false when the first empty input is found, true if all inputs are filled.
- * @param {array} idsList The list of ids to verify
+ * @param {array} ids The list of ids to verify
  */
-export function verifyFilledInputs(idsList) {
-  for (let i = 0; i < idsList.length; i++) {
-    const elem = document.getElementById(idsList[i]);
-    if (elem && !elem.value.length || elem[0] && !elem[0].innerText.length) {
+export function verifyFilledInputs(ids) {
+  for (let i = 0; i < ids.length; i++) {
+    const elem = document.getElementById(ids[i]);
+
+    if (elem && elem.localName === 'input' && !elem.value.length) {
+      elem.focus();
+      return false;
+    }
+
+    if (elem && elem.localName === 'div' && !elem.innerText.length) {
       elem.focus();
       return false;
     }
   }
+
   return true;
 }
 
@@ -53,9 +61,8 @@ export function Landing(props) {
           autoComplete="off"
           spellCheck="false"
         />
-        <Input
+        <Keywords
           id="brand-keywords"
-          type="text"
           label="Keywords"
           remember="brand-keywords"
           onBlur={e => {
@@ -68,7 +75,7 @@ export function Landing(props) {
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
-          spellCheck="true"
+          spellCheck="false"
         />
         <Button
           className="make-button"

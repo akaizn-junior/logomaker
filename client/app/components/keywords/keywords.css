@@ -1,0 +1,52 @@
+.app-keywords {
+  color: var(--primary-dark);
+  position: relative;
+  background-color: var(--app-keywords-bg);
+  width: 100%;
+}
+
+.app-keywords:focus-within .app-keywords__label {
+  color: var(--app-keywords-label-highlight);
+  font-size: .9em;
+}
+
+.app-keywords__label {
+  position: absolute;
+  left: 4px;
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 2px 0px;
+  transition: none;
+  color: var(--app-keywords-label-color);
+}
+
+.app-keywords__textfield {
+  width: 98%;
+  height: 40px;
+  padding-top: 25px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  caret-color: var(--primary-accent);
+  font-size: 1.5em;
+  font-weight: 500;
+  background-color: var(--app-keywords-bg);
+  color: var(--primary-dark);
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  margin-top: 0px;
+}
+
+.app-keywords__textfield:focus {
+  background-color: var(--app-keywords-highlight-bg);
+}
+
+.app-keywords__keyword {
+  background-color: var(--primary-accent);
+  border-radius: 4px;
+  color: var(--primary-light);
+  padding: 0 2px;
+  font-size: .8em;
+}

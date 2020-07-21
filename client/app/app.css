@@ -19,6 +19,11 @@
   --app-input-label-color: #303030;
   --app-input-label-highlight: #000000;
 
+  --app-keywords-bg: var(--app-input-bg);
+  --app-keywords-highlight-bg: var(--app-input-highlight-bg);
+  --app-keywords-label-color: var(--app-input-label-color);
+  --app-keywords-label-highlight: var(--app-input-label-highlight);
+
   --app-card-border: #e4e4e4;
 
   --scroll-highlight: #7a48f9;
