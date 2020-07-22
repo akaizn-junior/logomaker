@@ -71,7 +71,7 @@ export function Results(props) {
                 onClick={() => {
                   domToImg(
                     `generated-logo${i + 1}`,
-                    `generated-logo-${i + 1}.png`
+                    `gabriel.-logo-${i + 1}.png`
                   );
                 }}
               />
