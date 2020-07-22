@@ -56,7 +56,7 @@ export function Results(props) {
         {loading
           && <Loading top="40%" maxWidth="100px" />
         }
-        {!loading
+        {!loading && !err
           && <div className="results__brand-logos">
             {results.map((res, i) =>
               <Card
