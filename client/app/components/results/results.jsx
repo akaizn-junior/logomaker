@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
+  const [cantLoadMore, setCantLoadMore] = useState(false);
   const [err, setErr] = useState(false);
   const [results, setResults] = useState([]);
   const getPack = () => Number(readPack(location.hash));
@@ -32,6 +33,7 @@ export function Results(props) {
     setErr(false);
     setLoading(false);
     setResults(data);
+    setCantLoadMore(data.length < 6);
     n && props.history.push(newPack(n));
   };
 
@@ -128,6 +130,7 @@ export function Results(props) {
           <Button
             id="results__generate-more"
             className="results__btn"
+            disabled={cantLoadMore}
             onClick={() => {
               if (!loading) {
                 const goForward = logosPack + 1;

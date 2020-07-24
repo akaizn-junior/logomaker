@@ -3,7 +3,7 @@ const NounProject = require('the-noun-project');
 // setup the environment
 require('dotenv').config();
 
-exports.handler = function(event, context, callback) {
+exports.handler = function(event, _c, callback) {
   const isOptions = event.httpMethod === 'OPTIONS';
   const isGet = event.httpMethod === 'GET';
   const term = event.queryStringParameters.term;

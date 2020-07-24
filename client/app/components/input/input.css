@@ -41,9 +41,3 @@
   color: var(--app-input-label-highlight);
   font-size: .9em;
 }
-
-/* STATE */
-
-.app-input__textfield:invalid {
-  background-color: red;
-}

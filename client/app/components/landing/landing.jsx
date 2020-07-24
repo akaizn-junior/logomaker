@@ -51,6 +51,12 @@ export function Landing(props) {
           autoCapitalize="off"
           autoComplete="off"
           spellCheck="false"
+          onKeyDown={e => {
+            if (e.keyCode === 13) {
+              document.getElementById('brand-keywords')
+                .focus();
+            }
+          }}
         />
         <Input
           id="brand-keywords"
@@ -64,11 +70,13 @@ export function Landing(props) {
           spellCheck="true"
           onKeyDown={e => {
             if (e.keyCode === 13) {
-              document.querySelector('.make-button').focus();
+              document.getElementById('submit-brand')
+                .focus();
             }
           }}
         />
         <Button
+          id="submit-brand"
           className="make-button"
           aria-label="'Make logos' button"
           onClick={submit}

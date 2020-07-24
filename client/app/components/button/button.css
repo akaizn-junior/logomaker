@@ -19,3 +19,7 @@
   background-color: var(--app-button-highlight-bg);
   color: var(--app-button-highlight-color);
 }
+
+.app-button:disabled {
+  opacity: .8;
+}
