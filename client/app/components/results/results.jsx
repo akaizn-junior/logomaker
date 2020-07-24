@@ -39,6 +39,7 @@ export function Results(props) {
 
   const getLogosErr = () => {
     setErr(true);
+    setCantLoadMore(true);
     setLoading(false);
   };
 

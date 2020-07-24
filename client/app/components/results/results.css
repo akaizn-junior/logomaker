@@ -81,6 +81,7 @@
     grid-template-rows: repeat(3, 200px);
   }
 
+  .results__err,
   .results__placeholder {
     width: 450px;
     height: 447px;
@@ -92,6 +93,10 @@
     width: -moz-fit-content;
     width: fit-content;
   }
+
+  .results__btn {
+    width: 150px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -100,13 +105,14 @@
     grid-template-rows: repeat(3, 150px);
   }
 
+  .results__err,
   .results__placeholder {
-    width: 300px;
+    width: 400px;
     height: 447px;
   }
 
   .results__panel {
-    width: 300px;
+    width: 400px;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
