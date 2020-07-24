@@ -2,17 +2,11 @@
   color: var(--primary-dark);
   position: relative;
   background-color: var(--app-input-bg);
-  width: 100%;
-}
-
-.app-input:focus-within .app-input__label {
-  color: var(--app-input-label-highlight);
-  font-size: .9em;
+  padding: 0 5px;
 }
 
 .app-input__label {
   position: absolute;
-  left: 4px;
   font-size: .8em;
   text-transform: uppercase;
   font-weight: 500;
@@ -22,12 +16,10 @@
 }
 
 .app-input__textfield {
-  width: 98%;
+  width: 100%;
   height: 50px;
   padding-top: 14px;
   padding-bottom: 2px;
-  padding-left: 4px;
-  padding-right: 4px;
   caret-color: var(--primary-accent);
   font-size: 1.5em;
   background-color: var(--app-input-bg);
@@ -38,6 +30,20 @@
   margin-top: 0px;
 }
 
+/* FOCUS  */
+
+.app-input:focus-within,
 .app-input__textfield:focus {
   background-color: var(--app-input-highlight-bg);
+}
+
+.app-input:focus-within .app-input__label {
+  color: var(--app-input-label-highlight);
+  font-size: .9em;
+}
+
+/* STATE */
+
+.app-input__textfield:invalid {
+  background-color: red;
 }

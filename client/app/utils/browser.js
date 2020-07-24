@@ -21,3 +21,26 @@ export function toggleDatasetJsOn() {
 export function safeFun(fun) {
   return fun && typeof fun === 'function' ? fun : () => {};
 }
+
+/**
+ * Verifies a list of ids that should belong to inputs, then focus the first empty input.
+ * Returns false when the first empty input is found, true if all inputs are filled.
+ * @param {array} ids The list of ids to verify
+ */
+export function verifyFilledInputs(ids) {
+  for (let i = 0; i < ids.length; i++) {
+    const elem = document.getElementById(ids[i]);
+
+    if (elem && elem.localName === 'input' && !elem.value.length) {
+      elem.focus();
+      return false;
+    }
+
+    if (elem && elem.localName === 'div' && !elem.innerText.length) {
+      elem.focus();
+      return false;
+    }
+  }
+
+  return true;
+}

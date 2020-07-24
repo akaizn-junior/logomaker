@@ -110,6 +110,7 @@ footer {
   font-size: .8em;
   padding-top: 10px;
   background-color: var(--primary-light);
+  opacity: .8;
 }
 
 /*

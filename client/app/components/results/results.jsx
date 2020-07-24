@@ -58,24 +58,25 @@ export function Results(props) {
         }
         {!loading && !err
           && <div className="results__brand-logos">
-            {results.map((res, i) =>
-              <Card
+            {results.map((res, i) => {
+              const brandName = readBrandName(location.hash);
+              return <Card
                 key={i}
                 cardId={`generated-logo${i + 1}`}
-                name={readBrandName(location.hash)}
+                name={brandName}
                 iconId={`generated-logo${i + 1}-icon`}
                 textId={`generated-logo${i + 1}-name`}
                 icon={res.icon}
                 plainIcon={res.preview_url}
-                plainName={readBrandName(location.hash)}
+                plainName={brandName}
                 onClick={() => {
                   domToImg(
                     `generated-logo${i + 1}`,
-                    `gabriel.-logo-${i + 1}.png`
+                    `${brandName}-gabriel.-logo-${i + 1}.png`
                   );
                 }}
-              />
-            )}
+              />;
+            })}
           </div>
         }
         {loading && <div className="results__placeholder"></div>}

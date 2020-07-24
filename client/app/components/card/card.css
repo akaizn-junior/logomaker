@@ -31,6 +31,14 @@
   margin-top: 15%;
 }
 
+.text-limit {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  vertical-align: text-top;
+}
+
 @media (max-width: 900px) {
   .app-card {
     width: 210px;

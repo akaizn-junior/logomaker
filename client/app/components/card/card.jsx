@@ -54,7 +54,7 @@ export function Card(props) {
         && <img alt={plainName} src={plainIcon} width="60" />
         }
       </p>
-      <p id={textId} className="app-card__brand">
+      <p id={textId} className="app-card__brand text-limit">
         {plainName || ''}
       </p>
     </div>

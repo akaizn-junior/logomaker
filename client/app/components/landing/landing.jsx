@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+
+// utils
+import { verifyFilledInputs } from '../../utils/browser';
 // components
 import {
   Button,
-  Input,
-  Keywords
+  Input
 } from '../';
 import {
   Robot
@@ -12,33 +14,27 @@ import {
 // style
 import './landing.css';
 
-/**
- * Verifies a list of ids that should belong to inputs, then focus the first empty input.
- * Returns false when the first empty input is found, true if all inputs are filled.
- * @param {array} ids The list of ids to verify
- */
-export function verifyFilledInputs(ids) {
-  for (let i = 0; i < ids.length; i++) {
-    const elem = document.getElementById(ids[i]);
-
-    if (elem && elem.localName === 'input' && !elem.value.length) {
-      elem.focus();
-      return false;
-    }
-
-    if (elem && elem.localName === 'div' && !elem.innerText.length) {
-      elem.focus();
-      return false;
-    }
-  }
-
-  return true;
-}
-
 export function Landing(props) {
   const [brandName, setBrandName] = useState('');
   const [keywords, setKeywords] = useState('');
   const separator = '_';
+
+  const submit = () => {
+    if (verifyFilledInputs([
+      'brand-name',
+      'brand-keywords'
+    ])) {
+      props.history.push(`results?b=${brandName}&k=${keywords}&pack=1`);
+    }
+  };
+
+  const readValue = set => e => {
+    const value = e.target.value;
+    if (value.length) {
+      const toInsert = value.replace(/\s/g, separator);
+      set(encodeURI(toInsert));
+    }
+  };
 
   return (
     <section className="landing">
@@ -48,46 +44,34 @@ export function Landing(props) {
           type="text"
           label="Brand Name"
           remember="brand-name"
-          onBlur={e => {
-            let value = e.target.value;
-            if (value.length) {
-              value = value.replace(/\s/g, separator);
-              setBrandName(encodeURI(value));
-            }
-          }}
+          onBlur={readValue(setBrandName)}
+          maxLength={50}
           aria-label="'Brand Name' input text-field"
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
           spellCheck="false"
         />
-        <Keywords
+        <Input
           id="brand-keywords"
           label="Keywords"
           remember="brand-keywords"
-          onBlur={e => {
-            const value = e.target.value;
-            if (value.length) {
-              const toInsert = value.replace(/\s/g, separator);
-              setKeywords(encodeURI(toInsert));
-            }
-          }}
+          onBlur={readValue(setKeywords)}
+          maxLength={50}
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
-          spellCheck="false"
+          spellCheck="true"
+          onKeyDown={e => {
+            if (e.keyCode === 13) {
+              document.querySelector('.make-button').focus();
+            }
+          }}
         />
         <Button
           className="make-button"
           aria-label="'Make logos' button"
-          onClick={() => {
-            if (verifyFilledInputs([
-              'brand-name',
-              'brand-keywords'
-            ])) {
-              props.history.push(`results?b=${brandName}&k=${keywords}&pack=1`);
-            }
-          }}
+          onClick={submit}
         >
           <span>Make</span>
           <Robot className="make-button__robot" />

@@ -107,8 +107,7 @@ export function domToImg(id, picname, fail) {
       link.setAttribute('download', picname);
       document.body.appendChild(link);
       link.click();
-
       document.body.removeChild(link);
     })
-    .catch(_fail);
+    .catch(e => _fail(e));
 }
