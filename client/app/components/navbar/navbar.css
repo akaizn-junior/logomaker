@@ -1,7 +1,6 @@
 .navbar {
   height: 50px;
   width: 100vw;
-  background: var(--primary-light);
   transition: none;
   padding-top: 1vh;
   z-index: 1000;
@@ -28,14 +27,5 @@
 @media (max-width: 400px) {
   .navbar__brand {
     margin-left: 2.5vw;
-  }
-}
-
-/* Dark mode */
-
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: var(--primary-dark);
-    transition: none;
   }
 }

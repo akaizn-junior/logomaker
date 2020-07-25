@@ -25,6 +25,7 @@
   --app-keywords-label-highlight: var(--app-input-label-highlight);
 
   --app-card-border: #e4e4e4;
+  --app-card-bg: #f2f2f2;
 
   --scroll-highlight: #7a48f9;
   --scroll-shadow: #adadad;
@@ -109,7 +110,6 @@ footer {
   text-align: center;
   font-size: .8em;
   padding-top: 10px;
-  background-color: var(--primary-light);
   opacity: .8;
 }
 
@@ -151,7 +151,7 @@ footer {
   }
 }
 
-/* Dark mode */
+/* Dark mode media query */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -167,11 +167,6 @@ footer {
   body {
     background-color: var(--primary-dark);
     color: var(--primary-light);
-    transition: none;
-  }
-
-  footer {
-    background-color: var(--primary-dark);
     transition: none;
   }
 }

@@ -1,5 +1,5 @@
 .app-card {
-  background-color: var(--primary-light);
+  background-color: var(--app-card-bg);
   border: 1px solid var(--app-card-border);
   box-sizing: border-box;
   border-radius: 4px;
