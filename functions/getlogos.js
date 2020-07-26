@@ -31,12 +31,13 @@ exports.handler = function(event, _c, callback) {
       secret: process.env.NOUN_SECRET
     });
 
-    nounProject.getIconsByTerm(term, { limit, offset, page }, (err, data) => {
-      if (err) {
-        return done(err, 404, {});
-      }
+    nounProject.getIconsByTerm(term, { limit, offset, page },
+      (err, data) => {
+        if (err) {
+          return done(err, 404, {});
+        }
 
-      return done(null, 200, data);
-    });
+        return done(null, 200, data);
+      });
   }
 };
