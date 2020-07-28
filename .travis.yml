@@ -35,6 +35,6 @@ jobs:
         script:
           - export NODE_ENV=production
           - npm run build
-          - cp .netlify.toml build
+          - cp netlify.toml build
           - npm i -g netlify-cli
           - netlify deploy --dir="./build" --prod --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN --message="CI/CD build"
