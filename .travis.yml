@@ -46,3 +46,4 @@ jobs:
             on:
               branch: master
             edge: true
+            cleanup: true
