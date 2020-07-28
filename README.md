@@ -49,15 +49,9 @@ We deliver logos.
 
 - [The Noun Project](https://thenounproject.com/)
 - [SVG Repo & Icons Repo](svgrepo.com/)
-- [Fonts Squirel](https://www.fontsquirrel.com/fonts/quicksand)
 - [Image Tracer](https://github.com/jankovicsandras/imagetracerjs)
-- [Text to SVG](https://www.npmjs.com/package/text-to-svg)
 - [DOM to Image](https://github.com/tsayen/dom-to-image)
 - [Vectr](https://vectr.com)
-
-## Licenses
-
-- [Quicksand](https://www.fontsquirrel.com/license/quicksand)
 
 ## Author
 
