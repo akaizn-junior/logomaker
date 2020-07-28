@@ -10,7 +10,7 @@ stages:
     - lint
     - lint-styles
     - test
-    - name: deploy
+    - name: build
       if: branch = master
 
 before_install:
@@ -30,11 +30,18 @@ jobs:
         name: "Unit tests"
         script:
           - npm run test
-      - stage: deploy
-        name: "Deploy with Netlify"
+      - stage: build
+        name: "Production build"
         script:
           - export NODE_ENV=production
           - npm run build
           - cp netlify.toml build
-          - npm i netlify-cli -g
-          - netlify deploy --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --prod --message="CI/CD build"
+deploy:
+    provider: netlify
+    dir: "build/"
+    site: $NETLIFY_SITE_ID
+    auth: $NETLIFY_AUTH_TOKEN
+    prod: true
+    message: "CI/CD build"
+    on:
+      branch: master
