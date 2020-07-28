@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import './results.css';
@@ -13,7 +14,6 @@ import {
   domToImg,
   readPack
 } from './results.helper';
-import { Link } from 'react-router-dom';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
@@ -22,6 +22,7 @@ export function Results(props) {
   const [results, setResults] = useState([]);
   const getPack = () => Number(readPack(location.hash));
   const [logosPack, setLogosPack] = useState(getPack());
+  const brandName = readBrandName(location.hash);
 
   const newPack = n => props.location.search
     .replace(
@@ -61,25 +62,21 @@ export function Results(props) {
         }
         {!loading && !err
           && <div className="results__brand-logos">
-            {results.map((res, i) => {
-              const brandName = readBrandName(location.hash);
-              return <Card
-                key={i}
-                cardId={`generated-logo${i + 1}`}
-                name={brandName}
-                iconId={`generated-logo${i + 1}-icon`}
-                textId={`generated-logo${i + 1}-name`}
-                icon={res.icon}
-                plainIcon={res.preview_url}
-                plainName={brandName}
-                onClick={() => {
-                  domToImg(
-                    `generated-logo${i + 1}`,
-                    `${brandName}-gabriel.-logo-${i + 1}.png`
-                  );
-                }}
-              />;
-            })}
+            {results.map((res, i) => <Card
+              key={i}
+              cardId={`generated-logo${i + 1}`}
+              iconId={`generated-logo${i + 1}-icon`}
+              textId={`generated-logo${i + 1}-name`}
+              plainIcon={res.preview_url}
+              plainName={brandName}
+              onClick={() => {
+                domToImg(
+                  `generated-logo${i + 1}`,
+                  `${brandName}-gabriel.-logo-${logosPack}${i + 1}.png`
+                );
+              }}
+            />
+            )}
           </div>
         }
         {loading && <div className="results__placeholder"></div>}

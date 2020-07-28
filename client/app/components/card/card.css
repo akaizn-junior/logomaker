@@ -61,3 +61,10 @@
     border-width: 3px;
   }
 }
+
+@media (max-width: 500px) {
+  .app-card__brand,
+  .app-card__icon {
+    margin-top: 8%;
+  }
+}

@@ -5,23 +5,6 @@ import domtoimage from 'dom-to-image';
 
 import { safeFun } from '../../utils/browser';
 
-function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
-  const { term, page } = fetchData;
-  const _done = safeFun(done);
-
-  if (term) {
-    axios({
-      baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
-      url: `getlogos?term=${term}&page=${page}`,
-      method: 'GET'
-    })
-      .then(result => {
-        _done(result.data.icons);
-      })
-      .catch(fail);
-  }
-}
-
 export function readBrandName(urlQuery) {
   const brandName = new RegExp(/b=[a-zA-Z_\-0-9]+/g).exec(urlQuery);
   return brandName && brandName[0]
@@ -43,6 +26,23 @@ export function readPack(urlQuery) {
     : 1;
 }
 
+function fetchLogos(fetchData, done = () => {}, fail = () => {}) {
+  const { term, text, page } = fetchData;
+  const _done = safeFun(done);
+
+  if (term) {
+    axios({
+      baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
+      url: `getlogos?term=${term}&page=${page}&text=${text}`,
+      method: 'GET'
+    })
+      .then(result => {
+        _done(result.data.icons);
+      })
+      .catch(fail);
+  }
+}
+
 export function getLogos(successCb, errCb, page = 1) {
   const _successCb = safeFun(successCb);
   const _errCb = safeFun(errCb);
@@ -53,24 +53,9 @@ export function getLogos(successCb, errCb, page = 1) {
   const term = k || b;
 
   // fetch data
-  fetchLogos({ term, page }, res => {
+  fetchLogos({ term, text: b, page }, res => {
     _successCb(res);
   }, _errCb);
-}
-
-export function getSVG(url, text, success, fail = () => {}) {
-  const _success = safeFun(success);
-  const _fail = safeFun(fail);
-
-  axios({
-    method: 'GET',
-    baseURL: `${ENV_ORIGIN || ''}/.netlify/functions/`,
-    url: `transform?img=${url}&text=${text}`
-  })
-    .then(res => {
-      _success(res.data);
-    })
-    .catch(_fail);
 }
 
 export function domToImg(id, picname, fail) {
@@ -82,8 +67,10 @@ export function domToImg(id, picname, fail) {
   tmp.appendChild(node);
 
   const imgEl = tmp.firstChild.firstChild.firstChild;
-  imgEl.setAttribute('width', '700px');
-  imgEl.setAttribute('height', '700px');
+  if (imgEl.setAttribute) {
+    imgEl.setAttribute('width', '700px');
+    imgEl.setAttribute('height', '700px');
+  }
 
   domtoimage
     .toPng(node, {

@@ -1,6 +1,6 @@
 .results {
   width: 100vw;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 250px);
 }
 
 .results__panel {
@@ -71,11 +71,15 @@
   opacity: .8;
 }
 
+#results__back {
+  left: 0;
+}
+
 #results__generate-more {
   right: 0;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 650px) {
   .results__brand-logos {
     grid-template-columns: repeat(2, 210px);
     grid-template-rows: repeat(3, 200px);

@@ -37,7 +37,7 @@ exports.handler = function(event, _c, callback) {
           return done(err, 404, {});
         }
 
-        return done(null, 200, data);
+        done(null, 200, data);
       });
   }
 };
