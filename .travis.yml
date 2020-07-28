@@ -36,13 +36,13 @@ jobs:
           - export NODE_ENV=production
           - npm run build
           - cp netlify.toml build
-      deploy:
-          provider: netlify
-          dir: "./build"
-          site: $NETLIFY_SITE_ID
-          auth: $NETLIFY_AUTH_TOKEN
-          prod: true
-          message: "CI/CD build"
-          on:
-            branch: master
-          edge: true
+        deploy:
+            provider: netlify
+            dir: "./build"
+            site: $NETLIFY_SITE_ID
+            auth: $NETLIFY_AUTH_TOKEN
+            prod: true
+            message: "CI/CD build"
+            on:
+              branch: master
+            edge: true
