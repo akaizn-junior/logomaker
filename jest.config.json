@@ -1,5 +1,4 @@
 {
-
   "setupFilesAfterEnv": ["./.enzyme.config.js"],
   "transform": {
     ".*\\.css$": "./jest-skipcss.js",
