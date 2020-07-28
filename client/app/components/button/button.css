@@ -14,8 +14,13 @@
   user-select: none;
 }
 
-.app-button:focus,
-.app-button:hover {
+.app-button:not(:disabled):focus,
+.app-button:not(:disabled):hover {
   background-color: var(--app-button-highlight-bg);
   color: var(--app-button-highlight-color);
+}
+
+.app-button:disabled {
+  opacity: .8;
+  color: var(--primary-light);
 }

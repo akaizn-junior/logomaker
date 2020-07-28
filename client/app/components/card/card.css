@@ -1,5 +1,5 @@
 .app-card {
-  background-color: var(--primary-light);
+  background-color: var(--app-card-bg);
   border: 1px solid var(--app-card-border);
   box-sizing: border-box;
   border-radius: 4px;
@@ -31,6 +31,14 @@
   margin-top: 15%;
 }
 
+.text-limit {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  vertical-align: text-top;
+}
+
 @media (max-width: 900px) {
   .app-card {
     width: 210px;
@@ -42,5 +50,21 @@
   .app-card {
     width: 170px;
     height: 150px;
+  }
+}
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+  .app-card:hover,
+  .app-card:focus {
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 500px) {
+  .app-card__brand,
+  .app-card__icon {
+    margin-top: 8%;
   }
 }

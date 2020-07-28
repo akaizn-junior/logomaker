@@ -10,7 +10,7 @@
 
   --app-button-border: #7a48f9;
   --app-button-bg: #7a48f9;
-  --app-button-color: #f2f2f2;
+  --app-button-color: #ffffff;
   --app-button-highlight-bg: #6533e6;
   --app-button-highlight-color: aliceblue;
 
@@ -19,7 +19,13 @@
   --app-input-label-color: #303030;
   --app-input-label-highlight: #000000;
 
+  --app-keywords-bg: var(--app-input-bg);
+  --app-keywords-highlight-bg: var(--app-input-highlight-bg);
+  --app-keywords-label-color: var(--app-input-label-color);
+  --app-keywords-label-highlight: var(--app-input-label-highlight);
+
   --app-card-border: #e4e4e4;
+  --app-card-bg: #f2f2f2;
 
   --scroll-highlight: #7a48f9;
   --scroll-shadow: #adadad;
@@ -30,6 +36,14 @@
   --loading-highlight-bg1: #b996fc;
   --loading-highlight-bg2: #4be453;
   --loading-shade: #040404c4;
+
+  --robot-svg-color: var(--primary-dark);
+  --arrow-svg-color: var(--primary-dark);
+
+  --no-js-color: var(--primary-light);
+  --no-js-bg: var(--primary-dark);
+  --no-juice-color1: var(--primary-light);
+  --no-juice-color2: var(--primary-accent);
 }
 
 * {
@@ -60,15 +74,26 @@ body {
   overflow-y: auto;
 }
 
+.link-style,
 a {
-  color: inherit;
   color: var(--primary-accent);
   opacity: .8;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
+.link-style:hover,
 a:focus,
 a:hover {
   opacity: 1;
+}
+
+button.link-style {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 header h1 {
@@ -78,14 +103,11 @@ header h1 {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
   width: 100vw;
   height: 30px;
   text-align: center;
   font-size: .8em;
-  padding-top: 10px;
-  background-color: var(--primary-light);
+  padding-top: 1vh;
 }
 
 /*
@@ -123,5 +145,25 @@ footer {
 @media print {
   * {
     display: none;
+  }
+}
+
+/* Dark mode media query */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --robot-svg-color: #dbdbdb;
+    --arrow-svg-color: #dbdbdb;
+
+    --no-js-color: var(--primary-dark);
+    --no-js-bg: var(--primary-light);
+    --no-juice-color1: var(--primary-dark);
+    --no-juice-color2: var(--primary-accent);
+  }
+
+  body {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    transition: none;
   }
 }

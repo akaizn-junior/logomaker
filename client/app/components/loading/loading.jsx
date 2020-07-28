@@ -8,7 +8,12 @@ export function Loading(props) {
 
   return (
     <div className="loading">
-      {shade && <div className="loading__shade"></div>}
+      {shade && shade !== 'fullscreen'
+      && <div className="loading__shade"></div>
+      }
+      {shade && shade === 'fullscreen'
+      && <div className="loading__shade--fullscreen"></div>
+      }
       <div className="loading__mini" style={{ top, maxWidth }}></div>
     </div>
   );

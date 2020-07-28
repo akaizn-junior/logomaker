@@ -1,6 +1,6 @@
 .landing {
   padding: 0px 5px;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 220px);
 }
 
 .landing .app-input ~ .app-input {

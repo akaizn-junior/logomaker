@@ -26,16 +26,16 @@ describe('Results component test', () => {
     expect(wrapper.find('.results__panel')).to.have.lengthOf(1);
   });
 
-  it('should read an empty company name from URL query', () => {
+  it('should read an empty brand name from URL query', () => {
     const fnSpy = spy(readBrandName);
     expect(fnSpy('?')).to.be.a('string');
     expect(fnSpy('?')).to.be.empty;
   });
 
-  it('should get the correct company name via the URL', () => {
+  it('should get the correct brand name via the URL', () => {
     const fnSpy = spy(readBrandName);
-    expect(fnSpy('?c=Banana_Hammock')).to.be.a('string');
-    expect(fnSpy('?c=Banana_Hammock')).to.equal('Banana Hammock');
+    expect(fnSpy('?b=Banana_Hammock')).to.be.a('string');
+    expect(fnSpy('?b=Banana_Hammock')).to.equal('Banana Hammock');
   });
 
   it('should read an empty keyword URL query', () => {
@@ -44,7 +44,7 @@ describe('Results component test', () => {
     expect(fnSpy('?')).to.be.empty;
   });
 
-  it('should get the correct company name via the URL', () => {
+  it('should get the correct brand name via the URL', () => {
     const fnSpy = spy(readKeywords);
     expect(fnSpy('?k=coffee')).to.be.a('string');
     expect(fnSpy('?k=coffee')).to.equal('coffee');

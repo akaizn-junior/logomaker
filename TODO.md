@@ -1,6 +1,6 @@
 # TODO
 
-- ADD limit to the company name string
+- ADD limit to the brand name string
 - ADD timeout to the fetch logos call
 - SHOW other keywords to search for if call times out
 - FIX click to download panel

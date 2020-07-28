@@ -1,7 +1,6 @@
 .navbar {
   height: 50px;
   width: 100vw;
-  background: var(--primary-light);
   transition: none;
   padding-top: 1vh;
   z-index: 1000;

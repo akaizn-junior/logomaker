@@ -7,3 +7,4 @@ export { Button } from './button/button';
 export { Input } from './input/input';
 export { Faces } from './faces/faces';
 export { Loading } from './loading/loading';
+export { Keywords } from './keywords/keywords';

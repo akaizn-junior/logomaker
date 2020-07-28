@@ -3,7 +3,7 @@ const NounProject = require('the-noun-project');
 // setup the environment
 require('dotenv').config();
 
-exports.handler = function(event, context, callback) {
+exports.handler = function(event, _c, callback) {
   const isOptions = event.httpMethod === 'OPTIONS';
   const isGet = event.httpMethod === 'GET';
   const term = event.queryStringParameters.term;
@@ -31,12 +31,13 @@ exports.handler = function(event, context, callback) {
       secret: process.env.NOUN_SECRET
     });
 
-    nounProject.getIconsByTerm(term, { limit, offset, page }, function(err, data) {
-      if (err) {
-        return done(err, 404, {});
-      }
+    nounProject.getIconsByTerm(term, { limit, offset, page },
+      (err, data) => {
+        if (err) {
+          return done(err, 404, {});
+        }
 
-      return done(null, 200, data);
-    });
+        done(null, 200, data);
+      });
   }
 };

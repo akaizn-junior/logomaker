@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // styles
 import './results.css';
@@ -10,58 +11,116 @@ import { Robot, Arrow } from '../icons';
 import {
   getLogos,
   readBrandName,
-  domToImg
+  domToImg,
+  readPack
 } from './results.helper';
 
 export function Results(props) {
   const [loading, setLoading] = useState(true);
+  const [cantLoadMore, setCantLoadMore] = useState(false);
+  const [err, setErr] = useState(false);
   const [results, setResults] = useState([]);
-  const [logosPage, setLogosPage] = useState(0);
+  const getPack = () => Number(readPack(location.hash));
+  const [logosPack, setLogosPack] = useState(getPack());
+  const brandName = readBrandName(location.hash);
+
+  const newPack = n => props.location.search
+    .replace(
+      /pack=[0-9]+/,
+      `pack=${n}`
+    );
+
+  const getLogosSuccess = n => data => {
+    setErr(false);
+    setLoading(false);
+    setResults(data);
+    setCantLoadMore(data.length < 6);
+    n && props.history.push(newPack(n));
+  };
+
+  const getLogosErr = () => {
+    setErr(true);
+    setCantLoadMore(true);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    !results.length && getLogos(data => {
-      setLogosPage(1);
-      setLoading(false);
-      setResults(data);
-    }, () => {
-      setLoading(false);
-    });
-  }, [results.length]);
+    !results.length && getLogos(
+      getLogosSuccess(),
+      getLogosErr,
+      logosPack
+    );
+
+    return () => {};
+  }, [results.length, logosPack]);
 
   return (
     <section className="results">
       <div className="results__panel">
         {loading
-          && <Loading top="35%" maxWidth="130px" />
+          && <Loading top="40%" maxWidth="100px" />
         }
-        {!loading
+        {!loading && !err
           && <div className="results__brand-logos">
-            {results.map((res, i) =>
-              <Card
-                key={i}
-                cardId={`generated-logo${i + 1}`}
-                name={readBrandName(location.hash)}
-                iconId={`generated-logo${i + 1}-icon`}
-                textId={`generated-logo${i + 1}-name`}
-                icon={res.icon}
-                plainIcon={res.preview_url}
-                plainName={readBrandName(location.hash)}
-                onClick={() => {
-                  domToImg(
-                    `generated-logo${i + 1}`,
-                    `generated-logo-${i + 1}.png`
-                  );
-                }}
-              />
+            {results.map((res, i) => <Card
+              key={i}
+              cardId={`generated-logo${i + 1}`}
+              iconId={`generated-logo${i + 1}-icon`}
+              textId={`generated-logo${i + 1}-name`}
+              plainIcon={res.preview_url}
+              plainName={brandName}
+              onClick={() => {
+                domToImg(
+                  `generated-logo${i + 1}`,
+                  `${brandName}-gabriel.-logo-${logosPack}${i + 1}.png`
+                );
+              }}
+            />
             )}
           </div>
         }
         {loading && <div className="results__placeholder"></div>}
+        {!loading && err
+          && <div className="results__err">
+            <p>Snap! Something went wrong on our side.</p>
+            <p>Don&apos;t worry our <i>robots</i> humans are hard at work and have been notified.</p>
+            <p>
+              <button
+                className="link-style"
+                onClick={() => {
+                  setLoading(true);
+                  getLogos(
+                    getLogosSuccess(),
+                    getLogosErr,
+                    logosPack
+                  );
+                }}
+              >
+                Try again
+              </button>
+              <span>&nbsp;&nbsp;</span>
+              <Link to="/">Go back</Link>
+            </p>
+          </div>
+        }
         <div className="results__more">
           <Button
             id="results__back"
             className="results__btn"
-            onClick={() => props.history.goBack()}
+            onClick={() => {
+              if (logosPack === 1 || err) {
+                return props.history.push('/');
+              } else if (!loading) {
+                const goBackwards = logosPack - 1;
+                setLogosPack(goBackwards);
+                setLoading(true);
+                getLogos(
+                  getLogosSuccess(goBackwards),
+                  getLogosErr,
+                  goBackwards
+                );
+              }
+            }}
           >
             <span>Go Back</span>
             <Arrow className="results__btn__arrow" />
@@ -69,21 +128,22 @@ export function Results(props) {
           <Button
             id="results__generate-more"
             className="results__btn"
+            disabled={cantLoadMore}
             onClick={() => {
               if (!loading) {
+                const goForward = logosPack + 1;
                 setLoading(true);
-                getLogos(data => {
-                  setLogosPage(logosPage + 1);
-                  setLoading(false);
-                  setResults(data);
-                }, () => {
-                  setLoading(false);
-                }, logosPage);
+                setLogosPack(goForward);
+                getLogos(
+                  getLogosSuccess(goForward),
+                  getLogosErr,
+                  goForward
+                );
               }
             }}
           >
             {loading
-              ? <Loading maxWidth="25px" />
+              ? <Loading maxWidth="20px" />
               : 'More'
             }
             <Robot className="results__btn__robot" />

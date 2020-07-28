@@ -5,13 +5,21 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 // global styles
 import './app.css';
-
+// helpers
+import {
+  toggleDatasetJsOn,
+  checkDarkMode
+} from './utils/browser';
+// parts
 import {
   Landing,
   Navbar,
   Results,
   Lost
 } from './components';
+
+toggleDatasetJsOn();
+checkDarkMode();
 
 function App() {
   return (

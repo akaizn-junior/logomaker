@@ -21,9 +21,13 @@ export function Faces() {
 
   useEffect(() => {
     let i = currentFace;
-    setTimeout(() => {
+    const timId = setTimeout(() => {
       setCurrentFace(++i % faces.length);
     }, 2500);
+
+    return () => {
+      clearTimeout(timId);
+    };
   }, [currentFace]);
 
   return (
