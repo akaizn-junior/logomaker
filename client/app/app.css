@@ -25,7 +25,7 @@
   --app-keywords-label-highlight: var(--app-input-label-highlight);
 
   --app-card-border: #e4e4e4;
-  --app-card-bg: #f2f2f2;
+  --app-card-bg: #f0f0f0;
 
   --scroll-highlight: #7a48f9;
   --scroll-shadow: #adadad;
@@ -35,7 +35,7 @@
   --loading-border-right-color: #c4fd9ee7;
   --loading-highlight-bg1: #b996fc;
   --loading-highlight-bg2: #4be453;
-  --loading-shade: #040404c4;
+  --loading-shade: #000000a9;
 
   --robot-svg-color: var(--primary-dark);
   --arrow-svg-color: var(--primary-dark);
@@ -44,6 +44,21 @@
   --no-js-bg: var(--primary-dark);
   --no-juice-color1: var(--primary-light);
   --no-juice-color2: var(--primary-accent);
+
+  --logo-editor-bg: #ececec;
+  --logo-editor__preview-border: #e4e4e4;
+
+  --control-wrapper-bg: #ffffff;
+  --control-wrapper-highlight-bg: #f1f0ff;
+  --control-wrapper-label-highlight: #000000;
+  --control-wrapper-label-color: #303030;
+
+  --palette-bg: #ffffff;
+  --palette-highlight-bg: #f1f0ff;
+  --palette-label-color: #303030;
+  --palette-label-highlight: #000000;
+
+  --editor-controls-border: #cacaca;
 }
 
 * {
@@ -88,6 +103,16 @@ a:hover {
   opacity: 1;
 }
 
+a.card {
+  opacity: 1;
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
+
 button.link-style {
   background-color: inherit;
   border: none;
@@ -96,10 +121,15 @@ button.link-style {
   font-size: inherit;
 }
 
-header h1 {
+header {
+  padding-top: 90px;
   text-align: center;
-  margin-top: 50px;
+  text-align: center;
+}
+
+header h1 {
   font-weight: 500;
+  font-size: 1.3em;
 }
 
 footer {
@@ -107,7 +137,7 @@ footer {
   height: 30px;
   text-align: center;
   font-size: .8em;
-  padding-top: 1vh;
+  padding-top: 5vh;
 }
 
 /*
@@ -117,12 +147,14 @@ footer {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: var(--scroll-shadow);
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -136,7 +168,7 @@ footer {
   @see {https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
 */
 .moz-app-scroll {
-  scrollbar-width: auto;
+  scrollbar-width: 8px;
   scrollbar-color: var(--scroll-highlight) var(--scroll-shadow);
 }
 
@@ -159,6 +191,22 @@ footer {
     --no-js-bg: var(--primary-light);
     --no-juice-color1: var(--primary-dark);
     --no-juice-color2: var(--primary-accent);
+
+    --logo-editor-bg: #1c1c1c;
+    --logo-editor__preview-border: #000000;
+
+    --control-wrapper-bg: #303030;
+    --control-wrapper-highlight-bg: #3b3b3b;
+    --control-wrapper-label-color: #f2f2f2;
+    --control-wrapper-label-highlight: #ffffff;
+
+    --palette-bg: #303030;
+    --palette-highlight-bg: #3b3b3b;
+    --palette-label-color: #f2f2f2;
+    --palette-label-highlight: #ffffff;
+
+    --editor-controls-border: #414141;
+    --scroll-shadow: #303030;
   }
 
   body {

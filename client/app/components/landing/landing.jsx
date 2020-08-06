@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 
 // utils
 import { verifyFilledInputs } from '../../utils/browser';
+import {
+  readBrandName,
+  readKeywords
+} from '../../utils/helpers';
 // components
 import {
   Button,
@@ -15,8 +19,8 @@ import {
 import './landing.css';
 
 export function Landing(props) {
-  const [brandName, setBrandName] = useState('');
-  const [keywords, setKeywords] = useState('');
+  const [brandName, setBrandName] = useState(readBrandName(location.hash) || '');
+  const [keywords, setKeywords] = useState(readKeywords(location.hash) || '');
   const separator = '_';
 
   const submit = () => {
@@ -24,7 +28,7 @@ export function Landing(props) {
       'brand-name',
       'brand-keywords'
     ])) {
-      props.history.push(`results?b=${brandName}&k=${keywords}&pack=1`);
+      props.history.push(`gallery?b=${brandName}&k=${keywords}&pack=1`);
     }
   };
 
@@ -44,6 +48,7 @@ export function Landing(props) {
           type="text"
           label="Brand Name"
           remember="brand-name"
+          defaultValue={brandName}
           onBlur={readValue(setBrandName)}
           maxLength={50}
           aria-label="'Brand Name' input text-field"
@@ -62,6 +67,7 @@ export function Landing(props) {
           id="brand-keywords"
           label="Keywords"
           remember="brand-keywords"
+          defaultValue={keywords}
           onBlur={readValue(setKeywords)}
           maxLength={50}
           autoCorrect="off"

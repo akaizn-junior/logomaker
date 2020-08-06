@@ -1,11 +1,12 @@
 .navbar {
+  width: 100%;
   height: 50px;
-  width: 100vw;
   transition: none;
   padding-top: 1vh;
-  z-index: 1000;
+  z-index: 2;
 }
 
+.app-brand,
 .navbar__brand {
   margin-left: 10vw;
 }
@@ -19,13 +20,26 @@
 }
 
 @media (max-width: 600px) {
+  .app-brand,
   .navbar__brand {
     margin-left: 5vw;
+  }
+
+  .navbar__faces {
+    position: absolute;
+    top: 3px;
+    right: 5vw;
+    text-align: right;
   }
 }
 
 @media (max-width: 400px) {
+  .app-brand,
   .navbar__brand {
     margin-left: 2.5vw;
+  }
+
+  .navbar__faces {
+    right: 2.5vw;
   }
 }

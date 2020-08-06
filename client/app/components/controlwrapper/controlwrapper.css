@@ -1,0 +1,49 @@
+.control-wrapper {
+  background-color: var(--control-wrapper-bg);
+  padding: 0 5px;
+  width: 200px;
+  position: relative;
+  display: block;
+}
+
+.control-wrapper:focus-within {
+  background-color: var(--control-wrapper-highlight-bg);
+}
+
+.control-wrapper:focus-within .control-wrapper__label {
+  color: var(--control-wrapper-label-highlight);
+  font-size: .85em;
+}
+
+.control-wrapper__label {
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 2px 0px;
+  transition: none;
+  color: var(--control-wrapper-label-color);
+  margin-bottom: 10px;
+}
+
+.control-wrapper__main {
+  position: relative;
+  padding-top: 6px;
+}
+
+.control-wrapper select {
+  width: 80%;
+  height: 40px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  padding: 0 2px;
+  color: var(--control-wrapper-label-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: inherit;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxNnB0IiBoZWlnaHQ9IjE2cHQiIHZpZXdCb3g9IjAgMCAxNiAxNiIgdmVyc2lvbj0iMS4xIj48ZyBpZD0ic3VyZmFjZTEiPjxwYXRoIHN0eWxlPSIgc3Ryb2tlOm5vbmU7ZmlsbC1ydWxlOm5vbnplcm87ZmlsbDojNTU1NTU1O2ZpbGwtb3BhY2l0eToxOyIgZD0iTSA4LjM2NzE4OCAxMi4xMDkzNzUgTCAxNS44NDc2NTYgNC42Mjg5MDYgQyAxNS45NTMxMjUgNC41MjczNDQgMTYgNC4zOTg0MzggMTYgNC4yNjE3MTkgQyAxNiA0LjEyODkwNiAxNS45NTMxMjUgMy45OTYwOTQgMTUuODQ3NjU2IDMuODk4NDM4IEwgMTUuODM5ODQ0IDMuODg2NzE5IEMgMTUuNzQyMTg4IDMuNzg5MDYyIDE1LjYwOTM3NSAzLjczNDM3NSAxNS40NzI2NTYgMy43MzQzNzUgTCAxMS44NDM3NSAzLjczNDM3NSBDIDExLjcwMzEyNSAzLjczNDM3NSAxMS41NzQyMTkgMy43ODkwNjIgMTEuNDc2NTYyIDMuODg2NzE5IEwgOCA3LjM1OTM3NSBMIDQuNTI3MzQ0IDMuODg2NzE5IEMgNC40Mjk2ODggMy43ODkwNjIgNC4yOTY4NzUgMy43MzQzNzUgNC4xNjAxNTYgMy43MzQzNzUgTCAwLjUzMTI1IDMuNzM0Mzc1IEMgMC4zOTA2MjUgMy43MzQzNzUgMC4yNjE3MTkgMy43ODkwNjIgMC4xNjAxNTYgMy44ODY3MTkgTCAwLjE1MjM0NCAzLjg5ODQzOCBDIDAuMDUwNzgxMiAzLjk5MjE4OCAwIDQuMTI4OTA2IDAgNC4yNjE3MTkgQyAwIDQuMzk4NDM4IDAuMDUwNzgxMiA0LjUzNTE1NiAwLjE1MjM0NCA0LjYyODkwNiBMIDcuNjMyODEyIDEyLjEwOTM3NSBDIDcuODM5ODQ0IDEyLjMxMjUgOC4xNjQwNjIgMTIuMzEyNSA4LjM2NzE4OCAxMi4xMDkzNzUgWiBNIDguMzY3MTg4IDEyLjEwOTM3NSAiLz48L2c+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  background-size: 8px;
+}

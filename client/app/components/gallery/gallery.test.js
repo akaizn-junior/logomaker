@@ -3,27 +3,27 @@ import React from 'react';
 import enzyme from 'enzyme';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { Results } from './results.jsx';
+import { Gallery } from './gallery.jsx';
 // helpers
 import {
   readBrandName,
   readKeywords
-} from './results.helper';
+} from './gallery.helper';
 
-describe('Results component test', () => {
+describe('Gallery component test', () => {
   it('should exist', () => {
-    const wrapper = enzyme.shallow(<Results />);
+    const wrapper = enzyme.shallow(<Gallery />);
     expect(wrapper).to.have.lengthOf(1);
   });
 
-  it('should have a ".results__placeholder" element', () => {
-    const wrapper = enzyme.shallow(<Results />);
-    expect(wrapper.find('.results__placeholder')).to.have.lengthOf(1);
+  it('should have a ".gallery__placeholder" element', () => {
+    const wrapper = enzyme.shallow(<Gallery />);
+    expect(wrapper.find('.gallery__placeholder')).to.have.lengthOf(1);
   });
 
-  it('should have a ".results__panel" element', () => {
-    const wrapper = enzyme.shallow(<Results />);
-    expect(wrapper.find('.results__panel')).to.have.lengthOf(1);
+  it('should have a ".gallery__panel" element', () => {
+    const wrapper = enzyme.shallow(<Gallery />);
+    expect(wrapper.find('.gallery__panel')).to.have.lengthOf(1);
   });
 
   it('should read an empty brand name from URL query', () => {

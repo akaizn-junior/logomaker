@@ -71,13 +71,16 @@ module.exports = {
       to: 'LICENSE.txt'
     }, {
       from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill.min.js',
-      to: 'libs/preload-polyfill.min.js'
+      to: 'vendors/preload-polyfill.min.js'
     }, {
       from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-invoke.min.js',
-      to: 'libs/preload-polyfill-invoke.min.js'
+      to: 'vendors/preload-polyfill-invoke.min.js'
     }, {
       from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-inline.min.js',
-      to: 'libs/preload-polyfill-inline.min.js'
+      to: 'vendors/preload-polyfill-inline.min.js'
+    }, {
+      from: './node_modules/localforage/dist/localforage.min.js',
+      to: 'vendors/localforage.min.js'
     }])
   ],
   resolve: {

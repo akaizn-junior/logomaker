@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 import React from 'react';
 
-export function Arrow(props) {
+export function RightArrow(props) {
   const { width, height, ...rest } = props;
 
   return (
@@ -11,7 +10,10 @@ export function Arrow(props) {
       width={width || '50px'}
       height={width || height || '50px'}
       strokeWidth="3"
-      aria-label="'Arrow' icon"
+      aria-label="'Back Arrow' icon"
+      style={{
+        transform: 'rotate(180deg)'
+      }}
       {...rest}
     >
       <path

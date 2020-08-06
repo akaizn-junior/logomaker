@@ -1,0 +1,173 @@
+.logo-editor {
+  width: 100%;
+  height: 100%;
+  background-color: var(--logo-editor-bg);
+  overflow: auto;
+  transition: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+/* Top section */
+
+.logo-editor__top {
+  position: absolute;
+  width: 100%;
+}
+
+.logo-editor .app-brand {
+  margin-top: 10px;
+}
+
+.logo-editor__close {
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  opacity: .8;
+  text-align: center;
+  border: none;
+  border-radius: 0px;
+  padding: 5px;
+}
+
+.logo-editor__close:hover,
+.logo-editor__close:focus {
+  opacity: 1;
+}
+
+.logo-editor__download {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  text-align: left;
+  top: 14px;
+  right: 80px;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 2px;
+  border: 1px solid var(--editor-controls-border);
+}
+
+.logo-editor__download:hover,
+.logo-editor__download:focus {
+  background-color: #ffffff !important;
+  color: var(--primary-dark) !important;
+  border-color: #e9e9e9 !important;
+}
+
+.logo-editor__download:hover .logo-editor__btn__arrow,
+.logo-editor__download:focus .logo-editor__btn__arrow {
+  opacity: 1;
+}
+
+.logo-editor__btn__arrow {
+  position: absolute;
+  opacity: .8;
+  top: 3px;
+  right: 10px;
+}
+
+.logo-editor__btn__arrow polygon {
+  stroke: var(--primary-dark) !important;
+}
+
+/* end Top section */
+
+/* Generated logo / editor preview */
+
+#generated-logo {
+  position: relative;
+  min-width: 64px;
+  min-height: 64px;
+  max-width: 2000px;
+  max-height: 2000px;
+  background-color: var(--app-card-bg);
+  margin: 10% auto;
+  border: 1px solid var(--logo-editor__preview-border);
+  overflow: auto;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#generated-logo__icon {
+  position: absolute;
+  cursor: pointer;
+  transition: none;
+}
+
+#generated-logo__brand {
+  position: absolute;
+  font-style: normal;
+  font-size: inherit;
+  cursor: pointer;
+  transition: none;
+}
+
+/* end Generated logo / editor preview */
+
+/* Editor controls */
+
+.logo-editor__controls {
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  margin: 5% 10%;
+  border: 1px solid var(--editor-controls-border);
+  opacity: .9;
+}
+
+.logo-editor__controls div ~ div {
+  border-top: 1px solid var(--logo-editor__preview-border);
+}
+
+.logo-editor__controls li {
+  line-height: 40px;
+}
+
+.logo-editor__controls label {
+  margin-right: 10px;
+}
+
+.logo-editor__preview-size {
+  width: 50px;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.logo-editor__squaredsize {
+  margin: 0 5px;
+}
+
+/* end Editor controls */
+
+.logo-editor__pagination {
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+}
+
+.logo-editor__pagination button {
+  opacity: .8;
+}
+
+.logo-editor__pagination button:hover,
+.logo-editor__pagination button:focus {
+  opacity: 1;
+}
+
+.logo-editor__pagination button ~ button {
+  margin-left: 10px;
+}
+
+.logo-editor__pagination button:nth-child(2) {
+  position: relative;
+  top: 3px;
+}
