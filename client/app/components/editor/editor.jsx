@@ -79,7 +79,7 @@ export function LogoEditor(props) {
     left: '40%',
     fontSize: '24px',
     fontWeight: '700',
-    fontFamily: 'Quicksand, sans-serif',
+    fontFamily: "'Quicksand', sans-serif",
     color: '#000000'
   });
 

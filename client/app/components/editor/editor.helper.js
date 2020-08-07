@@ -61,8 +61,6 @@ export function domToImg(id, picname, style, done, fail) {
     position: relative;
     width: ${style.width || 400}px;
     height: ${style.height || 400}px;
-    outline: 'none';
-    border: 'none';
     background: ${style.background || '#ffffff'};
   }
 
@@ -88,7 +86,7 @@ export function domToImg(id, picname, style, done, fail) {
     .toPng(node, {
       width: style.width || 400,
       height: style.height || 400,
-      // must be set, this helps chrome not block network calls due to CORS
+      // must be set, this help chrome not block network calls due to CORS
       cacheBust: true,
       style: {
         textAlign: style.textAlign || 'center'
