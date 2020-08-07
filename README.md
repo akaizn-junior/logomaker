@@ -6,8 +6,6 @@ We deliver logos.
 
 ## Status
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b724d073-0aa5-49b4-81db-af6ec2b97722/deploy-status)](https://app.netlify.com/sites/logomaker/deploys)
-
 [![Build Status](https://travis-ci.org/akaizn-junior/logomaker.svg?branch=master)](https://travis-ci.org/akaizn-junior/logomaker)
 
 ## Stack
