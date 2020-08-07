@@ -1,0 +1,67 @@
+.palette {
+  background-color: var(--palette-bg);
+  padding: 0 5px;
+  width: 200px;
+  position: relative;
+  display: block;
+}
+
+.palette:focus-within {
+  background-color: var(--palette-highlight-bg);
+}
+
+.palette:focus-within .palette__label {
+  color: var(--palette-label-highlight);
+  font-size: .85em;
+}
+
+.palette-colors-select {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  height: 50px;
+}
+
+.palette__label {
+  font-size: .8em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 2px 0px;
+  transition: none;
+  color: var(--palette-label-color);
+  margin-bottom: 10px;
+}
+
+.palette__main {
+  position: relative;
+  padding-top: 6px;
+}
+
+.palette__colors {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+  transition: none;
+  background-color: #000000;
+  border: 1px solid var(--primary-dark);
+}
+
+.palette__colors:focus {
+  border-width: 1px;
+}
+
+.palette__color-value {
+  position: absolute;
+  display: inline-block;
+  width: 80%;
+  height: 35px;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  padding-left: 7px;
+  background-color: inherit;
+  transition: none;
+  color: var(--palette-label-color);
+}

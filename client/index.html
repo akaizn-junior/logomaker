@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,9 @@
   <link rel="manifest" href="./manifest.json" />
   <link id="icon-link" rel="icon" href="./assets/icons/wink.svg" />
   <link rel="preload" as="style" onload="this.rel='stylesheet';" crossorigin
-    href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap&subset=latin-ext">
+    href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@400;500&family=Open+Sans:wght@400;600&family=PT+Serif:wght@400;700&family=Playfair+Display:wght@400;500;600&family=Quicksand:wght@400;500&family=Roboto+Mono&family=Roboto:wght@400;500&family=Sniglet&family=Space+Mono&family=Special+Elite&family=Ubuntu&display=swap">
 </head>
+
 <body class="moz-app-scroll" data-js="off" data-theme="light">
   <noscript>
     <style>
@@ -98,8 +100,9 @@
     </style>
     <div id="no-juice" aria-label="Need juice. Please enable JavaScript">
       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        fill="var(--no-juice-color1, #f2f2f2)" stroke="var(--no-juice-color1)" stroke-width="0" viewBox="0 0 375.897 375.897" width="120px" height="120px"
-        style="enable-background: new 0 0 375.897 375.897;" xml:space="preserve">
+        fill="var(--no-juice-color1, #f2f2f2)" stroke="var(--no-juice-color1)" stroke-width="0"
+        viewBox="0 0 375.897 375.897" width="120px" height="120px" style="enable-background: new 0 0 375.897 375.897;"
+        xml:space="preserve">
         <g>
           <path d="M116.903,212.085c-16.425,0-29.788,13.363-29.788,29.789c0,16.423,13.363,29.783,29.788,29.783
             c16.423,0,29.784-13.36,29.784-29.783C146.687,225.449,133.326,212.085,116.903,212.085z M116.903,257.658
@@ -139,9 +142,19 @@
     </div>
   </noscript>
   <div id="app"></div>
-  <script src="./libs/preload-polyfill.min.js"></script>
-  <script src="./libs/preload-polyfill-invoke.min.js"></script>
-  <script src="./libs/preload-polyfill-inline.min.js"></script>
+  <script src="./vendors/localforage.min.js"></script>
+  <script>
+    "use strict";
+    try {
+      // localforage setup
+      var iconsBucket = localforage.createInstance({
+        name: 'Icons'
+      });
+    } catch (e) { }
+  </script>
+  <script src="./vendors/preload-polyfill.min.js"></script>
+  <script src="./vendors/preload-polyfill-invoke.min.js"></script>
+  <script src="./vendors/preload-polyfill-inline.min.js"></script>
   <script>
     "use strict";
     var i = 0;
@@ -154,4 +167,5 @@
     }, 2500)
   </script>
 </body>
+
 </html>

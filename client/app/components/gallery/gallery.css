@@ -1,0 +1,135 @@
+.gallery {
+  width: 100vw;
+}
+
+.gallery__panel {
+  margin: 70px auto;
+  position: relative;
+  width: 850px;
+}
+
+.gallery__err {
+  width: 850px;
+  height: 250px;
+  text-align: center;
+}
+
+.gallery__err p {
+  line-height: 30px;
+}
+
+.gallery__err i {
+  text-decoration: line-through;
+}
+
+.gallery__placeholder,
+.gallery__brand-logos {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+  -moz-column-gap: 8px;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+
+.gallery__more {
+  position: relative;
+  margin: 15px 0;
+}
+
+.gallery__btn {
+  position: absolute;
+  width: 200px;
+  height: 45px;
+  border-radius: 2px;
+  text-align: left;
+}
+
+.gallery__btn__arrow,
+.gallery__btn__robot {
+  position: absolute;
+  opacity: .5;
+  top: 7px;
+  right: 30px;
+}
+
+.gallery__btn__arrow {
+  right: 40px;
+}
+
+.gallery__btn:hover .gallery__btn__arrow,
+.gallery__btn:hover .gallery__btn__robot {
+  opacity: .8;
+}
+
+#gallery__back {
+  left: 0;
+}
+
+#gallery__generate-more {
+  right: 0;
+}
+
+@media (max-width: 900px) {
+  .gallery__brand-logos {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, 260px);
+  }
+
+  .gallery__panel {
+    width: 650px;
+  }
+}
+
+@media (max-width: 650px) {
+  .gallery__placeholder,
+  .gallery__brand-logos {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, 200px);
+  }
+
+  .gallery__err {
+    width: 450px;
+    height: 447px;
+  }
+
+  .gallery__panel {
+    width: 450px;
+  }
+
+  .gallery__btn {
+    width: 150px;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery__panel {
+    margin: 30px 0;
+    padding: 5px;
+  }
+
+  .gallery__placeholder,
+  .gallery__brand-logos {
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(6, 260px);
+    row-gap: 5px;
+  }
+
+  .gallery__err {
+    width: 400px;
+  }
+
+  .gallery__panel {
+    width: 97vw;
+  }
+
+  .gallery__btn {
+    width: 120px;
+    font-size: .8em !important;
+  }
+
+  .gallery__btn__arrow,
+  .gallery__btn__robot {
+    right: 20px;
+  }
+}

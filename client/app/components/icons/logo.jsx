@@ -15,7 +15,7 @@ export function Logo(props) {
         x="0"
         y="84"
         fontSize="40"
-        fontFamily="Quicksand, sans-serif"
+        fontFamily="'Quicksand', sans-serif"
         fontWeight="normal"
         fontStyle="normal"
         letterSpacing="0"
@@ -26,7 +26,7 @@ export function Logo(props) {
         fill="var(--brand-svg-color)"
         fillOpacity="1"
         style={{
-          fontFamily: 'Quicksand, sans-serif'
+          fontFamily: "'Quicksand', sans-serif"
         }}
       >
         <tspan

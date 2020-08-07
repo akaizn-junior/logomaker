@@ -43,7 +43,7 @@ export function Input(props) {
       <input
         className={inputClassName}
         defaultValue={
-          remembered && !dValue
+          remembered
             ? remembered
             : dValue
         }

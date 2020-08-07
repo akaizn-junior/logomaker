@@ -1,10 +1,12 @@
 export { Landing } from './landing/landing';
 export { Navbar } from './navbar/navbar';
-export { Results } from './results/results';
+export { Gallery } from './gallery/gallery';
 export { Card } from './card/card';
 export { Lost } from './lost/lost';
 export { Button } from './button/button';
 export { Input } from './input/input';
 export { Faces } from './faces/faces';
 export { Loading } from './loading/loading';
-export { Keywords } from './keywords/keywords';
+export { LogoEditor } from './editor/editor';
+export { ColorPalette } from './palette/palette';
+export { ControlWrapper } from './controlwrapper/controlwrapper';

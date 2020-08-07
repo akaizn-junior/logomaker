@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { render } from 'react-dom';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 // global styles
 import './app.css';
@@ -14,8 +18,9 @@ import {
 import {
   Landing,
   Navbar,
-  Results,
-  Lost
+  Gallery,
+  Lost,
+  LogoEditor
 } from './components';
 
 toggleDatasetJsOn();
@@ -29,10 +34,20 @@ function App() {
         <h1>We deliver logos.</h1>
       </header>
       <Switch>
-        <Route exact path="/" render={props => <Landing {...props}/>} />
-        <Route path="/results" render={props => {
+        <Route exact path="/" render={props => <Landing {...props}/>}
+        />
+        <Route path="/gallery" render={props => {
           if (props.location.search) {
-            return <Results {...props}/>;
+            return <Gallery {...props} />;
+          }
+
+          setTimeout(() => {
+            props.history.replace('/');
+          }, 100);
+        }} />
+        <Route path="/editor" render={props => {
+          if (props.location.search) {
+            return <LogoEditor {...props} />;
           }
 
           setTimeout(() => {
@@ -48,4 +63,7 @@ function App() {
   );
 }
 
-render(<App />, document.getElementById('app'));
+render(
+  <App />,
+  document.getElementById('app')
+);
