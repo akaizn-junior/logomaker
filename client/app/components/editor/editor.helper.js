@@ -45,6 +45,7 @@ export function domToImg(id, picname, style, done, fail) {
   const { brandStyle, iconStyle } = style;
   const _done = safeFun(done);
   const _fail = safeFun(fail);
+  const ext = '.png';
   const node = document.getElementById(id).cloneNode(true);
   node.id = 'generated-logo--clone';
 
@@ -95,7 +96,7 @@ export function domToImg(id, picname, style, done, fail) {
     .then(dataUrl => {
       const link = document.createElement('a');
       link.href = dataUrl;
-      link.setAttribute('download', picname);
+      link.setAttribute('download', picname + ext);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

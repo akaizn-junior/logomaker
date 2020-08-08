@@ -69,7 +69,7 @@ export function LogoEditor(props) {
 
   useEffect(() => {
     if (editorData[itemIndex]) {
-      setLogoName(`gabriel.-${brandName}-logo${iconsPack}${itemIndex}.png`);
+      setLogoName(`gabriel.-${brandName}-logo${iconsPack}${itemIndex}`);
       setItemData(editorData[itemIndex]);
     }
   }, [editorData[itemIndex]]);
@@ -353,7 +353,7 @@ export function LogoEditor(props) {
               name="logo-editor__preview-iconsize"
               type="range"
               aria-label="Logo icon size control"
-              min="33"
+              min="10"
               max="80"
               defaultValue={sansUnit(iconStyle.width, '%')}
               onInput={e => {
