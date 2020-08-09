@@ -20,7 +20,7 @@ export function ColorPalette(props) {
 
   const _onBlur = safeFun(onBlur);
   const _onInput = safeFun(onInput);
-  const _class = classNameBuilder({[className]: className}, 'pallette');
+  const _class = classNameBuilder({[className]: className}, 'palette');
   const _remember = remember && typeof remember === 'string' ? remember : '';
 
   const selectId = `palette-colors-select${name || id}`;
