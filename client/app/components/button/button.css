@@ -24,3 +24,27 @@
   opacity: .8;
   color: var(--primary-light);
 }
+
+/* Light theme */
+
+.app-button--light {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  border-radius: 2px;
+  border: 1px solid var(--editor-controls-border);
+}
+
+.app-button--light.app-button--active,
+.app-button--light:not(:disabled):focus,
+.app-button--light:not(:disabled):hover {
+  background-color: #ffffff;
+  color: var(--primary-dark);
+  border-color: #e9e9e9;
+}
+
+.app-button--light:disabled {
+  opacity: .8;
+  color: var(--primary-light);
+}
+
+/* end Light theme */
