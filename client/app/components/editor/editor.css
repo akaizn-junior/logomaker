@@ -9,6 +9,68 @@
   left: 0px;
 }
 
+/* Export box */
+
+.export-box {
+  position: absolute;
+  top: 14px;
+  right: 80px;
+}
+
+.export-button {
+  width: 140px;
+  height: 40px;
+}
+
+.export-box__panel {
+  position: absolute;
+  background-color: #ffffff;
+  top: 45px;
+  left: 1px;
+  z-index: 10;
+}
+
+.export-box__panel input {
+  font-size: 1em;
+}
+
+.export-button:hover .export-button__arrow,
+.export-button:focus .export-button__arrow {
+  opacity: 1;
+}
+
+.export-button__arrow {
+  position: absolute;
+  opacity: .8;
+  top: 7px;
+  right: 10px;
+}
+
+.export-button__arrow polygon {
+  stroke: var(--primary-dark) !important;
+}
+
+.export-type select {
+  font-size: .75em;
+}
+
+.export-box__save-wrap {
+  text-align: left;
+  width: 100%;
+  padding: 7px 0;
+  border-top: 1px solid var(--primary-light);
+}
+
+.export-box__save {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+/* end Export box */
+
 /* Top section */
 
 .logo-editor__top {
@@ -37,42 +99,6 @@
 .logo-editor__close:hover,
 .logo-editor__close:focus {
   opacity: 1;
-}
-
-.logo-editor__download {
-  position: absolute;
-  width: 150px;
-  height: 40px;
-  text-align: left;
-  top: 14px;
-  right: 80px;
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
-  border-radius: 2px;
-  border: 1px solid var(--editor-controls-border);
-}
-
-.logo-editor__download:hover,
-.logo-editor__download:focus {
-  background-color: #ffffff !important;
-  color: var(--primary-dark) !important;
-  border-color: #e9e9e9 !important;
-}
-
-.logo-editor__download:hover .logo-editor__btn__arrow,
-.logo-editor__download:focus .logo-editor__btn__arrow {
-  opacity: 1;
-}
-
-.logo-editor__btn__arrow {
-  position: absolute;
-  opacity: .8;
-  top: 3px;
-  right: 10px;
-}
-
-.logo-editor__btn__arrow polygon {
-  stroke: var(--primary-dark) !important;
 }
 
 /* end Top section */

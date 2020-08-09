@@ -2,7 +2,7 @@
 
 import domtoimage from 'dom-to-image';
 
-import { safeFun } from '../../utils/browser';
+import { safeFun, browserStorage } from '../../utils/browser';
 import {
   readPack,
   readKeywords
@@ -13,6 +13,10 @@ export {
   readPack,
   readKeywords
 } from '../../utils/helpers';
+
+export const sansUnit = (v, u) => v && v.split(u)[0] || null;
+
+export const stored = i => browserStorage.get(i);
 
 export function readItemIndex(urlQuery) {
   const index = new RegExp(/i=[0-9]+/g).exec(urlQuery);
@@ -41,19 +45,34 @@ export function getEditorData(done = () => {}, fail = () => {}) {
     .catch(_fail);
 }
 
-export function domToImg(id, picname, style, done, fail) {
+export function domToImg(id, picname, extension, style, done, fail) {
   const { brandStyle, iconStyle } = style;
   const _done = safeFun(done);
   const _fail = safeFun(fail);
-  const ext = '.png';
+
+  const availableExtensions = {
+    png: ['toPng', '.png'],
+    jpeg: ['toJpeg', '.jpeg']
+  };
+
+  const ext = availableExtensions[extension || 'png'];
+
+  // clone the given node
   const node = document.getElementById(id).cloneNode(true);
   node.id = 'generated-logo--clone';
 
-  const iconElem = node;
-  // the image element
-  if (iconElem.firstChild.setAttribute) {
-    iconElem.firstChild.setAttribute('width', iconStyle.width || '33%');
-    iconElem.firstChild.setAttribute('height', iconStyle.width || '33%');
+  // the image
+  if (node.firstChild) {
+    // does not need to eb dragable here
+    node.firstChild.removeAttribute('dragable');
+    node.firstChild.setAttribute('width', iconStyle.width || '33%');
+    node.firstChild.setAttribute('height', iconStyle.width || '33%');
+  }
+
+  // the text
+  if (node.children[1]) {
+    // does not need to eb dragable here
+    node.firstChild.removeAttribute('dragable');
   }
 
   const logoStyle = document.createElement('style');
@@ -83,142 +102,27 @@ export function domToImg(id, picname, style, done, fail) {
   `;
   node.appendChild(logoStyle);
 
-  domtoimage
-    .toPng(node, {
-      width: style.width || 400,
-      height: style.height || 400,
-      // must be set, this help chrome not block network calls due to CORS
-      cacheBust: true,
-      style: {
-        textAlign: style.textAlign || 'center'
-      }
-    })
+  domtoimage[ext[0]](node, {
+    width: style.width || 400,
+    height: style.height || 400,
+    // must be set, this help chrome not block network calls due to CORS
+    cacheBust: true,
+    style: {
+      textAlign: style.textAlign || 'center'
+    }
+  })
     .then(dataUrl => {
-      const link = document.createElement('a');
-      link.href = dataUrl;
-      link.setAttribute('download', picname + ext);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      downloadImg(dataUrl, picname, ext[1]);
       _done();
     })
     .catch(e => _fail(e));
 }
 
-export const fontWeightValues = [
-  {
-    name: 'thin',
-    value: 100
-  },
-  {
-    name: 'Extra light',
-    value: 200
-  },
-  {
-    name: 'Light',
-    value: 300
-  },
-  {
-    name: 'Normal',
-    value: 400
-  },
-  {
-    name: 'Medium',
-    value: 500
-  },
-  {
-    name: 'Semi bold',
-    value: 600
-  },
-  {
-    name: 'Bold',
-    value: 700
-  },
-  {
-    name: 'Extra Bold',
-    value: 800
-  }
-];
-
-export const fontFamilyValues = [
-  {
-    name: 'Arial',
-    value: 'Arial, sans-serif'
-  },
-  {
-    name: 'Arial Black',
-    value: 'Arial Black, sans-serif'
-  },
-  {
-    name: 'Helvetica',
-    value: 'Helvetica, sans-serif'
-  },
-  {
-    name: 'Open Sans',
-    value: "'Open Sans', sans-serif"
-  },
-  {
-    name: 'Quicksand',
-    value: "'Quicksand', sans-serif"
-  },
-  {
-    name: 'Roboto',
-    value: "'Roboto', sans-serif"
-  },
-  {
-    name: 'Verdana',
-    value: 'Verdana, sans-serif'
-  },
-  {
-    name: 'Montserrat',
-    value: "'Montserrat', sans-serif"
-  },
-  {
-    name: 'Ubuntu',
-    value: "'Ubuntu', sans-serif"
-  },
-  {
-    name: 'Playfair',
-    value: "'Playfair Display', serif"
-  },
-  {
-    name: 'PT Serif',
-    value: "'PT Serif', serif"
-  },
-  {
-    name: 'Times',
-    value: 'Times, serif'
-  },
-  {
-    name: 'Times New Roman',
-    value: "'Times New Roman', serif"
-  },
-  {
-    name: 'Roboto Mono',
-    value: "'Roboto Mono', monospace"
-  },
-  {
-    name: 'Space Mono',
-    value: "'Space Mono', monospace"
-  },
-  {
-    name: 'Courier',
-    value: 'Courier, monospace'
-  },
-  {
-    name: 'Courier New',
-    value: "'Courier New', monospace"
-  },
-  {
-    name: 'Comfortaa',
-    value: "'Comfortaa', cursive"
-  },
-  {
-    name: 'Special Elite',
-    value: "'Special Elite', cursive"
-  },
-  {
-    name: 'Sniglet',
-    value: "'Sniglet', cursive"
-  }
-];
+export function downloadImg(dataUrl, picname, ext) {
+  const link = document.createElement('a');
+  link.href = dataUrl;
+  link.setAttribute('download', picname + ext);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

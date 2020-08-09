@@ -8,7 +8,8 @@ import {
   Button,
   Loading,
   ControlWrapper,
-  ColorPalette
+  ColorPalette,
+  Input
 } from '../';
 import {
   DownArrow,
@@ -20,33 +21,79 @@ import {
 // helpers
 import {
   domToImg,
-  fontWeightValues,
-  fontFamilyValues,
   getEditorData,
   readItemIndex,
   readBrandName,
   readPack,
-  readKeywords
+  readKeywords,
+  sansUnit,
+  stored
 } from './editor.helper';
+// data
+import {
+  fontWeightValues,
+  fontFamilyValues,
+  exportTypes
+} from './editor.data';
 
 export function LogoEditor(props) {
-  const [editorData, setEditorData] = useState([{}]);
-  const [hasData, setHasData] = useState(false);
-
   const brandName = readBrandName(location.hash);
   const iconsPack = readPack(location.hash);
   const keywords = readKeywords(location.hash);
 
-  const [itemIndex, setItemIndex] = useState(readItemIndex(location.hash));
+  const [editorData, setEditorData] = useState([{}]);
+  const [hasData, setHasData] = useState(false);
 
-  const [logoName, setLogoName] = useState('');
+  const [itemIndex, setItemIndex] = useState(readItemIndex(location.hash));
   const [itemData, setItemData] = useState({});
 
-  const [isSquaredSize, setIsSquaredSize] = useState(true);
+  const [showExportPanel, setShowExportPanel] = useState(false);
+  const [exportType, setExportType] = useState('png');
   const [downloadProgress, setDownloadProgress] = useState(false);
-  const sansUnit = (v, u) => v.split(u)[0];
+
+  const [logoName, setLogoName] = useState('');
 
   const galleryUri = `gallery?b=${brandName}&k=${keywords}&pack=${iconsPack}`;
+
+  const [brandStyle, setBrandStyle] = useState({
+    top: stored('logo-brand-top') || '50%',
+    left: stored('logo-brand-left') || '40%',
+    fontSize: stored('logo-brand-size') || '24px',
+    fontWeight: stored('logo-font-weight') || '700',
+    fontFamily: stored('logo-font-family') || "'Quicksand', sans-serif",
+    color: stored('logo-preview-color') || '#000000'
+  });
+
+  const [iconStyle, setIconStyle] = useState({
+    top: stored('logo-icon-top') || '5%',
+    left: stored('logo-icon-left') || '40%',
+    width: stored('logo-icon-size') || '33%'
+  });
+
+  let storeLogoSize = stored('logo-size');
+  storeLogoSize = storeLogoSize ? storeLogoSize.split('.') : [];
+  const [isSquaredSize, setIsSquaredSize] = useState(storeLogoSize[1] !== 'false' && true);
+  const [printSize, setPrintSize] = useState({
+    width: storeLogoSize[0] || 400,
+    height: storeLogoSize[2] || 400
+  });
+
+  const [previewStyle, setPreviewStyle] = useState({
+    background: stored('logo-preview-bg') || '#f2f2f2',
+    width: `${printSize.width}px`,
+    height: `${printSize.height}px`
+  });
+
+  const printStyle = {
+    // no unit, is passed directly as a number to domtoimage
+    width: printSize.width || 400,
+    // no unit, is passed directly as a number to domtoimage
+    height: printSize.height || 400,
+    background: previewStyle.background || '#f2f2f2',
+    textAlign: 'center',
+    brandStyle: brandStyle || {},
+    iconStyle: iconStyle || {}
+  };
 
   const newIndex = n => props.location.search
     .replace(
@@ -69,36 +116,13 @@ export function LogoEditor(props) {
 
   useEffect(() => {
     if (editorData[itemIndex]) {
-      setLogoName(`gabriel.-${brandName}-logo${iconsPack}${itemIndex}`);
+      setLogoName(
+        stored('export-filename')
+        || `gabriel.-${brandName}-logo${iconsPack}${itemIndex}`
+      );
       setItemData(editorData[itemIndex]);
     }
   }, [editorData[itemIndex]]);
-
-  const [brandStyle, setBrandStyle] = useState({
-    top: '50%',
-    left: '40%',
-    fontSize: '24px',
-    fontWeight: '700',
-    fontFamily: "'Quicksand', sans-serif",
-    color: '#000000'
-  });
-
-  const [iconStyle, setIconStyle] = useState({
-    top: '5%',
-    left: '40%',
-    width: '33%'
-  });
-
-  const [printSize, setPrintSize] = useState({
-    width: 400,
-    height: 400
-  });
-
-  const [previewStyle, setPreviewStyle] = useState({
-    background: '#f2f2f2',
-    width: `${printSize.width}px`,
-    height: `${printSize.height}px`
-  });
 
   useEffect(() => {
     setPreviewStyle({
@@ -107,17 +131,6 @@ export function LogoEditor(props) {
       height: `${printSize.height}px`
     });
   }, [printSize]);
-
-  const printStyle = {
-    // no unit, is passed directly as a number to domtoimage
-    width: printSize.width || 400,
-    // no unit, is passed directly as a number to domtoimage
-    height: printSize.height || 400,
-    background: previewStyle.background || '#f2f2f2',
-    textAlign: 'center',
-    brandStyle: brandStyle || {},
-    iconStyle: iconStyle || {}
-  };
 
   return (
     <div className="logo-editor">
@@ -135,28 +148,86 @@ export function LogoEditor(props) {
             />
           </Link>
         </div>
-        <Button
-          className="logo-editor__download"
-          onClick={() => {
-            if (!downloadProgress) {
-              setDownloadProgress(true);
-              domToImg(
-                'generated-logo',
-                logoName,
-                printStyle,
-                () => setDownloadProgress(false)
-              );
-            }
-          }}
-        >
-          {downloadProgress
-            ? <Loading maxWidth="15px" shade="fullscreen" />
-            : 'Download'
+        <div className="export-box">
+          <Button
+            theme="light"
+            active={showExportPanel}
+            className="export-button"
+            onClick={() => {
+              setShowExportPanel(!showExportPanel);
+            }}
+          >
+            <span>Export</span>
+            <DownArrow
+              className="export-button__arrow"
+            />
+          </Button>
+          {showExportPanel
+            && <div className="export-box__panel">
+              <Input
+                label="Filename"
+                id="export-filename"
+                remember="export-filename"
+                type="text"
+                maxLength={250}
+                autoCorrect="off"
+                autoCapitalize="off"
+                autoComplete="off"
+                spellCheck="true"
+                defaultValue={logoName}
+                onChange={e => {
+                  setLogoName(e.target.value);
+                }}
+              />
+              <ControlWrapper
+                className="export-type"
+                label="Type"
+                remember="export-type"
+                value={exportType}
+                toWrap={saved => <select
+                  name="export-type"
+                  defaultValue={saved}
+                  onChange={e => {
+                    setExportType(e.target.value);
+                  }}
+                >
+                  {exportTypes.map((o, i) =>
+                    <option
+                      key={i}
+                      value={o.value}
+                    >
+                      {o.name}
+                    </option>
+                  )}
+                </select>
+                }
+              />
+              <div className="export-box__save-wrap">
+                <Button
+                  theme="light"
+                  className="export-box__save"
+                  onClick={() => {
+                    if (!downloadProgress) {
+                      setDownloadProgress(true);
+                      domToImg(
+                        'generated-logo',
+                        logoName,
+                        exportType,
+                        printStyle,
+                        () => setDownloadProgress(false)
+                      );
+                    }
+                  }}
+                >
+                  {downloadProgress
+                    ? <Loading maxWidth="10px" shade="fullscreen" />
+                    : 'Save'
+                  }
+                </Button>
+              </div>
+            </div>
           }
-          <DownArrow
-            className="logo-editor__btn__arrow"
-          />
-        </Button>
+        </div>
         <button
           className="logo-editor__close"
           onClick={() => {
@@ -176,7 +247,7 @@ export function LogoEditor(props) {
         <img
           draggable="true"
           id="generated-logo__icon"
-          alt={brandName}
+          alt={`"${brandName}" Logo's icon`}
           src={itemData.preview_url}
           width={iconStyle.width}
           style={iconStyle}
@@ -192,7 +263,9 @@ export function LogoEditor(props) {
       <div className="logo-editor__controls">
         <ControlWrapper
           label="Size"
-          toWrap={
+          remember="logo-size"
+          value={`${printSize.width}.${isSquaredSize}.${printSize.height}`}
+          toWrap={() =>
             <Fragment>
               <input
                 name="logo-editor__preview-width"
@@ -238,11 +311,13 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Font Family"
-          toWrap={
+          remember="logo-font-family"
+          value={brandStyle.fontFamily}
+          toWrap={saved =>
             <select
               name="logo-editor__preview-fontfamily"
               aria-label="Logo font family control"
-              defaultValue={brandStyle.fontFamily}
+              defaultValue={saved || brandStyle.fontFamily}
               onChange={e => {
                 setBrandStyle({
                   ...brandStyle,
@@ -266,11 +341,13 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Font Weight"
-          toWrap={
+          remember="logo-font-weight"
+          value={brandStyle.fontWeight}
+          toWrap={saved =>
             <select
               name="logo-editor__preview-fontweight"
               aria-label="Logo font weight control"
-              defaultValue={brandStyle.fontWeight}
+              defaultValue={saved || brandStyle.fontWeight}
               onChange={e => {
                 setBrandStyle({
                   ...brandStyle,
@@ -288,6 +365,7 @@ export function LogoEditor(props) {
           label="Background"
           aria-label="Logo background color control"
           name="logo-editor__preview-bg"
+          remember="logo-preview-bg"
           defaultValue={previewStyle.background}
           onInput={value => {
             setPreviewStyle({
@@ -300,6 +378,7 @@ export function LogoEditor(props) {
           label="Color"
           aria-label="Logo font color control"
           name="logo-editor__preview-color"
+          remember="logo-preview-color"
           defaultValue={brandStyle.color}
           onInput={value => {
             setBrandStyle({
@@ -310,14 +389,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Icon X"
-          toWrap={
+          remember="logo-icon-left"
+          value={iconStyle.left}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-iconleft"
               type="range"
               aria-label="Logo icon x position control"
               min="0"
               max="100"
-              defaultValue={sansUnit(iconStyle.left, '%')}
+              defaultValue={sansUnit(saved, '%') || sansUnit(iconStyle.left, '%')}
               onInput={e => {
                 setIconStyle({
                   ...iconStyle,
@@ -329,14 +410,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Icon Y"
-          toWrap={
+          remember="logo-icon-top"
+          value={iconStyle.top}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-icontop"
               type="range"
               aria-label="Logo icon y position control"
               min="0"
               max="100"
-              defaultValue={sansUnit(iconStyle.top, '%')}
+              defaultValue={sansUnit(saved, '%') || sansUnit(iconStyle.top, '%')}
               onInput={e => {
                 setIconStyle({
                   ...iconStyle,
@@ -348,14 +431,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Icon Size"
-          toWrap={
+          remember="logo-icon-size"
+          value={iconStyle.width}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-iconsize"
               type="range"
               aria-label="Logo icon size control"
               min="10"
               max="80"
-              defaultValue={sansUnit(iconStyle.width, '%')}
+              defaultValue={sansUnit(saved, '%') || sansUnit(iconStyle.width, '%')}
               onInput={e => {
                 setIconStyle({
                   ...iconStyle,
@@ -367,14 +452,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Brand X"
-          toWrap={
+          remember="logo-brand-left"
+          value={brandStyle.left}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-brandleft"
               type="range"
               aria-label="Logo brand x position control"
               min="0"
               max="100"
-              defaultValue={sansUnit(brandStyle.left, '%')}
+              defaultValue={sansUnit(saved, '%') || sansUnit(brandStyle.left, '%')}
               onInput={e => {
                 setBrandStyle({
                   ...brandStyle,
@@ -386,14 +473,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Brand Y"
-          toWrap={
+          remember="logo-brand-top"
+          value={brandStyle.top}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-brandtop"
               type="range"
               aria-label="Logo brand y position control"
               min="0"
               max="100"
-              defaultValue={sansUnit(brandStyle.top, '%')}
+              defaultValue={sansUnit(saved, '%') || sansUnit(brandStyle.top, '%')}
               onInput={e => {
                 setBrandStyle({
                   ...brandStyle,
@@ -405,14 +494,16 @@ export function LogoEditor(props) {
         />
         <ControlWrapper
           label="Brand Size"
-          toWrap={
+          remember="logo-brand-size"
+          value={brandStyle.fontSize}
+          toWrap={saved =>
             <input
               name="logo-editor__preview-brandsize"
               type="range"
               aria-label="Logo brand size control"
               min="12"
               max="200"
-              defaultValue={sansUnit(brandStyle.fontSize, 'px')}
+              defaultValue={sansUnit(saved, 'px') || sansUnit(brandStyle.fontSize, 'px')}
               onInput={e => {
                 setBrandStyle({
                   ...brandStyle,

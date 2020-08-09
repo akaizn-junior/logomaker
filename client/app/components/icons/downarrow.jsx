@@ -7,8 +7,8 @@ export function DownArrow(props) {
   return (
     <svg
       viewBox="0 0 250 250"
-      width={width || '32px'}
-      height={width || height || '32px'}
+      width={width || '25px'}
+      height={width || height || '25px'}
       strokeWidth="3"
       aria-label="'Down Arrow' icon"
       style={{
