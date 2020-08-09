@@ -46,6 +46,7 @@ export function ColorPalette(props) {
   return (
     <div
       className={_class}
+      title={color}
       {...rest}
     >
       {label && <label

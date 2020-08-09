@@ -7,8 +7,8 @@ export function CloseIcon(props) {
   return (
     <svg
       viewBox="0 -5 50 60"
-      width={width || '27px'}
-      height={width || height || '27px'}
+      width={width || '24px'}
+      height={width || height || '24px'}
       strokeWidth="7"
       stroke="var(--arrow-svg-color)"
       fill="var(--arrow-svg-color)"
