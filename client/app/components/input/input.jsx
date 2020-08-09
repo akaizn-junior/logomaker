@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 
 import './input.css';
-import { safeFun } from '../../utils/browser';
+import { safeFun, browserStorage, classNameBuilder } from '../../utils/browser';
 
 export function Input(props) {
   const {
@@ -14,18 +14,18 @@ export function Input(props) {
     ...rest
   } = props;
 
-  const _remember = remember && typeof remember === 'string' ? remember : '';
-  const dValue = defaultValue || '';
-  const remembered = sessionStorage.getItem(_remember);
-
   const _onBlur = safeFun(onBlur);
+  const _class = classNameBuilder({
+    [className]: className
+  }, 'app-input__textfield');
+  const _remember = remember && typeof remember === 'string' ? remember : '';
 
-  let inputClassName = 'app-input__textfield';
-  className && (inputClassName = `${inputClassName} ${className}`);
+  const dValue = defaultValue || '';
+  const remembered = browserStorage.get(_remember);
 
   useEffect(() => {
     if (remembered) {
-      onBlur({ target: { value: remembered } });
+      _onBlur({ target: { value: remembered } });
     }
   }, [remembered]);
 
@@ -41,14 +41,14 @@ export function Input(props) {
         {label}
       </label>}
       <input
-        className={inputClassName}
+        className={_class}
         defaultValue={
           remembered
             ? remembered
             : dValue
         }
         onBlur={e => {
-          _remember && sessionStorage.setItem(_remember, e.target.value);
+          _remember && browserStorage.set(_remember, e.target.value);
           _onBlur(e);
         }}
         {...rest}
