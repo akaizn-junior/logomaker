@@ -34,8 +34,7 @@ function App() {
         <h1>We deliver logos.</h1>
       </header>
       <Switch>
-        <Route exact path="/" render={props => <Landing {...props}/>}
-        />
+        <Route exact path="/" render={props => <Landing {...props}/>} />
         <Route path="/gallery" render={props => {
           if (props.location.search) {
             return <Gallery {...props} />;
