@@ -59,6 +59,11 @@
   --palette-label-highlight: #000000;
 
   --editor-controls-border: #cacaca;
+
+  --wcag-contrast-pass-color: green;
+  --wcag-contrast-fail-color: red;
+
+  --try-a11y-color: #000000;
 }
 
 * {
@@ -93,8 +98,12 @@ body {
 a {
   color: var(--primary-accent);
   opacity: .8;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+}
+
+.link-style {
+  text-decoration: underline;
 }
 
 .link-style:hover,
@@ -207,6 +216,11 @@ footer {
 
     --editor-controls-border: #414141;
     --scroll-shadow: #303030;
+
+    --wcag-contrast-pass-color: #7fff7f;
+    --wcag-contrast-fail-color: #ffa1a1;
+
+    --try-a11y-color: #ffffff;
   }
 
   body {

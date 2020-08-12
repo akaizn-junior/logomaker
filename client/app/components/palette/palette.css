@@ -34,7 +34,7 @@
 
 .palette__main {
   position: relative;
-  padding-top: 6px;
+  padding: 6px 0;
 }
 
 .palette__colors {
@@ -45,7 +45,7 @@
   cursor: pointer;
   transition: none;
   background-color: #000000;
-  border: 1px solid var(--primary-dark);
+  border: 1px solid var(--editor-controls-border);
 }
 
 .palette__colors:focus {
@@ -64,4 +64,50 @@
   background-color: inherit;
   transition: none;
   color: var(--palette-label-color);
+}
+
+.palette__color-contrast {
+  width: 100%;
+  padding-top: 5px;
+  padding-left: 1px;
+  background-color: inherit;
+  color: var(--palette-label-color);
+  border: none !important;
+  transition: none;
+  font-size: .8em;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: 500;
+}
+
+.palette__color-contrast span ~ span {
+  margin-left: 12px;
+}
+
+.palette__color-contrast span:nth-child(1) {
+  padding: 1px 8px;
+  text-align: center;
+  border: 1px solid #eaeaea;
+}
+
+.palette__color-contrast span:nth-child(3) {
+  font-weight: 600;
+}
+
+.palette__color-contrast .aa-fail a::after {
+  color: var(--wcag-contrast-fail-color);
+  content: '\2691';
+}
+
+.palette__color-contrast .aa-pass a::after {
+  color: var(--wcag-contrast-pass-color);
+  content: 'AA';
+}
+
+.palette__color-contrast .aaa-pass a::after {
+  color: var(--wcag-contrast-pass-color);
+  content: 'AAA';
+}
+
+.try-a11y-color button {
+  color: var(--try-a11y-color);
 }

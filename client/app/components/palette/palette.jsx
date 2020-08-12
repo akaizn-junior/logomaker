@@ -5,20 +5,25 @@ import React, { useState, useEffect } from 'react';
 import './palette.css';
 import { safeFun, browserStorage, classNameBuilder } from '../../utils/browser';
 
+import {
+  stripSemiColonFromValue,
+  getContrastRatio
+} from './palette.helper';
+
 export function ColorPalette(props) {
   const {
     label,
     id,
     name,
     remember,
-    onBlur,
     onInput,
     defaultValue,
     className,
+    showColorContrast,
+    colorContrastTrigger,
     ...rest
   } = props;
 
-  const _onBlur = safeFun(onBlur);
   const _onInput = safeFun(onInput);
   const _class = classNameBuilder({[className]: className}, 'palette');
   const _remember = remember && typeof remember === 'string' ? remember : '';
@@ -27,7 +32,7 @@ export function ColorPalette(props) {
   const dValue = defaultValue || '';
   const remembered = browserStorage.get(_remember);
 
-  const validValue = v => v.replace(/;/g, '').trim();
+  const [contrastRatio, setContrastRatio] = useState(null);
 
   const [color, setColor] = useState(
     remembered
@@ -38,10 +43,20 @@ export function ColorPalette(props) {
   );
 
   useEffect(() => {
-    if (remembered) {
-      _onBlur({ target: { value: remembered } });
+    setContrastRatio(null);
+  }, [colorContrastTrigger]);
+
+  useEffect(() => {
+    if (!contrastRatio) {
+      showColorContrast && getContrastRatio(
+        showColorContrast.fg,
+        showColorContrast.bg,
+        showColorContrast.size,
+        showColorContrast.weight,
+        setContrastRatio
+      );
     }
-  }, [remembered]);
+  }, [contrastRatio]);
 
   return (
     <div
@@ -63,8 +78,8 @@ export function ColorPalette(props) {
           type="color"
           defaultValue={color}
           onInput={e => {
-            setColor(validValue(e.target.value));
-            _onInput(validValue(e.target.value));
+            setColor(stripSemiColonFromValue(e.target.value));
+            _onInput(stripSemiColonFromValue(e.target.value));
           }}
         />
         <div
@@ -78,7 +93,8 @@ export function ColorPalette(props) {
           data-value={color}
           onBlur={e => {
             const value = e.target.dataset.value;
-            _remember && browserStorage.set(_remember, validValue(value));
+            _remember && browserStorage.set(_remember, stripSemiColonFromValue(value));
+            setContrastRatio(null);
           }}
         >
         </div>
@@ -86,21 +102,70 @@ export function ColorPalette(props) {
           id={id}
           name={name}
           onBlur={e => {
-            _remember && browserStorage.set(_remember, validValue(e.target.value));
-            _onBlur(validValue(e.target.value));
+            _remember && browserStorage.set(_remember, stripSemiColonFromValue(e.target.value));
+            setContrastRatio(null);
           }}
           type="text"
           className="palette__color-value"
           value={color}
           onChange={e => {
-            _onInput(validValue(e.target.value));
-            setColor(validValue(e.target.value));
+            _onInput(stripSemiColonFromValue(e.target.value));
+            setColor(stripSemiColonFromValue(e.target.value));
           }}
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
-          spellCheck={(() => color.startsWith('#') && 'false' || 'true')()}
+          spellCheck="false"
         />
+        {showColorContrast && contrastRatio && !contrastRatio.error
+          && <div
+            className="palette__color-contrast"
+            title="Color contrast"
+          >
+            <span
+              style={{
+                background: showColorContrast.bg,
+                color: showColorContrast.fg
+              }}
+            >Aa</span>
+            <span>{contrastRatio.ratio}:1</span>
+            <span
+              className={
+                contrastRatio.AAA || contrastRatio.AAALarge
+                  ? 'aaa-pass'
+                  : contrastRatio.AA || contrastRatio.AALarge
+                    ? 'aa-pass'
+                    : 'aa-fail'
+              }
+            >
+              <a
+                aria-label="More about color contrast"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.a11yproject.com/posts/2015-01-05-what-is-color-contrast/"
+              ></a>
+            </span>
+            {contrastRatio.try
+              && <span
+                className="try-a11y-color"
+                title="a11y color with improved contrast"
+                aria-label="a11y color with improved contrast"
+              >
+                Try&nbsp;
+                <button
+                  className="link-style"
+                  onClick={() => {
+                    setColor(contrastRatio.try);
+                    _onInput(contrastRatio.try);
+                    setContrastRatio(null);
+                  }}
+                >
+                  {contrastRatio.try}
+                </button>
+              </span>
+            }
+          </div>
+        }
       </div>
     </div>
   );
