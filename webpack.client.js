@@ -60,28 +60,33 @@ module.exports = {
       filename: settings.output.cssFilename,
       chunkFilename: settings.output.cssChunkFilename
     }),
-    new CopyPlugin([{
-      from: 'client/assets',
-      to: 'assets'
-    }, {
-      from: 'client/manifest.json',
-      to: 'manifest.json'
-    }, {
-      from: 'LICENSE',
-      to: 'LICENSE.txt'
-    }, {
-      from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill.min.js',
-      to: 'vendors/preload-polyfill.min.js'
-    }, {
-      from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-invoke.min.js',
-      to: 'vendors/preload-polyfill-invoke.min.js'
-    }, {
-      from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-inline.min.js',
-      to: 'vendors/preload-polyfill-inline.min.js'
-    }, {
-      from: './node_modules/localforage/dist/localforage.min.js',
-      to: 'vendors/localforage.min.js'
-    }])
+    new CopyPlugin({
+      patterns: [{
+        from: 'client/assets',
+        to: 'assets'
+      }, {
+        from: 'client/manifest.json',
+        to: 'manifest.json'
+      }, {
+        from: 'LICENSE',
+        to: 'LICENSE.txt'
+      }, {
+        from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill.min.js',
+        to: 'vendors/preload-polyfill.min.js'
+      }, {
+        from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-invoke.min.js',
+        to: 'vendors/preload-polyfill-invoke.min.js'
+      }, {
+        from: './node_modules/@digitalkaoz/preload-polyfill/dist/preload-polyfill-inline.min.js',
+        to: 'vendors/preload-polyfill-inline.min.js'
+      }, {
+        from: './node_modules/localforage/dist/localforage.min.js',
+        to: 'vendors/localforage.min.js'
+      }, {
+        from: './node_modules/ac-colors/dist/ac-colors.min.js',
+        to: 'vendors/ac-colors.min.js'
+      }]
+    })
   ],
   resolve: {
     alias: {
