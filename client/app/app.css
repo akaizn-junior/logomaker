@@ -8,6 +8,9 @@
   --face-icon-color: orange;
   --brand-svg-color: #7a48f9;
 
+  --landing-panel-border: var(--primary-accent);
+  --landing-panel-bg: var(--primary-light);
+
   --app-button-border: #7a48f9;
   --app-button-bg: #7a48f9;
   --app-button-color: #ffffff;
@@ -15,6 +18,7 @@
   --app-button-highlight-color: aliceblue;
 
   --app-input-bg: #ffffff;
+  --app-input-color: #161616;
   --app-input-highlight-bg: #f1f0ff;
   --app-input-label-color: #303030;
   --app-input-label-highlight: #000000;
@@ -64,6 +68,9 @@
   --wcag-contrast-fail-color: red;
 
   --try-a11y-color: #000000;
+
+  --export-panel-bg: #ffffff;
+  --export-panel-separator: var(--primary-light);
 }
 
 * {
@@ -221,6 +228,18 @@ footer {
     --wcag-contrast-fail-color: #ffa1a1;
 
     --try-a11y-color: #ffffff;
+
+    --app-input-color: #ffffff;
+    --app-input-bg: #303030;
+    --app-input-highlight-bg: #3b3b3b;
+    --app-input-label-color: #ffffff;
+    --app-input-label-highlight: #ffffff;
+
+    --landing-panel-border: #202020;
+    --landing-panel-bg: #202020;
+
+    --export-panel-bg: #303030;
+    --export-panel-separator: #3d3d3d;
   }
 
   body {
