@@ -52,6 +52,7 @@ export function LogoEditor(props) {
   const [downloadProgress, setDownloadProgress] = useState(false);
 
   const [logoName, setLogoName] = useState('');
+  const [contrastTrigger, setContrastTrigger] = useState(null);
 
   const galleryUri = `gallery?b=${brandName}&k=${keywords}&pack=${iconsPack}`;
 
@@ -118,7 +119,7 @@ export function LogoEditor(props) {
     if (editorData[itemIndex]) {
       setLogoName(
         stored('export-filename')
-        || `gabriel.-${brandName}-logo${iconsPack}${itemIndex}`
+        || `Gabriel.-${brandName}-logo${iconsPack}${itemIndex}`
       );
       setItemData(editorData[itemIndex]);
     }
@@ -175,6 +176,7 @@ export function LogoEditor(props) {
                 autoComplete="off"
                 spellCheck="true"
                 defaultValue={logoName}
+                title={logoName}
                 onChange={e => {
                   setLogoName(e.target.value);
                 }}
@@ -256,6 +258,7 @@ export function LogoEditor(props) {
           draggable="true"
           id="generated-logo__brand"
           style={brandStyle}
+          aria-label={`"${brandName}" Logo's brand`}
         >
           {brandName}
         </p>
@@ -354,6 +357,9 @@ export function LogoEditor(props) {
                   fontWeight: e.target.value
                 });
               }}
+              onBlur={() => {
+                setContrastTrigger(brandStyle.fontWeight);
+              }}
             >
               {fontWeightValues.map((o, i) =>
                 <option key={i} value={o.value}>{o.name}</option>
@@ -373,6 +379,9 @@ export function LogoEditor(props) {
               background: value
             });
           }}
+          onBlur={() => {
+            setContrastTrigger(previewStyle.background);
+          }}
         />
         <ColorPalette
           label="Color"
@@ -380,6 +389,13 @@ export function LogoEditor(props) {
           name="logo-editor__preview-color"
           remember="logo-preview-color"
           defaultValue={brandStyle.color}
+          colorContrastTrigger={contrastTrigger}
+          showColorContrast={{
+            bg: previewStyle.background,
+            fg: brandStyle.color,
+            size: brandStyle.fontSize,
+            weight: brandStyle.fontWeight
+          }}
           onInput={value => {
             setBrandStyle({
               ...brandStyle,
@@ -510,6 +526,9 @@ export function LogoEditor(props) {
                   fontSize: `${e.target.value}px`
                 });
               }}
+              onBlur={() => {
+                setContrastTrigger(brandStyle.fontSize);
+              }}
             />
           }
         />
@@ -521,7 +540,7 @@ export function LogoEditor(props) {
           className="link-style"
           onClick={() => {
             let prev = itemIndex - 1;
-            prev = prev <= 0 ? 0 : prev % 6;
+            prev = prev <= 0 ? 0 : prev % editorData.length;
             if (props.location.search !== newIndex(prev)) {
               props.history.push(newIndex(prev));
               setItemIndex(prev);
@@ -536,7 +555,7 @@ export function LogoEditor(props) {
           className="link-style"
           onClick={() => {
             let next = itemIndex + 1;
-            next = next <= 0 ? 0 : next % 6;
+            next = next <= 0 ? 0 : next % editorData.length;
             props.history.push(newIndex(next));
             setItemIndex(next);
           }}
