@@ -1,5 +1,5 @@
 .app-input {
-  color: var(--primary-dark);
+  color: var(--app-input-color);
   position: relative;
   background-color: var(--app-input-bg);
   padding: 0 5px;
@@ -23,7 +23,7 @@
   caret-color: var(--primary-accent);
   font-size: 1.5em;
   background-color: var(--app-input-bg);
-  color: var(--primary-dark);
+  color: var(--app-input-color);
   border-radius: 2px;
   border: none;
   outline: none;

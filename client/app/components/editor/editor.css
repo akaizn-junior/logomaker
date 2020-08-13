@@ -24,7 +24,7 @@
 
 .export-box__panel {
   position: absolute;
-  background-color: #ffffff;
+  background-color: var(--export-panel-bg);
   top: 45px;
   left: 1px;
   z-index: 10;
@@ -58,7 +58,7 @@
   text-align: left;
   width: 100%;
   padding: 7px 0;
-  border-top: 1px solid var(--primary-light);
+  border-top: 1px solid var(--export-panel-separator);
 }
 
 .export-box__save {

@@ -15,8 +15,8 @@
   margin: 70px auto;
   position: relative;
   width: 500px;
-  border: 1px solid var(--primary-accent);
-  background-color: var(--primary-light);
+  border: 1px solid var(--landing-panel-border);
+  background-color: var(--landing-panel-bg);
 }
 
 .landing__panel,
